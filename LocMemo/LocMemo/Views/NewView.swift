@@ -11,6 +11,9 @@ import SwiftUI
 
 struct NewView: View {
 
+    @State private var showError: Bool = false
+    @State private var errMsg: String = ""
+
     @State private var location: String = ""
 
     var body: some View {
@@ -32,6 +35,7 @@ struct NewView: View {
             }
             .navigationBarTitle("Create New Memo")
         }
+        .alert(isPresented: $showError, content: getErrorAlert)
     }
 
     func locationOnCommit() {
@@ -43,6 +47,16 @@ struct NewView: View {
 
     func getPlacemarksCompletionHandler(placemarks: [CLPlacemark]?,
                                         error: NSError?) {
+        if error != nil {
+            errMsg = "Invalid location. Please refine your search."
+            showError = true
+            return
+        }
+    }
 
+    func getErrorAlert() -> Alert {
+        return Alert(title: Text("Error!"),
+                     message: Text(errMsg),
+                     dismissButton: .default(Text("OK")))
     }
 }

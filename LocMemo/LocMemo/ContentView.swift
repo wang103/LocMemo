@@ -16,7 +16,7 @@ struct ContentView: View {
             MemosView()
                 .tabItem {
                     VStack {
-                        Image("first")
+                        Image("TabMemos")
                         Text("Memos")
                     }
                 }
@@ -25,7 +25,7 @@ struct ContentView: View {
             NewView()
                 .tabItem {
                     VStack {
-                        Image("second")
+                        Image("TabNew")
                         Text("New")
                     }
                 }
@@ -34,17 +34,11 @@ struct ContentView: View {
             SettingsView()
                 .tabItem {
                     VStack {
-                        Image("first")
+                        Image("TabSettings")
                         Text("Settings")
                     }
                 }
                 .tag(2)
         }
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
     }
 }

@@ -13,25 +13,51 @@ struct ContentView: View {
  
     var body: some View {
         TabView(selection: $selection){
-            Text("First View")
-                .font(.title)
+            MemosView()
                 .tabItem {
                     VStack {
                         Image("first")
-                        Text("First")
+                        Text("Memos")
                     }
                 }
                 .tag(0)
-            Text("Second View")
-                .font(.title)
+
+            NewView()
                 .tabItem {
                     VStack {
                         Image("second")
-                        Text("Second")
+                        Text("New")
                     }
                 }
                 .tag(1)
+
+            SettingsView()
+                .tabItem {
+                    VStack {
+                        Image("first")
+                        Text("Settings")
+                    }
+                }
+                .tag(2)
         }
+    }
+}
+
+struct MemosView: View {
+    var body: some View {
+        Color.white
+    }
+}
+
+struct NewView: View {
+    var body: some View {
+        Color.white
+    }
+}
+
+struct SettingsView: View {
+    var body: some View {
+        Color.white
     }
 }
 

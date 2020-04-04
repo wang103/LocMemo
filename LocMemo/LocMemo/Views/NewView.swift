@@ -6,10 +6,12 @@
 //  Copyright © 2020 x. All rights reserved.
 //
 
+import Contacts
 import CoreLocation
 import SwiftUI
 
 struct NewView: View {
+    private static let ADDRESS_FORMATTER = CNPostalAddressFormatter()
 
     @State private var showError: Bool = false
     @State private var errMsg: String = ""
@@ -54,8 +56,27 @@ struct NewView: View {
         }
 
         if placemarks!.count == 1 {
+            let placemarkDisplayStr = getDisplayStr(placemarks![0])
+            if !placemarkDisplayStr.isEmpty {
+                location = placemarkDisplayStr
+            } else {
+                // Could not format the CLPlacemark retrieved, just leave as is.
+            }
+        } else {
 
         }
+    }
+
+    /**
+     * Returns empty string if couldn't format.
+     */
+    func getDisplayStr(_ placemark: CLPlacemark) -> String {
+        if placemark.postalAddress != nil {
+            return NewView.ADDRESS_FORMATTER
+                .string(from: placemark.postalAddress!)
+                .replacingOccurrences(of: "\n", with: ", ")
+        }
+        return ""
     }
 
     func getErrorAlert() -> Alert {

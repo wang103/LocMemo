@@ -16,7 +16,6 @@
 		4DACFA6F2437D59500740EE8 /* LocMemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFA6E2437D59500740EE8 /* LocMemoTests.swift */; };
 		4DACFA7A2437D59500740EE8 /* LocMemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFA792437D59500740EE8 /* LocMemoUITests.swift */; };
 		4DACFA89243818D600740EE8 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFA88243818D600740EE8 /* LocationManager.swift */; };
-		4DACFA8B24381BE300740EE8 /* LocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFA8A24381BE300740EE8 /* LocationManagerDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,7 +51,6 @@
 		4DACFA792437D59500740EE8 /* LocMemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocMemoUITests.swift; sourceTree = "<group>"; };
 		4DACFA7B2437D59500740EE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4DACFA88243818D600740EE8 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
-		4DACFA8A24381BE300740EE8 /* LocationManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,7 +143,6 @@
 			isa = PBXGroup;
 			children = (
 				4DACFA88243818D600740EE8 /* LocationManager.swift */,
-				4DACFA8A24381BE300740EE8 /* LocationManagerDelegate.swift */,
 			);
 			path = Location;
 			sourceTree = "<group>";
@@ -282,7 +279,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DACFA89243818D600740EE8 /* LocationManager.swift in Sources */,
-				4DACFA8B24381BE300740EE8 /* LocationManagerDelegate.swift in Sources */,
 				4DACFA582437D59100740EE8 /* AppDelegate.swift in Sources */,
 				4DACFA5A2437D59100740EE8 /* SceneDelegate.swift in Sources */,
 				4DACFA5C2437D59100740EE8 /* ContentView.swift in Sources */,

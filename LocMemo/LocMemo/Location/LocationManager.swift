@@ -15,6 +15,14 @@ class LocationManager {
 
     init() {
         self.clLocationManager = CLLocationManager()
-        self.clLocationManager.delegate = LocationManagerDelegate()
+    }
+
+    /**
+     * The system calls this delegate object’s methods from the thread in which we started the
+     * corresponding location services. That thread must itself have an active run loop, like the app's main
+     * thread.
+     */
+    func setDelegate(_ delegate: CLLocationManagerDelegate) {
+        self.clLocationManager.delegate = delegate
     }
 }

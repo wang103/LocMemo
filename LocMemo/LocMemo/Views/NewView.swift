@@ -47,10 +47,14 @@ struct NewView: View {
 
     func getPlacemarksCompletionHandler(placemarks: [CLPlacemark]?,
                                         error: NSError?) {
-        if error != nil {
+        if error != nil || placemarks == nil || placemarks!.count == 0 {
             errMsg = "Invalid location. Please refine your search."
             showError = true
             return
+        }
+
+        if placemarks!.count == 1 {
+
         }
     }
 

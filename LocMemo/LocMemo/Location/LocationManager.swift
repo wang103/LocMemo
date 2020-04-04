@@ -23,6 +23,19 @@ class LocationManager: NSObject {
         // must itself have an active run loop, like the app's main thread.
         self.clLocationManager.delegate = self
     }
+
+    func getPlacemarks(_ addressString : String,
+                       completionHandler: @escaping([CLPlacemark]?, NSError?) -> Void) {
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(addressString) { (placemarks, error) in
+            if error == nil {
+                completionHandler(placemarks, nil)
+                return
+            }
+
+            completionHandler(nil, error as NSError?)
+        }
+    }
 }
 
 // MARK: - CLLocationManagerDelegate

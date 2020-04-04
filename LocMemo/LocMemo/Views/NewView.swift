@@ -6,14 +6,20 @@
 //  Copyright © 2020 x. All rights reserved.
 //
 
+import CoreLocation
 import SwiftUI
 
 struct NewView: View {
+
+    @State private var location: String = ""
+
     var body: some View {
         NavigationView {
             Form {
                 Section {
                     Text("When I arrive at location")
+                    TextField("", text: $location, onCommit: { self.locationOnCommit() })
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
                 }
 
                 Section {
@@ -26,5 +32,17 @@ struct NewView: View {
             }
             .navigationBarTitle("Create New Memo")
         }
+    }
+
+    func locationOnCommit() {
+        LocationManager.shared.getPlacemarks(
+            location,
+            completionHandler: getPlacemarksCompletionHandler
+        )
+    }
+
+    func getPlacemarksCompletionHandler(placemarks: [CLPlacemark]?,
+                                        error: NSError?) {
+
     }
 }

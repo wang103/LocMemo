@@ -16,6 +16,7 @@
 		4DACFA6F2437D59500740EE8 /* LocMemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFA6E2437D59500740EE8 /* LocMemoTests.swift */; };
 		4DACFA7A2437D59500740EE8 /* LocMemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFA792437D59500740EE8 /* LocMemoUITests.swift */; };
 		4DACFA89243818D600740EE8 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFA88243818D600740EE8 /* LocationManager.swift */; };
+		4DACFA8D243831C800740EE8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DACFA8C243831C800740EE8 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		4DACFA792437D59500740EE8 /* LocMemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocMemoUITests.swift; sourceTree = "<group>"; };
 		4DACFA7B2437D59500740EE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4DACFA88243818D600740EE8 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		4DACFA8C243831C800740EE8 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				4DACFA652437D59500740EE8 /* Info.plist */,
+				4DACFA8C243831C800740EE8 /* Main.storyboard */,
 				4DACFA572437D59100740EE8 /* AppDelegate.swift */,
 				4DACFA5B2437D59100740EE8 /* ContentView.swift */,
 				4DACFA592437D59100740EE8 /* SceneDelegate.swift */,
@@ -254,6 +257,7 @@
 				4DACFA642437D59500740EE8 /* LaunchScreen.storyboard in Resources */,
 				4DACFA612437D59500740EE8 /* Preview Assets.xcassets in Resources */,
 				4DACFA5E2437D59500740EE8 /* Assets.xcassets in Resources */,
+				4DACFA8D243831C800740EE8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

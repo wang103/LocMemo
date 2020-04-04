@@ -43,24 +43,6 @@ struct ContentView: View {
     }
 }
 
-struct MemosView: View {
-    var body: some View {
-        Color.white
-    }
-}
-
-struct NewView: View {
-    var body: some View {
-        Color.white
-    }
-}
-
-struct SettingsView: View {
-    var body: some View {
-        Color.white
-    }
-}
-
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()

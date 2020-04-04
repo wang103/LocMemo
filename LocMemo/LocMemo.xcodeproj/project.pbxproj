@@ -14,6 +14,9 @@
 		4DACFAA4243836BF00740EE8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DACFAA3243836BF00740EE8 /* Preview Assets.xcassets */; };
 		4DACFAA7243836BF00740EE8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DACFAA5243836BF00740EE8 /* LaunchScreen.storyboard */; };
 		4DACFAB024383A2900740EE8 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFAAF24383A2900740EE8 /* LocationManager.swift */; };
+		4DACFAB3243852DE00740EE8 /* MemosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFAB2243852DE00740EE8 /* MemosView.swift */; };
+		4DACFAB52438532C00740EE8 /* NewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFAB42438532C00740EE8 /* NewView.swift */; };
+		4DACFAB72438534900740EE8 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFAB62438534900740EE8 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		4DACFAA6243836BF00740EE8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4DACFAA8243836BF00740EE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4DACFAAF24383A2900740EE8 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		4DACFAB2243852DE00740EE8 /* MemosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemosView.swift; sourceTree = "<group>"; };
+		4DACFAB42438532C00740EE8 /* NewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewView.swift; sourceTree = "<group>"; };
+		4DACFAB62438534900740EE8 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +64,8 @@
 		4DACFA99243836BD00740EE8 /* LocMemo */ = {
 			isa = PBXGroup;
 			children = (
-				4DACFAAE24383A1B00740EE8 /* location */,
+				4DACFAB1243852C900740EE8 /* Views */,
+				4DACFAAE24383A1B00740EE8 /* Location */,
 				4DACFA9A243836BD00740EE8 /* AppDelegate.swift */,
 				4DACFA9C243836BD00740EE8 /* SceneDelegate.swift */,
 				4DACFA9E243836BD00740EE8 /* ContentView.swift */,
@@ -78,12 +85,22 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		4DACFAAE24383A1B00740EE8 /* location */ = {
+		4DACFAAE24383A1B00740EE8 /* Location */ = {
 			isa = PBXGroup;
 			children = (
 				4DACFAAF24383A2900740EE8 /* LocationManager.swift */,
 			);
-			path = location;
+			path = Location;
+			sourceTree = "<group>";
+		};
+		4DACFAB1243852C900740EE8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4DACFAB2243852DE00740EE8 /* MemosView.swift */,
+				4DACFAB42438532C00740EE8 /* NewView.swift */,
+				4DACFAB62438534900740EE8 /* SettingsView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,8 +174,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DACFAB72438534900740EE8 /* SettingsView.swift in Sources */,
 				4DACFAB024383A2900740EE8 /* LocationManager.swift in Sources */,
 				4DACFA9B243836BD00740EE8 /* AppDelegate.swift in Sources */,
+				4DACFAB3243852DE00740EE8 /* MemosView.swift in Sources */,
+				4DACFAB52438532C00740EE8 /* NewView.swift in Sources */,
 				4DACFA9D243836BD00740EE8 /* SceneDelegate.swift in Sources */,
 				4DACFA9F243836BD00740EE8 /* ContentView.swift in Sources */,
 			);

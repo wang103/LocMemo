@@ -10,6 +10,21 @@ import SwiftUI
 
 struct NewView: View {
     var body: some View {
-        Color.white
+        NavigationView {
+            Form {
+                Section {
+                    Text("When I arrive at location")
+                }
+
+                Section {
+                    Text("Show me this memo")
+                }
+
+                Button(action: {}) {
+                    Text("Create")
+                }
+            }
+            .navigationBarTitle("Create New Memo")
+        }
     }
 }

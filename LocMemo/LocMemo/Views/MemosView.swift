@@ -10,6 +10,21 @@ import SwiftUI
 
 struct MemosView: View {
     var body: some View {
-        Color.white
+        NavigationView {
+            Form {
+                Section {
+                    Text("Hello")
+                    Text("Hello")
+                    Text("Hello")
+                }
+
+                Section {
+                    Text("Hello")
+                    Text("Hello")
+                    Text("Hello")
+                }
+            }
+            .navigationBarTitle("Memos")
+        }
     }
 }

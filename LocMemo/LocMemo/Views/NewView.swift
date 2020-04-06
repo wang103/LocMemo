@@ -20,6 +20,8 @@ struct NewView: View {
 
     @State private var locationText: String = ""
 
+    @State private var selectedPlacemark: CLPlacemark? = nil
+
     var body: some View {
         LoadingView(isShowing: $showLoading) {
             NavigationView {
@@ -45,6 +47,7 @@ struct NewView: View {
     }
 
     func locationOnCommit() {
+        selectedPlacemark = nil
         showLoading = true
 
         LocationManager.shared.getPlacemarks(
@@ -55,6 +58,7 @@ struct NewView: View {
 
     func getPlacemarksCompletionHandler(placemarks: [CLPlacemark]?,
                                         error: NSError?) {
+        selectedPlacemark = nil
         showLoading = false
 
         if error != nil || placemarks == nil || placemarks!.count == 0 {
@@ -70,6 +74,8 @@ struct NewView: View {
             } else {
                 // Could not format the CLPlacemark retrieved, just leave as is.
             }
+
+            selectedPlacemark = placemarks![0]
         } else {
 
         }

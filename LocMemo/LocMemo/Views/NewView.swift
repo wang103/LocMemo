@@ -31,11 +31,26 @@ struct NewView: View {
             NavigationView {
                 self.getMainView()
                 .navigationBarTitle("Create New Memo")
+                .navigationBarItems(trailing:
+                    Button("Done", action: self.createNewMemo)
+                )
             }
             .alert(isPresented: self.$showError, content: self.getErrorAlert)
             .onTapGesture {
                 UIApplication.shared.endEditing()
             }
+        }
+    }
+
+    func createNewMemo() {
+        if selectedPlacemark == nil {
+            showErrorMsg("Please select a location first.")
+            return
+        }
+
+        if memoText.isEmpty {
+            showErrorMsg("Please write a memo first.")
+            return
         }
     }
 
@@ -53,8 +68,6 @@ struct NewView: View {
                 MultilineTextField($memoText, placeholder: "", onCommit: memoOnCommit)
                     .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color(UIColor.systemGray4)))
             }
-
-            Button("Create") {}
         }
     }
 
@@ -113,8 +126,7 @@ struct NewView: View {
         showLoading = false
 
         if error != nil || placemarks == nil || placemarks!.count == 0 {
-            errMsg = "Invalid location. Please refine your search."
-            showError = true
+            showErrorMsg("Invalid location. Please refine your search.")
             return
         }
 
@@ -125,6 +137,11 @@ struct NewView: View {
             locationCandidates = placemarks!
             showLocationsPopover = true
         }
+    }
+
+    func showErrorMsg(_ msg: String) {
+        errMsg = msg
+        showError = true
     }
 
     /**

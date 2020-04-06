@@ -59,9 +59,13 @@ class LocationManager: NSObject {
 
 extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager,
+                         didEnterRegion region: CLRegion) {
+        // TODO: implementation
+    }
+
+    func locationManager(_ manager: CLLocationManager,
                          monitoringDidFailFor region: CLRegion?,
                          withError error: Error) {
-        // TODO: Issue #1
-        // Update the UI with error message.
+        // TODO: implementation
     }
 }

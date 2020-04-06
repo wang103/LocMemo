@@ -66,5 +66,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>The app needs to notify you when you entered the specified locations</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>The app needs to notify you when you entered the specified locations</string>
 </dict>
 </plist>

@@ -33,6 +33,9 @@ struct NewView: View {
                 .navigationBarTitle("Create New Memo")
             }
             .alert(isPresented: self.$showError, content: self.getErrorAlert)
+            .onTapGesture {
+                UIApplication.shared.endEditing()
+            }
         }
     }
 
@@ -48,7 +51,7 @@ struct NewView: View {
             Section {
                 Text("Show me this memo")
                 MultilineTextField($memoText, placeholder: "", onCommit: memoOnCommit)
-                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color(UIColor.systemGray3)))
+                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color(UIColor.systemGray4)))
             }
 
             Button("Create") {}

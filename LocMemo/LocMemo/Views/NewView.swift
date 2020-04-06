@@ -16,31 +16,37 @@ struct NewView: View {
     @State private var showError: Bool = false
     @State private var errMsg: String = ""
 
+    @State private var showLoading: Bool = false
+
     @State private var location: String = ""
 
     var body: some View {
-        NavigationView {
-            Form {
-                Section {
-                    Text("When I arrive at location")
-                    TextField("", text: $location, onCommit: { self.locationOnCommit() })
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                }
+        LoadingView(isShowing: $showLoading) {
+            NavigationView {
+                Form {
+                    Section {
+                        Text("When I arrive at location")
+                        TextField("", text: self.$location, onCommit: { self.locationOnCommit() })
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                    }
 
-                Section {
-                    Text("Show me this memo")
-                }
+                    Section {
+                        Text("Show me this memo")
+                    }
 
-                Button(action: {}) {
-                    Text("Create")
+                    Button(action: {}) {
+                        Text("Create")
+                    }
                 }
+                .navigationBarTitle("Create New Memo")
             }
-            .navigationBarTitle("Create New Memo")
+            .alert(isPresented: self.$showError, content: self.getErrorAlert)
         }
-        .alert(isPresented: $showError, content: getErrorAlert)
     }
 
     func locationOnCommit() {
+        showLoading = true
+
         LocationManager.shared.getPlacemarks(
             location,
             completionHandler: getPlacemarksCompletionHandler
@@ -49,6 +55,8 @@ struct NewView: View {
 
     func getPlacemarksCompletionHandler(placemarks: [CLPlacemark]?,
                                         error: NSError?) {
+        showLoading = false
+
         if error != nil || placemarks == nil || placemarks!.count == 0 {
             errMsg = "Invalid location. Please refine your search."
             showError = true

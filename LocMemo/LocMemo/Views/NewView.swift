@@ -47,9 +47,7 @@ struct NewView: View {
                 Text("Show me this memo")
             }
 
-            Button(action: {}) {
-                Text("Create")
-            }
+            Button("Create") {}
         }
     }
 
@@ -65,6 +63,9 @@ struct NewView: View {
                 }
             }
             .navigationBarTitle("Select Location")
+            .navigationBarItems(trailing:
+                Button("Close") { self.showLocationsPopover = false }
+            )
         }
     }
 

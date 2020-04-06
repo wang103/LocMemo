@@ -48,6 +48,7 @@ struct NewView: View {
             Section {
                 Text("Show me this memo")
                 MultilineTextField($memoText, placeholder: "", onCommit: memoOnCommit)
+                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color(UIColor.systemGray3)))
             }
 
             Button("Create") {}
@@ -90,6 +91,10 @@ struct NewView: View {
     }
 
     func locationOnCommit() {
+        if locationText.isEmpty {
+            return
+        }
+
         selectedPlacemark = nil
         showLoading = true
 

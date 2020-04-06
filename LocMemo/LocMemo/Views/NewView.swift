@@ -18,7 +18,7 @@ struct NewView: View {
 
     @State private var showLoading: Bool = false
 
-    @State private var location: String = ""
+    @State private var locationText: String = ""
 
     var body: some View {
         LoadingView(isShowing: $showLoading) {
@@ -26,7 +26,7 @@ struct NewView: View {
                 Form {
                     Section {
                         Text("When I arrive at location")
-                        TextField("", text: self.$location, onCommit: { self.locationOnCommit() })
+                        TextField("", text: self.$locationText, onCommit: { self.locationOnCommit() })
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                     }
 
@@ -48,7 +48,7 @@ struct NewView: View {
         showLoading = true
 
         LocationManager.shared.getPlacemarks(
-            location,
+            locationText,
             completionHandler: getPlacemarksCompletionHandler
         )
     }
@@ -66,7 +66,7 @@ struct NewView: View {
         if placemarks!.count == 1 {
             let placemarkDisplayStr = getDisplayStr(placemarks![0])
             if !placemarkDisplayStr.isEmpty {
-                location = placemarkDisplayStr
+                locationText = placemarkDisplayStr
             } else {
                 // Could not format the CLPlacemark retrieved, just leave as is.
             }

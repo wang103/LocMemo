@@ -16,6 +16,9 @@ struct NewView: View {
     @State private var showError: Bool = false
     @State private var errMsg: String = ""
 
+    @State private var showSuccess: Bool = false
+    @State private var successMsg: String? = nil
+
     @State private var showLoading: Bool = false
 
     @State private var locationText: String = ""
@@ -32,10 +35,11 @@ struct NewView: View {
                 self.getMainView()
                 .navigationBarTitle("Create New Memo")
                 .navigationBarItems(trailing:
-                    Button("Done", action: self.createNewMemo)
+                    Button("Save", action: self.createNewMemo)
                 )
             }
             .alert(isPresented: self.$showError, content: self.getErrorAlert)
+            .alert(isPresented: self.$showSuccess, content: self.getSuccessAlert)
             .onTapGesture {
                 UIApplication.shared.endEditing()
             }
@@ -52,6 +56,22 @@ struct NewView: View {
             showErrorMsg("Please write a memo first.")
             return
         }
+
+        let success = LocationManager.shared.monitorRegionAtLocation(
+            center: selectedPlacemark!.location!.coordinate,
+            identifier: locationText
+        )
+        if !success {
+            showErrorMsg("Device does not support region monitoring.")
+        } else {
+            showSuccessMsg()
+            clearInputs()
+        }
+    }
+
+    func clearInputs() {
+        locationText = ""
+        memoText = ""
     }
 
     func getMainView() -> some View {
@@ -144,6 +164,11 @@ struct NewView: View {
         showError = true
     }
 
+    func showSuccessMsg(_ msg: String? = nil) {
+        successMsg = msg
+        showSuccess = true
+    }
+
     /**
      * Returns empty string if couldn't format.
      */
@@ -159,6 +184,12 @@ struct NewView: View {
     func getErrorAlert() -> Alert {
         return Alert(title: Text("Error!"),
                      message: Text(errMsg),
+                     dismissButton: .default(Text("OK")))
+    }
+
+    func getSuccessAlert() -> Alert {
+        return Alert(title: Text("Success!"),
+                     message: successMsg == nil ? nil : Text(successMsg!),
                      dismissButton: .default(Text("OK")))
     }
 }

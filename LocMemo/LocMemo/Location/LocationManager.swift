@@ -36,6 +36,23 @@ class LocationManager: NSObject {
             completionHandler(nil, error as NSError?)
         }
     }
+
+    func monitorRegionAtLocation(center: CLLocationCoordinate2D, identifier: String) -> Bool {
+        // Make sure the device supports region monitoring.
+        if !CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
+            return false
+        }
+
+        // Register the region.
+        let maxDistance = clLocationManager.maximumRegionMonitoringDistance
+        let region = CLCircularRegion(center: center, radius: maxDistance, identifier: identifier)
+        region.notifyOnEntry = true
+        region.notifyOnExit = false
+
+        clLocationManager.startMonitoring(for: region)
+
+        return true
+    }
 }
 
 // MARK: - CLLocationManagerDelegate

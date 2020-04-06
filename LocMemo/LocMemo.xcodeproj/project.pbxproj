@@ -20,6 +20,7 @@
 		4DACFABA243AC96D00740EE8 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFAB9243AC96D00740EE8 /* ActivityIndicator.swift */; };
 		4DACFABC243ACB2100740EE8 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFABB243ACB2100740EE8 /* LoadingView.swift */; };
 		4DACFABE243AED4C00740EE8 /* SelectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFABD243AED4C00740EE8 /* SelectableCell.swift */; };
+		4DACFAC0243B149400740EE8 /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFABF243B149400740EE8 /* MultilineTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		4DACFAB9243AC96D00740EE8 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		4DACFABB243ACB2100740EE8 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		4DACFABD243AED4C00740EE8 /* SelectableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableCell.swift; sourceTree = "<group>"; };
+		4DACFABF243B149400740EE8 /* MultilineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 				4DACFAB9243AC96D00740EE8 /* ActivityIndicator.swift */,
 				4DACFABB243ACB2100740EE8 /* LoadingView.swift */,
 				4DACFABD243AED4C00740EE8 /* SelectableCell.swift */,
+				4DACFABF243B149400740EE8 /* MultilineTextField.swift */,
 			);
 			path = UILib;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 				4DACFA9D243836BD00740EE8 /* SceneDelegate.swift in Sources */,
 				4DACFA9F243836BD00740EE8 /* ContentView.swift in Sources */,
 				4DACFABC243ACB2100740EE8 /* LoadingView.swift in Sources */,
+				4DACFAC0243B149400740EE8 /* MultilineTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

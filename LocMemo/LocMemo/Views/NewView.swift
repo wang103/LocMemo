@@ -24,6 +24,8 @@ struct NewView: View {
 
     @State private var selectedPlacemark: CLPlacemark? = nil
 
+    @State private var memoText: String = ""
+
     var body: some View {
         LoadingView(isShowing: $showLoading) {
             NavigationView {
@@ -45,10 +47,15 @@ struct NewView: View {
 
             Section {
                 Text("Show me this memo")
+                MultilineTextField($memoText, placeholder: "", onCommit: memoOnCommit)
             }
 
             Button("Create") {}
         }
+    }
+
+    func memoOnCommit() {
+        // intentionally empty
     }
 
     func getLocationsPopoverView() -> some View {

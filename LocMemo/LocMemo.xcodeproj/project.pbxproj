@@ -19,6 +19,7 @@
 		4DACFAB72438534900740EE8 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFAB62438534900740EE8 /* SettingsView.swift */; };
 		4DACFABA243AC96D00740EE8 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFAB9243AC96D00740EE8 /* ActivityIndicator.swift */; };
 		4DACFABC243ACB2100740EE8 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFABB243ACB2100740EE8 /* LoadingView.swift */; };
+		4DACFABE243AED4C00740EE8 /* SelectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFABD243AED4C00740EE8 /* SelectableCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		4DACFAB62438534900740EE8 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		4DACFAB9243AC96D00740EE8 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		4DACFABB243ACB2100740EE8 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		4DACFABD243AED4C00740EE8 /* SelectableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 			children = (
 				4DACFAB9243AC96D00740EE8 /* ActivityIndicator.swift */,
 				4DACFABB243ACB2100740EE8 /* LoadingView.swift */,
+				4DACFABD243AED4C00740EE8 /* SelectableCell.swift */,
 			);
 			path = UILib;
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DACFAB72438534900740EE8 /* SettingsView.swift in Sources */,
+				4DACFABE243AED4C00740EE8 /* SelectableCell.swift in Sources */,
 				4DACFAB024383A2900740EE8 /* LocationManager.swift in Sources */,
 				4DACFA9B243836BD00740EE8 /* AppDelegate.swift in Sources */,
 				4DACFAB3243852DE00740EE8 /* MemosView.swift in Sources */,

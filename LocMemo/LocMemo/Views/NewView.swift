@@ -19,31 +19,66 @@ struct NewView: View {
     @State private var showLoading: Bool = false
 
     @State private var locationText: String = ""
+    @State private var showLocationsPopover: Bool = false
+    @State private var locationCandidates: [CLPlacemark] = []
 
     @State private var selectedPlacemark: CLPlacemark? = nil
 
     var body: some View {
         LoadingView(isShowing: $showLoading) {
             NavigationView {
-                Form {
-                    Section {
-                        Text("When I arrive at location")
-                        TextField("", text: self.$locationText, onCommit: { self.locationOnCommit() })
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                    }
-
-                    Section {
-                        Text("Show me this memo")
-                    }
-
-                    Button(action: {}) {
-                        Text("Create")
-                    }
-                }
+                self.getMainView()
                 .navigationBarTitle("Create New Memo")
             }
             .alert(isPresented: self.$showError, content: self.getErrorAlert)
         }
+    }
+
+    func getMainView() -> some View {
+        return Form {
+            Section {
+                Text("When I arrive at location")
+                TextField("", text: self.$locationText, onCommit: { self.locationOnCommit() })
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .popover(isPresented: self.$showLocationsPopover) { self.getLocationsPopoverView() }
+            }
+
+            Section {
+                Text("Show me this memo")
+            }
+
+            Button(action: {}) {
+                Text("Create")
+            }
+        }
+    }
+
+    func getLocationsPopoverView() -> some View {
+        return NavigationView {
+            List {
+                ForEach(0..<locationCandidates.count) { index in
+                    SelectableCell(
+                        text: self.getDisplayStr(self.locationCandidates[index]),
+                        id: index,
+                        selectedCallback: self.locationSelected
+                    )
+                }
+            }
+            .navigationBarTitle("Select Location")
+        }
+    }
+
+    func locationSelected(id: Int) {
+        let placemarkDisplayStr = getDisplayStr(locationCandidates[id])
+        if !placemarkDisplayStr.isEmpty {
+            locationText = placemarkDisplayStr
+        } else {
+            // Could not format the CLPlacemark retrieved, just leave as is.
+        }
+
+        selectedPlacemark = locationCandidates[id]
+
+        showLocationsPopover = false
     }
 
     func locationOnCommit() {
@@ -68,16 +103,11 @@ struct NewView: View {
         }
 
         if placemarks!.count == 1 {
-            let placemarkDisplayStr = getDisplayStr(placemarks![0])
-            if !placemarkDisplayStr.isEmpty {
-                locationText = placemarkDisplayStr
-            } else {
-                // Could not format the CLPlacemark retrieved, just leave as is.
-            }
-
-            selectedPlacemark = placemarks![0]
+            locationCandidates = placemarks!
+            locationSelected(id: 0)
         } else {
-
+            locationCandidates = placemarks!
+            showLocationsPopover = true
         }
     }
 

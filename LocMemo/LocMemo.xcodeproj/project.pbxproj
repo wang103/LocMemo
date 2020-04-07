@@ -72,15 +72,15 @@
 		4DACFA99243836BD00740EE8 /* LocMemo */ = {
 			isa = PBXGroup;
 			children = (
-				4DACFAB8243AC95200740EE8 /* UILib */,
-				4DACFAB1243852C900740EE8 /* Views */,
-				4DACFAAE24383A1B00740EE8 /* Location */,
 				4DACFA9A243836BD00740EE8 /* AppDelegate.swift */,
 				4DACFA9C243836BD00740EE8 /* SceneDelegate.swift */,
 				4DACFA9E243836BD00740EE8 /* ContentView.swift */,
+				4DACFAB1243852C900740EE8 /* Views */,
+				4DACFAB8243AC95200740EE8 /* UILib */,
+				4DACFAAE24383A1B00740EE8 /* Location */,
+				4DACFAA8243836BF00740EE8 /* Info.plist */,
 				4DACFAA0243836BF00740EE8 /* Assets.xcassets */,
 				4DACFAA5243836BF00740EE8 /* LaunchScreen.storyboard */,
-				4DACFAA8243836BF00740EE8 /* Info.plist */,
 				4DACFAA2243836BF00740EE8 /* Preview Content */,
 			);
 			path = LocMemo;
@@ -117,8 +117,8 @@
 			children = (
 				4DACFAB9243AC96D00740EE8 /* ActivityIndicator.swift */,
 				4DACFABB243ACB2100740EE8 /* LoadingView.swift */,
-				4DACFABD243AED4C00740EE8 /* SelectableCell.swift */,
 				4DACFABF243B149400740EE8 /* MultilineTextField.swift */,
+				4DACFABD243AED4C00740EE8 /* SelectableCell.swift */,
 			);
 			path = UILib;
 			sourceTree = "<group>";

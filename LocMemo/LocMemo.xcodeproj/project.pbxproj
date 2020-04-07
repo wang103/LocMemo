@@ -24,6 +24,7 @@
 		4DACFAF3243C0E0B00740EE8 /* LocMemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFAF1243C0E0B00740EE8 /* LocMemo.xcdatamodeld */; };
 		4DACFAF6243C108F00740EE8 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFAF5243C108F00740EE8 /* DataManager.swift */; };
 		4DACFAF8243C114E00740EE8 /* LocMemoStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFAF7243C114E00740EE8 /* LocMemoStatus.swift */; };
+		4DACFAFE243C288C00740EE8 /* LocMemoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFAFD243C288C00740EE8 /* LocMemoData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		4DACFAF2243C0E0B00740EE8 /* LocMemo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocMemo.xcdatamodel; sourceTree = "<group>"; };
 		4DACFAF5243C108F00740EE8 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		4DACFAF7243C114E00740EE8 /* LocMemoStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocMemoStatus.swift; sourceTree = "<group>"; };
+		4DACFAFD243C288C00740EE8 /* LocMemoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocMemoData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 			children = (
 				4DACFAF5243C108F00740EE8 /* DataManager.swift */,
 				4DACFAF7243C114E00740EE8 /* LocMemoStatus.swift */,
+				4DACFAFD243C288C00740EE8 /* LocMemoData.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -223,6 +226,7 @@
 				4DACFA9D243836BD00740EE8 /* SceneDelegate.swift in Sources */,
 				4DACFA9F243836BD00740EE8 /* ContentView.swift in Sources */,
 				4DACFABC243ACB2100740EE8 /* LoadingView.swift in Sources */,
+				4DACFAFE243C288C00740EE8 /* LocMemoData.swift in Sources */,
 				4DACFAF6243C108F00740EE8 /* DataManager.swift in Sources */,
 				4DACFAC0243B149400740EE8 /* MultilineTextField.swift in Sources */,
 			);

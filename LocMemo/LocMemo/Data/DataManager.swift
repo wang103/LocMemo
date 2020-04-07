@@ -50,7 +50,7 @@ class DataManager {
         try managedContext.save()
     }
 
-    func getAllLocMemos() throws -> [NSManagedObject] {
+    func getAllLocMemos() throws -> [LocMemoData] {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return []
         }
@@ -58,10 +58,16 @@ class DataManager {
 
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "LocMemo")
 
-        return try managedContext.fetch(fetchRequest).sorted(by: {
-            let date1 = $0.value(forKeyPath: "updatedAt") as! Date
-            let date2 = $1.value(forKeyPath: "updatedAt") as! Date
-            return date1.compare(date2) == .orderedDescending
+        return try managedContext.fetch(fetchRequest).map({
+            LocMemoData(identifier: $0.value(forKeyPath: "identifier") as! String,
+                        locationText: $0.value(forKeyPath: "locationText") as! String,
+                        memoText: $0.value(forKeyPath: "memoText") as! String,
+                        status: LocMemoStatus(rawValue: $0.value(forKeyPath: "status") as! Int16)!,
+                        createdAt: $0.value(forKeyPath: "createdAt") as! Date,
+                        updatedAt: $0.value(forKeyPath: "updatedAt") as! Date
+            )
+        }).sorted(by: {
+            return $0.updatedAt.compare($1.updatedAt) == .orderedDescending
         })
     }
 }

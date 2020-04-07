@@ -59,7 +59,7 @@ class DataManager {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "LocMemo")
 
         return try managedContext.fetch(fetchRequest).map({
-            LocMemoData(identifier: $0.value(forKeyPath: "identifier") as! String,
+            LocMemoData(id: $0.value(forKeyPath: "identifier") as! String,
                         locationText: $0.value(forKeyPath: "locationText") as! String,
                         memoText: $0.value(forKeyPath: "memoText") as! String,
                         status: LocMemoStatus(rawValue: $0.value(forKeyPath: "status") as! Int16)!,

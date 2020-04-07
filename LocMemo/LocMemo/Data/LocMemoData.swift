@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct LocMemoData {
-    let identifier: String
+struct LocMemoData: Identifiable {
+    let id: String
     let locationText: String
     let memoText: String
     let status: LocMemoStatus

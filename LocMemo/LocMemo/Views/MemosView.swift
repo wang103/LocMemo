@@ -13,18 +13,17 @@ struct MemosView: View {
     @State private var showError: Bool = false
     @State private var errMsg: String = ""
 
-    var body: some View {
-        let locMemos = getAllLocMemos()
+    @State private var locMemos: [LocMemoData] = []
 
-        return NavigationView {
-            List {
-                ForEach(0..<locMemos.count) { index in
-                    Text(locMemos[index].locationText)
-                }
+    var body: some View {
+        NavigationView {
+            List(locMemos) { locMemo in
+                Text(locMemo.locationText)
             }
             .navigationBarTitle("Memos")
         }
         .alert(isPresented: self.$showError, content: self.getErrorAlert)
+        .onAppear(perform: { self.locMemos = self.getAllLocMemos() })
     }
 
     func getAllLocMemos() -> [LocMemoData] {

@@ -21,6 +21,7 @@
 		4DACFABC243ACB2100740EE8 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFABB243ACB2100740EE8 /* LoadingView.swift */; };
 		4DACFABE243AED4C00740EE8 /* SelectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFABD243AED4C00740EE8 /* SelectableCell.swift */; };
 		4DACFAC0243B149400740EE8 /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFABF243B149400740EE8 /* MultilineTextField.swift */; };
+		4DACFAF3243C0E0B00740EE8 /* LocMemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFAF1243C0E0B00740EE8 /* LocMemo.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		4DACFABB243ACB2100740EE8 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		4DACFABD243AED4C00740EE8 /* SelectableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableCell.swift; sourceTree = "<group>"; };
 		4DACFABF243B149400740EE8 /* MultilineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextField.swift; sourceTree = "<group>"; };
+		4DACFAF2243C0E0B00740EE8 /* LocMemo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocMemo.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 				4DACFAB8243AC95200740EE8 /* UILib */,
 				4DACFAAE24383A1B00740EE8 /* Location */,
 				4DACFAA8243836BF00740EE8 /* Info.plist */,
+				4DACFAF1243C0E0B00740EE8 /* LocMemo.xcdatamodeld */,
 				4DACFAA0243836BF00740EE8 /* Assets.xcassets */,
 				4DACFAA5243836BF00740EE8 /* LaunchScreen.storyboard */,
 				4DACFAA2243836BF00740EE8 /* Preview Content */,
@@ -194,6 +197,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DACFAF3243C0E0B00740EE8 /* LocMemo.xcdatamodeld in Sources */,
 				4DACFAB72438534900740EE8 /* SettingsView.swift in Sources */,
 				4DACFABE243AED4C00740EE8 /* SelectableCell.swift in Sources */,
 				4DACFAB024383A2900740EE8 /* LocationManager.swift in Sources */,
@@ -396,6 +400,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4DACFAF1243C0E0B00740EE8 /* LocMemo.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4DACFAF2243C0E0B00740EE8 /* LocMemo.xcdatamodel */,
+			);
+			currentVersion = 4DACFAF2243C0E0B00740EE8 /* LocMemo.xcdatamodel */;
+			path = LocMemo.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 4DACFA8F243836BD00740EE8 /* Project object */;
 }

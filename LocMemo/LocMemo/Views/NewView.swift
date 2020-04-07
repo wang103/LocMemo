@@ -38,8 +38,6 @@ struct NewView: View {
                     Button("Save", action: self.createNewMemo)
                 )
             }
-            .alert(isPresented: self.$showError, content: self.getErrorAlert)
-            .alert(isPresented: self.$showSuccess, content: self.getSuccessAlert)
             .onTapGesture {
                 UIApplication.shared.endEditing()
             }
@@ -93,12 +91,14 @@ struct NewView: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .popover(isPresented: self.$showLocationsPopover) { self.getLocationsPopoverView() }
             }
+            .alert(isPresented: self.$showSuccess, content: self.getSuccessAlert)
 
             Section {
                 Text("Show me this memo")
                 MultilineTextField($memoText, placeholder: "", onCommit: memoOnCommit)
                     .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color(UIColor.systemGray4)))
             }
+            .alert(isPresented: self.$showError, content: self.getErrorAlert)
         }
     }
 
@@ -110,11 +110,9 @@ struct NewView: View {
         return NavigationView {
             List {
                 ForEach(0..<locationCandidates.count) { index in
-                    SelectableCell(
-                        text: self.getDisplayStr(self.locationCandidates[index]),
-                        id: index,
-                        selectedCallback: self.locationSelected
-                    )
+                    SelectableCell(id: index, selectedCallback: self.locationSelected) {
+                        Text(self.getDisplayStr(self.locationCandidates[index]))
+                    }
                 }
             }
             .navigationBarTitle("Select Location")

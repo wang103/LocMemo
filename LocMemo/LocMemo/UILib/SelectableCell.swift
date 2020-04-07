@@ -8,14 +8,14 @@
 
 import SwiftUI
 
-struct SelectableCell: View {
+struct SelectableCell<Content>: View where Content: View {
 
-    let text: String
     let id: Int
     let selectedCallback: (Int) -> Void
+    var content: () -> Content
 
     var body: some View {
-        Text(text)
+        content()
             .onTapGesture {
                 self.selectedCallback(self.id)
             }

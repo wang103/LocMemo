@@ -52,6 +52,10 @@ class LocationManager: NSObject {
         clLocationManager.stopMonitoring(for: region)
     }
 
+    func getMonitoredRegions() -> Set<CLRegion> {
+        return clLocationManager.monitoredRegions
+    }
+
     func createRegion(center: CLLocationCoordinate2D, identifier: String) -> CLRegion {
         let maxDistance = clLocationManager.maximumRegionMonitoringDistance
         let region = CLCircularRegion(center: center, radius: maxDistance, identifier: identifier)

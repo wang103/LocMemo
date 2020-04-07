@@ -58,15 +58,25 @@ struct NewView: View {
         }
 
         let identifier = UUID().uuidString
-        let success = LocationManager.shared.monitorRegionAtLocation(
+        let region = LocationManager.shared.createRegion(
             center: selectedPlacemark!.location!.coordinate,
             identifier: identifier
         )
+        let success = LocationManager.shared.monitorRegionAtLocation(region: region)
         if !success {
             showErrorMsg("Device does not support region monitoring.")
         } else {
-            showSuccessMsg()
-            clearInputs()
+            do {
+                try DataManager.shared.saveLocMemo(identifier: identifier,
+                                                   locationText: locationText,
+                                                   memoText: memoText)
+
+                showSuccessMsg()
+                clearInputs()
+            } catch let error as NSError {
+                LocationManager.shared.stopMonitoring(region: region)
+                showErrorMsg("Unable to save locally. Please try again. \(error.localizedDescription)")
+            }
         }
     }
 

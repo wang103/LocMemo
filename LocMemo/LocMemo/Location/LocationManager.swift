@@ -37,21 +37,27 @@ class LocationManager: NSObject {
         }
     }
 
-    func monitorRegionAtLocation(center: CLLocationCoordinate2D, identifier: String) -> Bool {
+    func monitorRegionAtLocation(region: CLRegion) -> Bool {
         // Make sure the device supports region monitoring.
         if !CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
             return false
         }
 
         // Register the region.
+        clLocationManager.startMonitoring(for: region)
+        return true
+    }
+
+    func stopMonitoring(region: CLRegion) {
+        clLocationManager.stopMonitoring(for: region)
+    }
+
+    func createRegion(center: CLLocationCoordinate2D, identifier: String) -> CLRegion {
         let maxDistance = clLocationManager.maximumRegionMonitoringDistance
         let region = CLCircularRegion(center: center, radius: maxDistance, identifier: identifier)
         region.notifyOnEntry = true
         region.notifyOnExit = false
-
-        clLocationManager.startMonitoring(for: region)
-
-        return true
+        return region
     }
 }
 

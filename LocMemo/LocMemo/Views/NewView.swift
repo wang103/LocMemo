@@ -73,7 +73,7 @@ struct NewView: View {
                 clearInputs()
             } catch let error as NSError {
                 LocationManager.shared.stopMonitoring(region: region)
-                showErrorMsg("Unable to save locally. Please try again. \(error.localizedDescription)")
+                showErrorMsg("Saving memo encounterd error. Please try again. \(error.localizedDescription)")
             }
         }
     }

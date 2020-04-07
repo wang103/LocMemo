@@ -17,8 +17,10 @@ struct MemosView: View {
 
     var body: some View {
         NavigationView {
-            List(locMemos) { locMemo in
-                Text(locMemo.locationText)
+            List(locMemos.enumerated().map({$0}), id: \.element.id) { index, locMemo in
+                return SelectableCell(id: index, selectedCallback: self.locMemoSelected) {
+                    self.getCellContent(locMemo: locMemo)
+                }
             }
             .navigationBarTitle("Memos")
         }
@@ -26,11 +28,25 @@ struct MemosView: View {
         .onAppear(perform: { self.locMemos = self.getAllLocMemos() })
     }
 
+    func getCellContent(locMemo: LocMemoData) -> some View {
+        return VStack(alignment: .leading, spacing: 5) {
+            Text("location:").bold()
+            Text(locMemo.locationText)
+
+            Text("memo:").bold()
+            Text(locMemo.memoText)
+        }
+    }
+
+    func locMemoSelected(index: Int) {
+        // Do nothing intentionally.
+    }
+
     func getAllLocMemos() -> [LocMemoData] {
         do {
             return try DataManager.shared.getAllLocMemos()
         } catch let error as NSError {
-            showErrorMsg("Unable to read saved memos. Please try again. \(error.localizedDescription)")
+            showErrorMsg("Reading saved memos encountered error. \(error.localizedDescription)")
             return []
         }
     }

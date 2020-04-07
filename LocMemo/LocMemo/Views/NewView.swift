@@ -62,7 +62,7 @@ struct NewView: View {
             center: selectedPlacemark!.location!.coordinate,
             identifier: identifier
         )
-        let success = LocationManager.shared.monitorRegionAtLocation(region: region)
+        let success = LocationManager.shared.startMonitoring(region: region)
         if !success {
             showErrorMsg("Device does not support region monitoring.")
         } else {

@@ -37,7 +37,7 @@ class LocationManager: NSObject {
         }
     }
 
-    func monitorRegionAtLocation(region: CLRegion) -> Bool {
+    func startMonitoring(region: CLRegion) -> Bool {
         // Make sure the device supports region monitoring.
         if !CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
             return false

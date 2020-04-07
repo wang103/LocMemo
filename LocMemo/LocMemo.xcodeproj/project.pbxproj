@@ -22,6 +22,8 @@
 		4DACFABE243AED4C00740EE8 /* SelectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFABD243AED4C00740EE8 /* SelectableCell.swift */; };
 		4DACFAC0243B149400740EE8 /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFABF243B149400740EE8 /* MultilineTextField.swift */; };
 		4DACFAF3243C0E0B00740EE8 /* LocMemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFAF1243C0E0B00740EE8 /* LocMemo.xcdatamodeld */; };
+		4DACFAF6243C108F00740EE8 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFAF5243C108F00740EE8 /* DataManager.swift */; };
+		4DACFAF8243C114E00740EE8 /* LocMemoStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFAF7243C114E00740EE8 /* LocMemoStatus.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		4DACFABD243AED4C00740EE8 /* SelectableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableCell.swift; sourceTree = "<group>"; };
 		4DACFABF243B149400740EE8 /* MultilineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextField.swift; sourceTree = "<group>"; };
 		4DACFAF2243C0E0B00740EE8 /* LocMemo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocMemo.xcdatamodel; sourceTree = "<group>"; };
+		4DACFAF5243C108F00740EE8 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		4DACFAF7243C114E00740EE8 /* LocMemoStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocMemoStatus.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +84,7 @@
 				4DACFAB1243852C900740EE8 /* Views */,
 				4DACFAB8243AC95200740EE8 /* UILib */,
 				4DACFAAE24383A1B00740EE8 /* Location */,
+				4DACFAF4243C107200740EE8 /* Data */,
 				4DACFAA8243836BF00740EE8 /* Info.plist */,
 				4DACFAF1243C0E0B00740EE8 /* LocMemo.xcdatamodeld */,
 				4DACFAA0243836BF00740EE8 /* Assets.xcassets */,
@@ -124,6 +129,15 @@
 				4DACFABD243AED4C00740EE8 /* SelectableCell.swift */,
 			);
 			path = UILib;
+			sourceTree = "<group>";
+		};
+		4DACFAF4243C107200740EE8 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				4DACFAF5243C108F00740EE8 /* DataManager.swift */,
+				4DACFAF7243C114E00740EE8 /* LocMemoStatus.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,9 +219,11 @@
 				4DACFAB3243852DE00740EE8 /* MemosView.swift in Sources */,
 				4DACFABA243AC96D00740EE8 /* ActivityIndicator.swift in Sources */,
 				4DACFAB52438532C00740EE8 /* NewView.swift in Sources */,
+				4DACFAF8243C114E00740EE8 /* LocMemoStatus.swift in Sources */,
 				4DACFA9D243836BD00740EE8 /* SceneDelegate.swift in Sources */,
 				4DACFA9F243836BD00740EE8 /* ContentView.swift in Sources */,
 				4DACFABC243ACB2100740EE8 /* LoadingView.swift in Sources */,
+				4DACFAF6243C108F00740EE8 /* DataManager.swift in Sources */,
 				4DACFAC0243B149400740EE8 /* MultilineTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -58,6 +58,10 @@ class DataManager {
 
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "LocMemo")
 
-        return try managedContext.fetch(fetchRequest)
+        return try managedContext.fetch(fetchRequest).sorted(by: {
+            let date1 = $0.value(forKeyPath: "updatedAt") as! Date
+            let date2 = $1.value(forKeyPath: "updatedAt") as! Date
+            return date1.compare(date2) == .orderedDescending
+        })
     }
 }

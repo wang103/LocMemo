@@ -48,6 +48,15 @@ class LocationManager: NSObject {
         return true
     }
 
+    func stopMonitoring(identifier: String) {
+        let region = clLocationManager.monitoredRegions.first(
+            where: { $0.identifier == identifier }
+        )
+        if region != nil {
+            stopMonitoring(region: region!)
+        }
+    }
+
     func stopMonitoring(region: CLRegion) {
         clLocationManager.stopMonitoring(for: region)
     }

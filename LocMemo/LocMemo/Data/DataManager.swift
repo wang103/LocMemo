@@ -50,6 +50,16 @@ class DataManager {
         try managedContext.save()
     }
 
+    func delete(_ object: NSManagedObject) throws {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+
+        managedContext.delete(object)
+        try managedContext.save()
+    }
+
     func getAllLocMemos() throws -> [LocMemoData] {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return []
@@ -59,7 +69,8 @@ class DataManager {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "LocMemo")
 
         return try managedContext.fetch(fetchRequest).map({
-            LocMemoData(id: $0.value(forKeyPath: "identifier") as! String,
+            LocMemoData(obj: $0,
+                        id: $0.value(forKeyPath: "identifier") as! String,
                         locationText: $0.value(forKeyPath: "locationText") as! String,
                         memoText: $0.value(forKeyPath: "memoText") as! String,
                         status: LocMemoStatus(rawValue: $0.value(forKeyPath: "status") as! Int16)!,

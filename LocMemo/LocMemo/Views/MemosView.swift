@@ -13,6 +13,9 @@ struct MemosView: View {
     @State private var showError: Bool = false
     @State private var errMsg: String = ""
 
+    @State private var showSuccess: Bool = false
+    @State private var successMsg: String? = nil
+
     @State private var showMemoActionSheet = false
     @State private var lastSelectedMemoIndex: Int = -1
 
@@ -29,6 +32,7 @@ struct MemosView: View {
                 }
             }
             .navigationBarTitle("Memos")
+            .alert(isPresented: self.$showSuccess, content: self.getSuccessAlert)
         }
         .alert(isPresented: self.$showError, content: self.getErrorAlert)
         .onAppear(perform: { self.locMemos = self.getAllLocMemos() })
@@ -63,7 +67,20 @@ struct MemosView: View {
     }
 
     func deleteMemoCallback() {
+        if lastSelectedMemoIndex < 0 {
+            return
+        }
 
+        LocationManager.shared.stopMonitoring(identifier: locMemos[lastSelectedMemoIndex].id)
+
+        do {
+            try DataManager.shared.delete(locMemos[lastSelectedMemoIndex].obj)
+
+            showSuccessMsg()
+            self.locMemos = self.getAllLocMemos()
+        } catch let error as NSError {
+            showErrorMsg("Deleting memo encountered error. Please try again. \(error.localizedDescription)")
+        }
     }
 
     func getAllLocMemos() -> [LocMemoData] {
@@ -80,9 +97,20 @@ struct MemosView: View {
         showError = true
     }
 
+    func showSuccessMsg(_ msg: String? = nil) {
+        successMsg = msg
+        showSuccess = true
+    }
+
     func getErrorAlert() -> Alert {
         return Alert(title: Text("Error!"),
                      message: Text(errMsg),
+                     dismissButton: .default(Text("OK")))
+    }
+
+    func getSuccessAlert() -> Alert {
+        return Alert(title: Text("Success!"),
+                     message: successMsg == nil ? nil : Text(successMsg!),
                      dismissButton: .default(Text("OK")))
     }
 }

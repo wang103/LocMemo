@@ -9,11 +9,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    // For this view
     @State private var selection = 0
+
+    // For new view
+    @State private var newViewLocationText: String = ""
+    @State private var newViewMemoText: String = ""
  
     var body: some View {
         TabView(selection: $selection){
-            MemosView()
+            MemosView(contentViewSelectedView: $selection, newViewLocationText: $newViewLocationText, newViewMemoText: $newViewMemoText)
                 .tabItem {
                     VStack {
                         Image("TabMemos")
@@ -22,7 +27,7 @@ struct ContentView: View {
                 }
                 .tag(0)
 
-            NewView()
+            NewView(locationText: $newViewLocationText, memoText: $newViewMemoText)
                 .tabItem {
                     VStack {
                         Image("TabNew")

@@ -10,6 +10,13 @@ import SwiftUI
 
 struct MemosView: View {
 
+    // For content view
+    @Binding var contentViewSelectedView: Int
+
+    // For new view
+    @Binding var newViewLocationText: String
+    @Binding var newViewMemoText: String
+
     @State private var showError: Bool = false
     @State private var errMsg: String = ""
 
@@ -63,7 +70,15 @@ struct MemosView: View {
     }
 
     func modifyMemoCallback() {
+        if lastSelectedMemoIndex < 0 {
+            return
+        }
 
+        let locMemo = locMemos[lastSelectedMemoIndex]
+
+        newViewLocationText = locMemo.locationText
+        newViewMemoText = locMemo.memoText
+        contentViewSelectedView = 1
     }
 
     func deleteMemoCallback() {

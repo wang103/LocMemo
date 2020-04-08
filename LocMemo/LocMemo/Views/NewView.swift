@@ -21,13 +21,14 @@ struct NewView: View {
 
     @State private var showLoading: Bool = false
 
-    @State private var locationText: String = ""
+    // For this view
+    @Binding var locationText: String
+    @Binding var memoText: String
+
     @State private var showLocationsPopover: Bool = false
     @State private var locationCandidates: [CLPlacemark] = []
 
     @State private var selectedPlacemark: CLPlacemark? = nil
-
-    @State private var memoText: String = ""
 
     var body: some View {
         LoadingView(isShowing: $showLoading) {

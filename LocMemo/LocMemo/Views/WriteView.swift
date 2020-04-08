@@ -43,6 +43,11 @@ struct WriteView: View {
             .onTapGesture {
                 UIApplication.shared.endEditing()
             }
+            .onDisappear(perform: {
+                if !self.isToCreate {
+                    self.clearInputs()
+                }
+            })
         }
     }
 
@@ -81,6 +86,7 @@ struct WriteView: View {
     }
 
     func clearInputs() {
+        isToCreate = true
         locationText = ""
         memoText = ""
     }

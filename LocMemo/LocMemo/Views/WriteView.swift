@@ -38,7 +38,7 @@ struct WriteView: View {
                 self.getMainView()
                 .navigationBarTitle(self.isToCreate ? "Create New Memo" : "Edit Memo")
                 .navigationBarItems(trailing:
-                    Button("Save", action: self.createNewMemo)
+                    Button("Save", action: self.saveCallback)
                 )
             }
             .onTapGesture {
@@ -52,7 +52,7 @@ struct WriteView: View {
         }
     }
 
-    func createNewMemo() {
+    func saveCallback() {
         if selectedPlacemark == nil {
             showErrorMsg("Please select a location first.")
             return

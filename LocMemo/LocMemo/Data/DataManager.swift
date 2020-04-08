@@ -50,6 +50,23 @@ class DataManager {
         try managedContext.save()
     }
 
+    func updateLocMemo(identifier: String,
+                       locationText: String,
+                       memoText: String) throws {
+
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+
+        let obj = getLocMemo(id: identifier).obj
+        obj.setValue(locationText, forKey: "locationText")
+        obj.setValue(memoText, forKey: "memoText")
+        obj.setValue(Date(), forKey: "updatedAt")
+
+        try managedContext.save()
+    }
+
     func delete(_ object: NSManagedObject) throws {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -60,13 +77,25 @@ class DataManager {
         try managedContext.save()
     }
 
-    func getAllLocMemos() throws -> [LocMemoData] {
+    func getLocMemo(id: String) -> LocMemoData {
+        let predicate = NSPredicate(format: "identifier == %@", id)
+        do {
+            return try getAllLocMemos(predicate: predicate)[0]
+        } catch let error as NSError {
+            fatalError(error.localizedDescription)
+        }
+    }
+
+    func getAllLocMemos(predicate: NSPredicate? = nil) throws -> [LocMemoData] {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return []
         }
         let managedContext = appDelegate.persistentContainer.viewContext
 
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "LocMemo")
+        if predicate != nil {
+            fetchRequest.predicate = predicate!
+        }
 
         return try managedContext.fetch(fetchRequest).map({
             LocMemoData(obj: $0,

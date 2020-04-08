@@ -17,6 +17,7 @@ struct WriteView: View {
     @Binding var isToCreate: Bool
     @Binding var locationText: String
     @Binding var memoText: String
+    @Binding var regionIdentifier: String
 
     @State private var showError: Bool = false
     @State private var errMsg: String = ""

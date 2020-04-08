@@ -17,6 +17,7 @@ struct MemosView: View {
     @Binding var writeViewIsToCreate: Bool
     @Binding var writeViewLocationText: String
     @Binding var writeViewMemoText: String
+    @Binding var writeViewRegionIdentifier: String
 
     @State private var showError: Bool = false
     @State private var errMsg: String = ""
@@ -80,6 +81,7 @@ struct MemosView: View {
         writeViewIsToCreate = false
         writeViewLocationText = locMemo.locationText
         writeViewMemoText = locMemo.memoText
+        writeViewRegionIdentifier = locMemo.id
         contentViewSelectedView = 1
     }
 

@@ -16,6 +16,7 @@ struct ContentView: View {
     @State private var writeViewIsToCreate: Bool = true
     @State private var writeViewLocationText: String = ""
     @State private var writeViewMemoText: String = ""
+    @State private var writeViewRegionIdentifier: String = ""
  
     var body: some View {
         TabView(selection: $selection) {
@@ -33,7 +34,8 @@ struct ContentView: View {
 
             WriteView(isToCreate: $writeViewIsToCreate,
                       locationText: $writeViewLocationText,
-                      memoText: $writeViewMemoText)
+                      memoText: $writeViewMemoText,
+                      regionIdentifier: $writeViewRegionIdentifier)
                 .tabItem {
                     VStack {
                         Image("TabNew")

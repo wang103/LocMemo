@@ -35,7 +35,7 @@ struct WriteView: View {
         LoadingView(isShowing: $showLoading) {
             NavigationView {
                 self.getMainView()
-                .navigationBarTitle("Create New Memo")
+                .navigationBarTitle(self.isToCreate ? "Create New Memo" : "Edit Memo")
                 .navigationBarItems(trailing:
                     Button("Save", action: self.createNewMemo)
                 )

@@ -64,13 +64,13 @@ struct MemosView: View {
     func getMemoActionSheet() -> ActionSheet {
         return ActionSheet(title: Text("What to do?"),
                            message: nil,
-                           buttons: [.default(Text("Modify"), action: modifyMemoCallback),
+                           buttons: [.default(Text("Edit"), action: editMemoCallback),
                                      .destructive(Text("Delete"), action: deleteMemoCallback),
                                      .cancel()]
         )
     }
 
-    func modifyMemoCallback() {
+    func editMemoCallback() {
         if lastSelectedMemoIndex < 0 {
             return
         }

@@ -13,12 +13,16 @@ struct ContentView: View {
     @State private var selection = 0
 
     // For write view
+    @State private var writeViewIsToCreate: Bool = true
     @State private var writeViewLocationText: String = ""
     @State private var writeViewMemoText: String = ""
  
     var body: some View {
         TabView(selection: $selection) {
-            MemosView(contentViewSelectedView: $selection, writeViewLocationText: $writeViewLocationText, writeViewMemoText: $writeViewMemoText)
+            MemosView(contentViewSelectedView: $selection,
+                      writeViewIsToCreate: $writeViewIsToCreate,
+                      writeViewLocationText: $writeViewLocationText,
+                      writeViewMemoText: $writeViewMemoText)
                 .tabItem {
                     VStack {
                         Image("TabMemos")
@@ -27,7 +31,9 @@ struct ContentView: View {
                 }
                 .tag(0)
 
-            WriteView(locationText: $writeViewLocationText, memoText: $writeViewMemoText)
+            WriteView(isToCreate: $writeViewIsToCreate,
+                      locationText: $writeViewLocationText,
+                      memoText: $writeViewMemoText)
                 .tabItem {
                     VStack {
                         Image("TabNew")

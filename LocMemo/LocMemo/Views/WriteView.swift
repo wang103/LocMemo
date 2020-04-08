@@ -14,6 +14,7 @@ struct WriteView: View {
     private static let ADDRESS_FORMATTER = CNPostalAddressFormatter()
 
     // For this view
+    @Binding var isToCreate: Bool
     @Binding var locationText: String
     @Binding var memoText: String
 

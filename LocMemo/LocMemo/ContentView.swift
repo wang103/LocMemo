@@ -23,7 +23,8 @@ struct ContentView: View {
             MemosView(contentViewSelectedView: $selection,
                       writeViewIsToCreate: $writeViewIsToCreate,
                       writeViewLocationText: $writeViewLocationText,
-                      writeViewMemoText: $writeViewMemoText)
+                      writeViewMemoText: $writeViewMemoText,
+                      writeViewRegionIdentifier: $writeViewRegionIdentifier)
                 .tabItem {
                     VStack {
                         Image("TabMemos")

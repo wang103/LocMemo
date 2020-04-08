@@ -90,6 +90,7 @@ struct WriteView: View {
         isToCreate = true
         locationText = ""
         memoText = ""
+        regionIdentifier = ""
     }
 
     func getMainView() -> some View {

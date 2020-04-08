@@ -52,7 +52,11 @@ struct WriteView: View {
         }
     }
 
-    func saveCallback() {
+    func updateMemo() {
+
+    }
+
+    func createMemo() {
         if selectedPlacemark == nil {
             showErrorMsg("Please select a location first.")
             return
@@ -83,6 +87,14 @@ struct WriteView: View {
                 LocationManager.shared.stopMonitoring(region: region)
                 showErrorMsg("Saving memo encounterd error. Please try again. \(error.localizedDescription)")
             }
+        }
+    }
+
+    func saveCallback() {
+        if isToCreate {
+            createMemo()
+        } else {
+            updateMemo()
         }
     }
 

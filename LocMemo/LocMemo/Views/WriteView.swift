@@ -30,6 +30,7 @@ struct WriteView: View {
     @State private var showLocationsPopover: Bool = false
     @State private var locationCandidates: [CLPlacemark] = []
 
+    @State private var locationTextChanged: Bool = false
     @State private var selectedPlacemark: CLPlacemark? = nil
 
     var body: some View {
@@ -53,7 +54,38 @@ struct WriteView: View {
     }
 
     func updateMemo() {
+        if locationTextChanged && selectedPlacemark == nil {
+            showErrorMsg("Please select a location first.")
+            return
+        }
 
+        if memoText.isEmpty {
+            showErrorMsg("Please write a memo first.")
+            return
+        }
+
+        // Only if locationTextChanged, we need to call startMonitoring on the
+        // new region, using the existing region identifier.
+        var success: Bool = true
+        if locationTextChanged {
+            let region = LocationManager.shared.createRegion(
+                center: selectedPlacemark!.location!.coordinate,
+                identifier: regionIdentifier
+            )
+            success = LocationManager.shared.startMonitoring(region: region)
+        }
+
+        if !success {
+            showErrorMsg("Device does not support region monitoring.")
+        } else {
+            do {
+                try DataManager.shared.updateLocMemo(identifier: regionIdentifier,
+                                                     locationText: locationText,
+                                                     memoText: memoText)
+            } catch let error as NSError {
+                showErrorMsg("Saving memo encounterd error. Please try again. \(error.localizedDescription)")
+            }
+        }
     }
 
     func createMemo() {
@@ -103,13 +135,22 @@ struct WriteView: View {
         locationText = ""
         memoText = ""
         regionIdentifier = ""
+        locationTextChanged = false
     }
 
     func getMainView() -> some View {
+        let locationTextBinding = Binding(
+            get: { self.locationText },
+            set: {
+                self.locationText = $0
+                self.locationTextChanged = true
+            }
+        )
+
         return Form {
             Section {
                 Text("When I arrive at location")
-                TextField("", text: self.$locationText, onCommit: { self.locationOnCommit() })
+                TextField("", text: locationTextBinding, onCommit: locationOnCommit)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .popover(isPresented: self.$showLocationsPopover) { self.getLocationsPopoverView() }
             }

@@ -82,6 +82,8 @@ struct WriteView: View {
                 try DataManager.shared.updateLocMemo(identifier: regionIdentifier,
                                                      locationText: locationText,
                                                      memoText: memoText)
+
+                showSuccessMsg()
             } catch let error as NSError {
                 showErrorMsg("Saving memo encounterd error. Please try again. \(error.localizedDescription)")
             }

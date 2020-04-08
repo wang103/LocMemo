@@ -13,9 +13,9 @@ struct MemosView: View {
     // For content view
     @Binding var contentViewSelectedView: Int
 
-    // For new view
-    @Binding var newViewLocationText: String
-    @Binding var newViewMemoText: String
+    // For write view
+    @Binding var writeViewLocationText: String
+    @Binding var writeViewMemoText: String
 
     @State private var showError: Bool = false
     @State private var errMsg: String = ""
@@ -76,8 +76,8 @@ struct MemosView: View {
 
         let locMemo = locMemos[lastSelectedMemoIndex]
 
-        newViewLocationText = locMemo.locationText
-        newViewMemoText = locMemo.memoText
+        writeViewLocationText = locMemo.locationText
+        writeViewMemoText = locMemo.memoText
         contentViewSelectedView = 1
     }
 

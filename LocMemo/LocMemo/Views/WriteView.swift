@@ -10,8 +10,12 @@ import Contacts
 import CoreLocation
 import SwiftUI
 
-struct NewView: View {
+struct WriteView: View {
     private static let ADDRESS_FORMATTER = CNPostalAddressFormatter()
+
+    // For this view
+    @Binding var locationText: String
+    @Binding var memoText: String
 
     @State private var showError: Bool = false
     @State private var errMsg: String = ""
@@ -20,10 +24,6 @@ struct NewView: View {
     @State private var successMsg: String? = nil
 
     @State private var showLoading: Bool = false
-
-    // For this view
-    @Binding var locationText: String
-    @Binding var memoText: String
 
     @State private var showLocationsPopover: Bool = false
     @State private var locationCandidates: [CLPlacemark] = []
@@ -184,7 +184,7 @@ struct NewView: View {
      */
     func getDisplayStr(_ placemark: CLPlacemark) -> String {
         if placemark.postalAddress != nil {
-            return NewView.ADDRESS_FORMATTER
+            return WriteView.ADDRESS_FORMATTER
                 .string(from: placemark.postalAddress!)
                 .replacingOccurrences(of: "\n", with: ", ")
         }

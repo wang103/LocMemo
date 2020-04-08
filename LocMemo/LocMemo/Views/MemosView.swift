@@ -13,13 +13,19 @@ struct MemosView: View {
     @State private var showError: Bool = false
     @State private var errMsg: String = ""
 
+    @State private var showMemoActionSheet = false
+    @State private var lastSelectedMemoIndex: Int = -1
+
     @State private var locMemos: [LocMemoData] = []
 
     var body: some View {
         NavigationView {
-            List(locMemos.enumerated().map({$0}), id: \.element.id) { index, locMemo in
-                return SelectableCell(id: index, selectedCallback: self.locMemoSelected) {
-                    self.getCellContent(locMemo: locMemo)
+            List {
+                ForEach(locMemos.enumerated().map({$0}), id: \.element.id) { index, locMemo in
+                    SelectableCell(id: index, selectedCallback: self.locMemoSelected) {
+                        self.getCellContent(locMemo: locMemo)
+                    }
+                    .actionSheet(isPresented: self.$showMemoActionSheet) { self.getMemoActionSheet() }
                 }
             }
             .navigationBarTitle("Memos")
@@ -39,7 +45,25 @@ struct MemosView: View {
     }
 
     func locMemoSelected(index: Int) {
-        // Do nothing intentionally.
+        lastSelectedMemoIndex = index
+        showMemoActionSheet = true
+    }
+
+    func getMemoActionSheet() -> ActionSheet {
+        return ActionSheet(title: Text("What to do?"),
+                           message: nil,
+                           buttons: [.default(Text("Modify"), action: modifyMemoCallback),
+                                     .destructive(Text("Delete"), action: deleteMemoCallback),
+                                     .cancel()]
+        )
+    }
+
+    func modifyMemoCallback() {
+
+    }
+
+    func deleteMemoCallback() {
+
     }
 
     func getAllLocMemos() -> [LocMemoData] {

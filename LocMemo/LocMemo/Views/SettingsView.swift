@@ -9,6 +9,9 @@
 import SwiftUI
 
 struct SettingsView: View {
+
+    @State private var showResetActionSheet = false
+
     var body: some View {
         NavigationView {
             getMainView()
@@ -19,7 +22,7 @@ struct SettingsView: View {
     func getMainView() -> some View {
         return VStack {
             HStack {
-                Button(action: reset) {
+                Button(action: resetButtonCallback) {
                     Text("Reset")
                         .foregroundColor(.red)
                         .padding()
@@ -29,6 +32,9 @@ struct SettingsView: View {
                         )
                 }
                 .padding(.leading, 22)
+                .actionSheet(isPresented: $showResetActionSheet) {
+                    self.getResetActionSheet()
+                }
 
                 Spacer()
             }
@@ -37,7 +43,19 @@ struct SettingsView: View {
         }
     }
 
+    func resetButtonCallback() {
+        showResetActionSheet = true
+    }
+
+    func getResetActionSheet() -> ActionSheet {
+        return ActionSheet(title: Text("Are you sure?"),
+                           message: Text("This will delete all the memos."),
+                           buttons: [.destructive(Text("Yes"), action: reset),
+                                     .cancel()]
+        )
+    }
+
     func reset() {
-        print("clicked")
+
     }
 }

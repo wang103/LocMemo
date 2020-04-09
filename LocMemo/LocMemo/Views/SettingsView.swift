@@ -10,6 +10,12 @@ import SwiftUI
 
 struct SettingsView: View {
 
+    @State private var showError: Bool = false
+    @State private var errMsg: String = ""
+
+    @State private var showSuccess: Bool = false
+    @State private var successMsg: String? = nil
+
     @State private var showResetActionSheet = false
 
     var body: some View {
@@ -17,6 +23,7 @@ struct SettingsView: View {
             getMainView()
             .navigationBarTitle("Settings")
         }
+        .alert(isPresented: self.$showError, content: self.getErrorAlert)
     }
 
     func getMainView() -> some View {
@@ -38,6 +45,7 @@ struct SettingsView: View {
 
                 Spacer()
             }
+            .alert(isPresented: self.$showSuccess, content: self.getSuccessAlert)
 
             Spacer()
         }
@@ -56,6 +64,35 @@ struct SettingsView: View {
     }
 
     func reset() {
+        LocationManager.shared.stopMonitoringAll()
 
+        do {
+            try DataManager.shared.deleteAll()
+            showSuccessMsg()
+        } catch let error as NSError {
+            showErrorMsg("Deleting memo encountered error. Please try again. \(error.localizedDescription)")
+        }
+    }
+
+    func showErrorMsg(_ msg: String) {
+        errMsg = msg
+        showError = true
+    }
+
+    func showSuccessMsg(_ msg: String? = nil) {
+        successMsg = msg
+        showSuccess = true
+    }
+
+    func getErrorAlert() -> Alert {
+        return Alert(title: Text("Error!"),
+                     message: Text(errMsg),
+                     dismissButton: .default(Text("OK")))
+    }
+
+    func getSuccessAlert() -> Alert {
+        return Alert(title: Text("Success!"),
+                     message: successMsg == nil ? nil : Text(successMsg!),
+                     dismissButton: .default(Text("OK")))
     }
 }

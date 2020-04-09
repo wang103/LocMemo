@@ -61,6 +61,10 @@ class LocationManager: NSObject {
         clLocationManager.stopMonitoring(for: region)
     }
 
+    func stopMonitoringAll() {
+        clLocationManager.monitoredRegions.forEach({ stopMonitoring(region: $0) })
+    }
+
     func getMonitoredRegions() -> Set<CLRegion> {
         return clLocationManager.monitoredRegions
     }

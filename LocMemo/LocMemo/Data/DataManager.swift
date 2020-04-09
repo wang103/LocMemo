@@ -77,6 +77,13 @@ class DataManager {
         try managedContext.save()
     }
 
+    func deleteAll() throws {
+        let memos = try getAllLocMemos()
+        try memos.forEach({
+            try delete($0.obj)
+        })
+    }
+
     func getLocMemo(id: String) -> LocMemoData {
         let predicate = NSPredicate(format: "identifier == %@", id)
         do {

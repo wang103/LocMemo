@@ -17,8 +17,8 @@ struct SettingsView: View {
     }
 
     func getMainView() -> some View {
-        return Form {
-            Section {
+        return VStack {
+            HStack {
                 Button(action: reset) {
                     Text("Reset")
                         .foregroundColor(.red)
@@ -28,7 +28,12 @@ struct SettingsView: View {
                                 .stroke(Color.red, lineWidth: 1)
                         )
                 }
+                .padding(.leading, 22)
+
+                Spacer()
             }
+
+            Spacer()
         }
     }
 

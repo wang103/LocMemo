@@ -11,20 +11,28 @@ import SwiftUI
 struct SettingsView: View {
     var body: some View {
         NavigationView {
-            Form {
-                Section {
-                    Text("Hello")
-                    Text("Hello")
-                    Text("Hello")
-                }
-
-                Section {
-                    Text("Hello")
-                    Text("Hello")
-                    Text("Hello")
-                }
-            }
+            getMainView()
             .navigationBarTitle("Settings")
         }
+    }
+
+    func getMainView() -> some View {
+        return Form {
+            Section {
+                Button(action: reset) {
+                    Text("Reset")
+                        .foregroundColor(.red)
+                        .padding()
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(Color.red, lineWidth: 1)
+                        )
+                }
+            }
+        }
+    }
+
+    func reset() {
+        print("clicked")
     }
 }

@@ -18,16 +18,41 @@ struct SettingsView: View {
 
     @State private var showResetActionSheet = false
 
+    @State private var locationAuthorizationStatus = ""
+
     var body: some View {
         NavigationView {
             getMainView()
             .navigationBarTitle("Settings")
         }
         .alert(isPresented: self.$showError, content: self.getErrorAlert)
+        .onAppear(perform: {
+            self.locationAuthorizationStatus = LocationManager.shared.getAuthorizationStatusStr()
+        })
     }
 
     func getMainView() -> some View {
         return VStack {
+
+            HStack {
+                Text("Location authorization: \(locationAuthorizationStatus)")
+                    .padding(.leading, 22)
+                    .padding(.top, 5)
+
+                Button(action: changeLocationAuthorization) {
+                    Text("Change")
+                        .foregroundColor(.blue)
+                        .padding(3)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(Color.blue, lineWidth: 1)
+                        )
+                }
+                .padding(.top, 4)
+
+                Spacer()
+            }
+
             HStack {
                 Button(action: resetButtonCallback) {
                     Text("Reset")
@@ -39,6 +64,7 @@ struct SettingsView: View {
                         )
                 }
                 .padding(.leading, 22)
+                .padding(.top, 20)
                 .actionSheet(isPresented: $showResetActionSheet) {
                     self.getResetActionSheet()
                 }
@@ -49,6 +75,10 @@ struct SettingsView: View {
 
             Spacer()
         }
+    }
+
+    func changeLocationAuthorization() {
+        UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
     }
 
     func resetButtonCallback() {

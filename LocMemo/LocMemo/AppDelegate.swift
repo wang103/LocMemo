@@ -14,6 +14,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+
+        // Force LocationManager singleton object to be created.
+        let monitoredRegionsCount = LocationManager.shared.getMonitoredRegions().count
+        print("Monitoring \(monitoredRegionsCount) regions")
+
         return true
     }
 

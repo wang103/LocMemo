@@ -86,7 +86,10 @@ struct SettingsView: View {
     }
 
     func changeLocationAuthorization() {
-        UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+        if let bundleId = Bundle.main.bundleIdentifier,
+           let url = URL(string: "\(UIApplication.openSettingsURLString)&path=LOCATION/\(bundleId)") {
+            UIApplication.shared.open(url)
+        }
     }
 
     func resetButtonCallback() {

@@ -18,7 +18,7 @@ struct SettingsView: View {
 
     @State private var showResetActionSheet = false
 
-    @State private var locationAuthorizationStatus = ""
+    @ObservedObject var externalSettings = ExternalSettings.shared
 
     var body: some View {
         NavigationView {
@@ -26,16 +26,13 @@ struct SettingsView: View {
             .navigationBarTitle("Settings")
         }
         .alert(isPresented: self.$showError, content: self.getErrorAlert)
-        .onAppear(perform: {
-            self.locationAuthorizationStatus = LocationManager.shared.getAuthorizationStatusStr()
-        })
     }
 
     func getMainView() -> some View {
         return VStack {
 
             HStack {
-                Text("Location authorization: \(locationAuthorizationStatus)")
+                Text("Location authorization: \(externalSettings.locationAuthStatus)")
                     .padding(.leading, 22)
                     .padding(.top, 5)
 

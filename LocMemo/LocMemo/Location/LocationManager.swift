@@ -12,13 +12,10 @@ class LocationManager: NSObject {
     static let shared = LocationManager()
 
     private let clLocationManager: CLLocationManager
-    private var authorizationStatus: CLAuthorizationStatus?
 
     override init() {
         self.clLocationManager = CLLocationManager()
         self.clLocationManager.allowsBackgroundLocationUpdates = true
-
-        self.authorizationStatus = nil
 
         super.init()
 
@@ -81,18 +78,16 @@ class LocationManager: NSObject {
         return region
     }
 
-    func getAuthorizationStatusStr() -> String {
-        if authorizationStatus == nil {
-            return "Unknown"
-        } else if authorizationStatus! == .authorizedAlways {
+    func getAuthorizationStatusStr(_ authStatus: CLAuthorizationStatus) -> String {
+        if authStatus == .authorizedAlways {
             return "Always"
-        } else if authorizationStatus! == .authorizedWhenInUse {
+        } else if authStatus == .authorizedWhenInUse {
             return "When in use"
-        } else if authorizationStatus! == .denied {
+        } else if authStatus == .denied {
             return "Never"
-        } else if authorizationStatus! == .notDetermined {
+        } else if authStatus == .notDetermined {
             return "Ask next time"
-        } else if authorizationStatus! == .restricted {
+        } else if authStatus == .restricted {
             return "Not authorized"
         } else {
             return "Unknown"
@@ -121,6 +116,6 @@ extension LocationManager: CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager,
                          didChangeAuthorization status: CLAuthorizationStatus) {
-        authorizationStatus = status
+        ExternalSettings.shared.locationAuthStatus = getAuthorizationStatusStr(status)
     }
 }

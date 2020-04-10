@@ -25,6 +25,7 @@
 		4DACFAF6243C108F00740EE8 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFAF5243C108F00740EE8 /* DataManager.swift */; };
 		4DACFAF8243C114E00740EE8 /* LocMemoStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFAF7243C114E00740EE8 /* LocMemoStatus.swift */; };
 		4DACFAFE243C288C00740EE8 /* LocMemoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFAFD243C288C00740EE8 /* LocMemoData.swift */; };
+		4DACFB01244041C300740EE8 /* ExternalSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFB00244041C300740EE8 /* ExternalSettings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		4DACFAF5243C108F00740EE8 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		4DACFAF7243C114E00740EE8 /* LocMemoStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocMemoStatus.swift; sourceTree = "<group>"; };
 		4DACFAFD243C288C00740EE8 /* LocMemoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocMemoData.swift; sourceTree = "<group>"; };
+		4DACFB00244041C300740EE8 /* ExternalSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalSettings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 				4DACFAB8243AC95200740EE8 /* UILib */,
 				4DACFAAE24383A1B00740EE8 /* Location */,
 				4DACFAF4243C107200740EE8 /* Data */,
+				4DACFAFF244041A700740EE8 /* Settings */,
 				4DACFAA8243836BF00740EE8 /* Info.plist */,
 				4DACFAF1243C0E0B00740EE8 /* LocMemo.xcdatamodeld */,
 				4DACFAA0243836BF00740EE8 /* Assets.xcassets */,
@@ -141,6 +144,14 @@
 				4DACFAFD243C288C00740EE8 /* LocMemoData.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		4DACFAFF244041A700740EE8 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				4DACFB00244041C300740EE8 /* ExternalSettings.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,6 +230,7 @@
 				4DACFABE243AED4C00740EE8 /* SelectableCell.swift in Sources */,
 				4DACFAB024383A2900740EE8 /* LocationManager.swift in Sources */,
 				4DACFA9B243836BD00740EE8 /* AppDelegate.swift in Sources */,
+				4DACFB01244041C300740EE8 /* ExternalSettings.swift in Sources */,
 				4DACFAB3243852DE00740EE8 /* MemosView.swift in Sources */,
 				4DACFABA243AC96D00740EE8 /* ActivityIndicator.swift in Sources */,
 				4DACFAB52438532C00740EE8 /* WriteView.swift in Sources */,

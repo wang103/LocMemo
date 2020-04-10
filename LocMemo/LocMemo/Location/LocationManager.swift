@@ -93,11 +93,13 @@ extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager,
                          monitoringDidFailFor region: CLRegion?,
                          withError error: Error) {
-        // TODO: implementation
+        // Do nothing.
+        print("monitoringDidFailFor withError \(error)")
     }
 
     func locationManager(_ manager: CLLocationManager,
                          didChangeAuthorization status: CLAuthorizationStatus) {
         // Do nothing.
+        print("didChangeAuthorization \(status)")
     }
 }

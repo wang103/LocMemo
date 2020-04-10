@@ -21,9 +21,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>The app needs to notify you when you entered the specified locations</string>
+	<string>The app needs to notify you when you entered the specified locations.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>The app needs to notify you when you entered the specified locations</string>
+	<string>The app needs to notify you when you entered the specified locations.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

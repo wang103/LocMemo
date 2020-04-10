@@ -51,6 +51,17 @@ struct SettingsView: View {
             }
 
             HStack {
+                Text("Please consider setting the location authorization to " +
+                     "\"\(LocationManager.shared.getAuthorizationStatusStr(.authorizedAlways))\". " +
+                     "\(UIApplication.locationUsageDescription)")
+                .padding(.leading, 22)
+                .padding(.top, 3)
+                .font(.footnote)
+
+                Spacer()
+            }
+
+            HStack {
                 Button(action: resetButtonCallback) {
                     Text("Reset")
                         .foregroundColor(.red)
@@ -61,7 +72,7 @@ struct SettingsView: View {
                         )
                 }
                 .padding(.leading, 22)
-                .padding(.top, 20)
+                .padding(.top, 40)
                 .actionSheet(isPresented: $showResetActionSheet) {
                     self.getResetActionSheet()
                 }

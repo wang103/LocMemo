@@ -85,8 +85,9 @@ extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager,
                          didEnterRegion region: CLRegion) {
         if let region = region as? CLCircularRegion {
-            let _ = region.identifier
+            let identifier = region.identifier
             // TODO: implementation
+            print("Entered region \(self) \(identifier)")
         }
     }
 

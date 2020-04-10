@@ -15,6 +15,7 @@ class LocationManager: NSObject {
 
     override init() {
         self.clLocationManager = CLLocationManager()
+        self.clLocationManager.allowsBackgroundLocationUpdates = true
 
         super.init()
 
@@ -83,12 +84,20 @@ class LocationManager: NSObject {
 extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager,
                          didEnterRegion region: CLRegion) {
-        // TODO: implementation
+        if let region = region as? CLCircularRegion {
+            let _ = region.identifier
+            // TODO: implementation
+        }
     }
 
     func locationManager(_ manager: CLLocationManager,
                          monitoringDidFailFor region: CLRegion?,
                          withError error: Error) {
         // TODO: implementation
+    }
+
+    func locationManager(_ manager: CLLocationManager,
+                         didChangeAuthorization status: CLAuthorizationStatus) {
+        // Do nothing.
     }
 }

@@ -25,6 +25,8 @@ struct MemosView: View {
     @State private var showSuccess: Bool = false
     @State private var successMsg: String? = nil
 
+    @State private var showMemoPopover: Bool = false
+
     @State private var showMemoActionSheet = false
     @State private var lastSelectedMemoIndex: Int = -1
 
@@ -40,20 +42,23 @@ struct MemosView: View {
                     .actionSheet(isPresented: self.$showMemoActionSheet) { self.getMemoActionSheet() }
                 }
             }
-            .navigationBarTitle("Memos")
+            .navigationBarTitle("Memos (\(locMemos.count))")
             .alert(isPresented: self.$showSuccess, content: self.getSuccessAlert)
         }
         .alert(isPresented: self.$showError, content: self.getErrorAlert)
         .onAppear(perform: { self.locMemos = self.getAllLocMemos() })
+        .popover(isPresented: self.$showMemoPopover) { self.getMemoPopoverView() }
     }
 
-    func getCellContent(locMemo: LocMemoData) -> some View {
+    func getCellContent(locMemo: LocMemoData, lineLimit: Int? = 3) -> some View {
         return VStack(alignment: .leading, spacing: 5) {
             Text("location:").bold()
             Text(locMemo.locationText)
+                .lineLimit(lineLimit)
 
             Text("memo:").bold()
             Text(locMemo.memoText)
+                .lineLimit(lineLimit)
         }
     }
 
@@ -65,10 +70,32 @@ struct MemosView: View {
     func getMemoActionSheet() -> ActionSheet {
         return ActionSheet(title: Text("What to do?"),
                            message: nil,
-                           buttons: [.default(Text("Edit"), action: editMemoCallback),
+                           buttons: [.default(Text("View"), action: viewMemoCallback),
+                                     .default(Text("Edit"), action: editMemoCallback),
                                      .destructive(Text("Delete"), action: deleteMemoCallback),
                                      .cancel()]
         )
+    }
+
+    func getMemoPopoverView() -> some View {
+        return NavigationView {
+            List {
+                getCellContent(locMemo: locMemos[lastSelectedMemoIndex],
+                               lineLimit: nil)
+            }
+            .navigationBarTitle("Memo")
+            .navigationBarItems(trailing:
+                Button("Close") { self.showMemoPopover = false }
+            )
+        }
+    }
+
+    func viewMemoCallback() {
+        if lastSelectedMemoIndex < 0 {
+            return
+        }
+
+        self.showMemoPopover = true
     }
 
     func editMemoCallback() {

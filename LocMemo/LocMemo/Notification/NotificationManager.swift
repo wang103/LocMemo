@@ -21,6 +21,21 @@ class NotificationManager {
         }
     }
 
+    func scheduleNotification() {
+        let center = UNUserNotificationCenter.current()
+        center.getNotificationSettings { settings in
+            guard (settings.authorizationStatus == .authorized) ||
+                  (settings.authorizationStatus == .provisional) else { return }
+
+            if settings.alertSetting == .enabled {
+                // The app’s notifications are displayed in Notification Center.
+                // TODO: Schedule an alert-only notification.
+            } else {
+                // TODO: Schedule a notification with a badge and sound.
+            }
+        }
+    }
+
     func getAuthorizationStatus(callback: @escaping(UNAuthorizationStatus) -> Void) {
         let center = UNUserNotificationCenter.current()
         center.getNotificationSettings { settings in

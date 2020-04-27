@@ -8,11 +8,20 @@
 
 import UserNotifications
 
-class NotificationManager {
+class NotificationManager: NSObject {
     static let shared = NotificationManager()
 
+    private let center: UNUserNotificationCenter
+
+    override init() {
+        self.center = UNUserNotificationCenter.current()
+
+        super.init()
+
+        self.center.delegate = self
+    }
+
     func requestNotificationPermission() {
-        let center = UNUserNotificationCenter.current()
         center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
             if let error = error {
                 print("requestNotificationPermission error=\(error)")
@@ -22,7 +31,6 @@ class NotificationManager {
     }
 
     func scheduleNotification(memo: LocMemoData) {
-        let center = UNUserNotificationCenter.current()
         center.getNotificationSettings { settings in
             guard (settings.authorizationStatus == .authorized) ||
                   (settings.authorizationStatus == .provisional) else { return }
@@ -48,8 +56,7 @@ class NotificationManager {
         let request = UNNotificationRequest(identifier: memo.id, content: content, trigger: nil)
 
         // Schedule the request with the system.
-        let notificationCenter = UNUserNotificationCenter.current()
-        notificationCenter.add(request) { (error) in
+        center.add(request) { (error) in
            if error != nil {
               print("registerNotification error=\(error!)")
            }
@@ -57,7 +64,6 @@ class NotificationManager {
     }
 
     func getAuthorizationStatus(callback: @escaping(UNAuthorizationStatus) -> Void) {
-        let center = UNUserNotificationCenter.current()
         center.getNotificationSettings { settings in
             callback(settings.authorizationStatus)
         }
@@ -83,5 +89,32 @@ class NotificationManager {
                 ExternalSettings.shared.notificationAuthStatus = self.getAuthorizationStatusStr(status)
             }
         })
+    }
+}
+
+// MARK: - UNUserNotificationCenterDelegate
+
+extension NotificationManager: UNUserNotificationCenterDelegate {
+
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        didReceive response: UNNotificationResponse,
+        withCompletionHandler completionHandler: @escaping () -> Void) {
+
+        switch response.actionIdentifier {
+        case UNNotificationDefaultActionIdentifier:
+            // user opened the app
+            let uuid = response.notification.request.identifier
+
+            break
+        case UNNotificationDismissActionIdentifier:
+            // user dismissed the notification
+            break
+        default:
+            break
+        }
+
+        // Always call the completion handler when done.
+        completionHandler()
     }
 }

@@ -117,4 +117,12 @@ extension NotificationManager: UNUserNotificationCenterDelegate {
         // Always call the completion handler when done.
         completionHandler()
     }
+
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        willPresent notification: UNNotification,
+        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+
+        completionHandler(.alert)
+    }
 }

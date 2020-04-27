@@ -9,19 +9,18 @@
 import SwiftUI
 
 struct ContentView: View {
-    // For this view
-    @State private var selection = 0
+
+    @ObservedObject var externalSettings = ExternalSettings.shared
 
     // For write view
     @State private var writeViewIsToCreate: Bool = true
     @State private var writeViewLocationText: String = ""
     @State private var writeViewMemoText: String = ""
     @State private var writeViewRegionIdentifier: String = ""
- 
+
     var body: some View {
-        TabView(selection: $selection) {
-            MemosView(contentViewSelectedView: $selection,
-                      writeViewIsToCreate: $writeViewIsToCreate,
+        TabView(selection: $externalSettings.contentViewSelectedView) {
+            MemosView(writeViewIsToCreate: $writeViewIsToCreate,
                       writeViewLocationText: $writeViewLocationText,
                       writeViewMemoText: $writeViewMemoText,
                       writeViewRegionIdentifier: $writeViewRegionIdentifier)

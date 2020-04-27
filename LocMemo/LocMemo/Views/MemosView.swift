@@ -10,9 +10,6 @@ import SwiftUI
 
 struct MemosView: View {
 
-    // For content view
-    @Binding var contentViewSelectedView: Int
-
     // For write view
     @Binding var writeViewIsToCreate: Bool
     @Binding var writeViewLocationText: String
@@ -109,7 +106,7 @@ struct MemosView: View {
         writeViewLocationText = locMemo.locationText
         writeViewMemoText = locMemo.memoText
         writeViewRegionIdentifier = locMemo.id
-        contentViewSelectedView = 1
+        ExternalSettings.shared.contentViewSelectedView = 1
     }
 
     func deleteMemoCallback() {

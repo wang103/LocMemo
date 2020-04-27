@@ -14,4 +14,6 @@ class ExternalSettings: ObservableObject {
     @Published var locationAuthStatus = ""
 
     @Published var notificationAuthStatus = ""
+
+    @Published var contentViewSelectedView: Int = 0
 }

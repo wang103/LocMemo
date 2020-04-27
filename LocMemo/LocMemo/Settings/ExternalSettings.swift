@@ -15,5 +15,10 @@ class ExternalSettings: ObservableObject {
 
     @Published var notificationAuthStatus = ""
 
+    /* Views related */
+
     @Published var contentViewSelectedView: Int = 0
+
+    @Published var memosViewShowMemoPopover: Bool = false
+    @Published var memosViewLastSelectedMemoIndex: Int = -1
 }

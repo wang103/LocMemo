@@ -10,6 +10,8 @@ import SwiftUI
 
 struct SettingsView: View {
 
+    @ObservedObject var externalSettings = ExternalSettings.shared
+
     @State private var showError: Bool = false
     @State private var errMsg: String = ""
 
@@ -17,8 +19,6 @@ struct SettingsView: View {
     @State private var successMsg: String? = nil
 
     @State private var showResetActionSheet = false
-
-    @ObservedObject var externalSettings = ExternalSettings.shared
 
     var body: some View {
         NavigationView {

@@ -10,6 +10,8 @@ import SwiftUI
 
 struct MemosView: View {
 
+    @ObservedObject var externalSettings = ExternalSettings.shared
+
     // For write view
     @Binding var writeViewIsToCreate: Bool
     @Binding var writeViewLocationText: String
@@ -22,10 +24,7 @@ struct MemosView: View {
     @State private var showSuccess: Bool = false
     @State private var successMsg: String? = nil
 
-    @State private var showMemoPopover: Bool = false
-
     @State private var showMemoActionSheet = false
-    @State private var lastSelectedMemoIndex: Int = -1
 
     @State private var locMemos: [LocMemoData] = []
 
@@ -44,7 +43,7 @@ struct MemosView: View {
         }
         .alert(isPresented: self.$showError, content: self.getErrorAlert)
         .onAppear(perform: { self.locMemos = self.getAllLocMemos() })
-        .popover(isPresented: self.$showMemoPopover) { self.getMemoPopoverView() }
+        .popover(isPresented: self.$externalSettings.memosViewShowMemoPopover) { self.getMemoPopoverView() }
     }
 
     func getCellContent(locMemo: LocMemoData, lineLimit: Int? = 3) -> some View {
@@ -60,7 +59,7 @@ struct MemosView: View {
     }
 
     func locMemoSelected(index: Int) {
-        lastSelectedMemoIndex = index
+        ExternalSettings.shared.memosViewLastSelectedMemoIndex = index
         showMemoActionSheet = true
     }
 
@@ -74,33 +73,34 @@ struct MemosView: View {
         )
     }
 
+    // Assume lastSelectedMemoIndex is set properly.
     func getMemoPopoverView() -> some View {
         return NavigationView {
             List {
-                getCellContent(locMemo: locMemos[lastSelectedMemoIndex],
+                getCellContent(locMemo: locMemos[externalSettings.memosViewLastSelectedMemoIndex],
                                lineLimit: nil)
             }
             .navigationBarTitle("Memo")
             .navigationBarItems(trailing:
-                Button("Close") { self.showMemoPopover = false }
+                Button("Close") { ExternalSettings.shared.memosViewShowMemoPopover = false }
             )
         }
     }
 
     func viewMemoCallback() {
-        if lastSelectedMemoIndex < 0 {
+        if externalSettings.memosViewLastSelectedMemoIndex < 0 {
             return
         }
 
-        self.showMemoPopover = true
+        ExternalSettings.shared.memosViewShowMemoPopover = true
     }
 
     func editMemoCallback() {
-        if lastSelectedMemoIndex < 0 {
+        if externalSettings.memosViewLastSelectedMemoIndex < 0 {
             return
         }
 
-        let locMemo = locMemos[lastSelectedMemoIndex]
+        let locMemo = locMemos[externalSettings.memosViewLastSelectedMemoIndex]
 
         writeViewIsToCreate = false
         writeViewLocationText = locMemo.locationText
@@ -110,14 +110,14 @@ struct MemosView: View {
     }
 
     func deleteMemoCallback() {
-        if lastSelectedMemoIndex < 0 {
+        if externalSettings.memosViewLastSelectedMemoIndex < 0 {
             return
         }
 
-        LocationManager.shared.stopMonitoring(identifier: locMemos[lastSelectedMemoIndex].id)
+        LocationManager.shared.stopMonitoring(identifier: locMemos[externalSettings.memosViewLastSelectedMemoIndex].id)
 
         do {
-            try DataManager.shared.delete(locMemos[lastSelectedMemoIndex].obj)
+            try DataManager.shared.delete(locMemos[externalSettings.memosViewLastSelectedMemoIndex].obj)
 
             showSuccessMsg()
             self.locMemos = self.getAllLocMemos()

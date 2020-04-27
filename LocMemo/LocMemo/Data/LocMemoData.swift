@@ -11,7 +11,7 @@ import Foundation
 
 struct LocMemoData: Identifiable {
     let obj: NSManagedObject
-    let id: String
+    let id: String              // UUID
     let locationText: String
     let memoText: String
     let status: LocMemoStatus

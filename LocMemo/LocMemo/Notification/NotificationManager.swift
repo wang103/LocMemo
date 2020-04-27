@@ -21,18 +21,38 @@ class NotificationManager {
         }
     }
 
-    func scheduleNotification() {
+    func scheduleNotification(memo: LocMemoData) {
         let center = UNUserNotificationCenter.current()
         center.getNotificationSettings { settings in
             guard (settings.authorizationStatus == .authorized) ||
                   (settings.authorizationStatus == .provisional) else { return }
 
             if settings.alertSetting == .enabled {
-                // The app’s notifications are displayed in Notification Center.
-                // TODO: Schedule an alert-only notification.
+                // Notifications can be displayed in Notification Center.
+                // Schedule an alert and sound.
+                self.registerNotification(memo: memo)
             } else {
-                // TODO: Schedule a notification with a badge and sound.
+                // Can schedule a badge and sound, but not useful. Do nothing.
             }
+        }
+    }
+
+    // Register an alert and sound notification.
+    fileprivate func registerNotification(memo: LocMemoData) {
+        let content = UNMutableNotificationContent()
+        content.title = "You arrived at a memo location"
+        content.subtitle = memo.locationText
+        content.body = memo.memoText
+        content.sound = .default
+
+        let request = UNNotificationRequest(identifier: memo.id, content: content, trigger: nil)
+
+        // Schedule the request with the system.
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.add(request) { (error) in
+           if error != nil {
+              print("registerNotification error=\(error!)")
+           }
         }
     }
 

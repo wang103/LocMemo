@@ -102,8 +102,8 @@ extension LocationManager: CLLocationManagerDelegate {
                          didEnterRegion region: CLRegion) {
         if let region = region as? CLCircularRegion {
             let identifier = region.identifier
-            // TODO: implementation
-            print("Entered region \(self) \(identifier)")
+            let memo = DataManager.shared.getLocMemo(id: identifier)
+            NotificationManager.shared.scheduleNotification(memo: memo)
         }
     }
 

@@ -74,11 +74,18 @@ struct MemosView: View {
         )
     }
 
-    // Assume lastSelectedMemoIndex is set properly.
+    // Assume lastSelectedMemoIndex or memosViewSelectedId is set properly.
     func getMemoPopoverView() -> some View {
+        var externalIndex = -1
+        if lastSelectedMemoIndex < 0 {
+            externalIndex = locMemos.firstIndex(
+                where: { $0.id == externalSettings.memosViewSelectedId }
+            )!
+        }
+
         return NavigationView {
             List {
-                getCellContent(locMemo: locMemos[lastSelectedMemoIndex],
+                getCellContent(locMemo: locMemos[lastSelectedMemoIndex < 0 ? externalIndex : lastSelectedMemoIndex ],
                                lineLimit: nil)
             }
             .navigationBarTitle("Memo")

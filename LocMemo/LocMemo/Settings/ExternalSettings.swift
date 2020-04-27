@@ -21,4 +21,10 @@ class ExternalSettings: ObservableObject {
 
     @Published var memosViewShowMemoPopover: Bool = false
     @Published var memosViewSelectedId = ""
+
+    func displayMemo(id: String) {
+        memosViewSelectedId = id
+        memosViewShowMemoPopover = true
+        contentViewSelectedView = 0
+    }
 }

@@ -20,5 +20,5 @@ class ExternalSettings: ObservableObject {
     @Published var contentViewSelectedView: Int = 0
 
     @Published var memosViewShowMemoPopover: Bool = false
-    @Published var memosViewLastSelectedMemoIndex: Int = -1
+    @Published var memosViewSelectedId = ""
 }

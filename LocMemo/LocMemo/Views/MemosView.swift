@@ -25,6 +25,7 @@ struct MemosView: View {
     @State private var successMsg: String? = nil
 
     @State private var showMemoActionSheet = false
+    @State private var lastSelectedMemoIndex: Int = -1
 
     @State private var locMemos: [LocMemoData] = []
 
@@ -59,7 +60,7 @@ struct MemosView: View {
     }
 
     func locMemoSelected(index: Int) {
-        ExternalSettings.shared.memosViewLastSelectedMemoIndex = index
+        lastSelectedMemoIndex = index
         showMemoActionSheet = true
     }
 
@@ -77,7 +78,7 @@ struct MemosView: View {
     func getMemoPopoverView() -> some View {
         return NavigationView {
             List {
-                getCellContent(locMemo: locMemos[externalSettings.memosViewLastSelectedMemoIndex],
+                getCellContent(locMemo: locMemos[lastSelectedMemoIndex],
                                lineLimit: nil)
             }
             .navigationBarTitle("Memo")
@@ -88,7 +89,7 @@ struct MemosView: View {
     }
 
     func viewMemoCallback() {
-        if externalSettings.memosViewLastSelectedMemoIndex < 0 {
+        if lastSelectedMemoIndex < 0 {
             return
         }
 
@@ -96,11 +97,11 @@ struct MemosView: View {
     }
 
     func editMemoCallback() {
-        if externalSettings.memosViewLastSelectedMemoIndex < 0 {
+        if lastSelectedMemoIndex < 0 {
             return
         }
 
-        let locMemo = locMemos[externalSettings.memosViewLastSelectedMemoIndex]
+        let locMemo = locMemos[lastSelectedMemoIndex]
 
         writeViewIsToCreate = false
         writeViewLocationText = locMemo.locationText
@@ -110,14 +111,14 @@ struct MemosView: View {
     }
 
     func deleteMemoCallback() {
-        if externalSettings.memosViewLastSelectedMemoIndex < 0 {
+        if lastSelectedMemoIndex < 0 {
             return
         }
 
-        LocationManager.shared.stopMonitoring(identifier: locMemos[externalSettings.memosViewLastSelectedMemoIndex].id)
+        LocationManager.shared.stopMonitoring(identifier: locMemos[lastSelectedMemoIndex].id)
 
         do {
-            try DataManager.shared.delete(locMemos[externalSettings.memosViewLastSelectedMemoIndex].obj)
+            try DataManager.shared.delete(locMemos[lastSelectedMemoIndex].obj)
 
             showSuccessMsg()
             self.locMemos = self.getAllLocMemos()

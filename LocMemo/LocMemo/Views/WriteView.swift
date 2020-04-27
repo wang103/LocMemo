@@ -115,8 +115,9 @@ struct WriteView: View {
                                                    locationText: locationText,
                                                    memoText: memoText)
 
-                showSuccessMsg()
+                showSuccessMsg("Memo created.")
                 clearInputs()
+                NotificationManager.shared.requestNotificationPermission()
             } catch let error as NSError {
                 LocationManager.shared.stopMonitoring(region: region)
                 showErrorMsg("Saving memo encounterd error. Please try again. \(error.localizedDescription)")

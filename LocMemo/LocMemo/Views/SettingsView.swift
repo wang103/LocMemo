@@ -32,7 +32,7 @@ struct SettingsView: View {
         return VStack {
 
             HStack {
-                Text("Location authorization: \(externalSettings.locationAuthStatus)")
+                Text("Location Auth: \(externalSettings.locationAuthStatus)")
                     .padding(.leading, 22)
                     .padding(.top, 5)
 
@@ -51,11 +51,31 @@ struct SettingsView: View {
             }
 
             HStack {
+                Text("Notification Auth: \(externalSettings.notificationAuthStatus)")
+                    .padding(.leading, 22)
+                    .padding(.top, 10)
+
+                Button(action: changeNotificationAuthorization) {
+                    Text("Change")
+                        .foregroundColor(.blue)
+                        .padding(3)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(Color.blue, lineWidth: 1)
+                        )
+                }
+                .padding(.top, 10)
+
+                Spacer()
+            }
+
+            HStack {
                 Text("Please consider setting the location authorization to " +
-                     "\"\(LocationManager.shared.getAuthorizationStatusStr(.authorizedAlways))\". " +
+                     "\"\(LocationManager.shared.getAuthorizationStatusStr(.authorizedAlways))\", and " +
+                     "the notification authorization to \"Authorized\". " +
                      "\(UIApplication.locationUsageDescription)")
                 .padding(.leading, 22)
-                .padding(.top, 3)
+                .padding(.top, 10)
                 .font(.footnote)
 
                 Spacer()
@@ -82,6 +102,13 @@ struct SettingsView: View {
             .alert(isPresented: self.$showSuccess, content: self.getSuccessAlert)
 
             Spacer()
+        }
+    }
+
+    func changeNotificationAuthorization() {
+        if let bundleId = Bundle.main.bundleIdentifier,
+           let url = URL(string: "\(UIApplication.openSettingsURLString)&path=NOTIFICATION/\(bundleId)") {
+            UIApplication.shared.open(url)
         }
     }
 

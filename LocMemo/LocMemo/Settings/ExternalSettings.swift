@@ -12,4 +12,6 @@ class ExternalSettings: ObservableObject {
     static let shared = ExternalSettings()
 
     @Published var locationAuthStatus = ""
+
+    @Published var notificationAuthStatus = ""
 }

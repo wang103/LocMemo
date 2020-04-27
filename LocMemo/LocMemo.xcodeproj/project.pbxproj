@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D8AB4DF24568AD7009B1CA6 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8AB4DE24568AD7009B1CA6 /* NotificationManager.swift */; };
 		4DACFA9B243836BD00740EE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFA9A243836BD00740EE8 /* AppDelegate.swift */; };
 		4DACFA9D243836BD00740EE8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFA9C243836BD00740EE8 /* SceneDelegate.swift */; };
 		4DACFA9F243836BD00740EE8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFA9E243836BD00740EE8 /* ContentView.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D8AB4DE24568AD7009B1CA6 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		4DACFA97243836BD00740EE8 /* LocMemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocMemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DACFA9A243836BD00740EE8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4DACFA9C243836BD00740EE8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +65,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D8AB4DD24568AB8009B1CA6 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				4D8AB4DE24568AD7009B1CA6 /* NotificationManager.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
 		4DACFA8E243836BD00740EE8 = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +99,7 @@
 				4DACFAB8243AC95200740EE8 /* UILib */,
 				4DACFAAE24383A1B00740EE8 /* Location */,
 				4DACFAF4243C107200740EE8 /* Data */,
+				4D8AB4DD24568AB8009B1CA6 /* Notification */,
 				4DACFAFF244041A700740EE8 /* Settings */,
 				4DACFAA8243836BF00740EE8 /* Info.plist */,
 				4DACFAF1243C0E0B00740EE8 /* LocMemo.xcdatamodeld */,
@@ -226,6 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DACFAF3243C0E0B00740EE8 /* LocMemo.xcdatamodeld in Sources */,
+				4D8AB4DF24568AD7009B1CA6 /* NotificationManager.swift in Sources */,
 				4DACFAB72438534900740EE8 /* SettingsView.swift in Sources */,
 				4DACFABE243AED4C00740EE8 /* SelectableCell.swift in Sources */,
 				4DACFAB024383A2900740EE8 /* LocationManager.swift in Sources */,

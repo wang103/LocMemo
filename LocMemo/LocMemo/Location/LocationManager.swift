@@ -25,6 +25,10 @@ class LocationManager: NSObject {
         self.clLocationManager.delegate = self
     }
 
+    func requestUserPermission() {
+        clLocationManager.requestAlwaysAuthorization()
+    }
+
     func getPlacemarks(_ addressString : String,
                        completionHandler: @escaping([CLPlacemark]?, NSError?) -> Void) {
         let geocoder = CLGeocoder()

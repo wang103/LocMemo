@@ -27,6 +27,7 @@ class NotificationManager: NSObject {
                 print("requestNotificationPermission error=\(error)")
                 return
             }
+            self.updateStatusStr()
         }
     }
 

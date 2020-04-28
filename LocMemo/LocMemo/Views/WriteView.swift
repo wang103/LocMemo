@@ -69,7 +69,7 @@ struct WriteView: View {
         var success: Bool = true
         if locationTextChanged {
             let region = LocationManager.shared.createRegion(
-                center: selectedPlacemark!.location!.coordinate,
+                cr: selectedPlacemark!.region as! CLCircularRegion,
                 identifier: regionIdentifier
             )
             success = LocationManager.shared.startMonitoring(region: region)
@@ -103,7 +103,7 @@ struct WriteView: View {
 
         let identifier = UUID().uuidString
         let region = LocationManager.shared.createRegion(
-            center: selectedPlacemark!.location!.coordinate,
+            cr: selectedPlacemark!.region as! CLCircularRegion,
             identifier: identifier
         )
         let success = LocationManager.shared.startMonitoring(region: region)

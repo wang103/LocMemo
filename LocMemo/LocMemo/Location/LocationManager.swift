@@ -70,9 +70,8 @@ class LocationManager: NSObject {
         return clLocationManager.monitoredRegions
     }
 
-    func createRegion(center: CLLocationCoordinate2D, identifier: String) -> CLRegion {
-        let maxDistance = clLocationManager.maximumRegionMonitoringDistance
-        let region = CLCircularRegion(center: center, radius: maxDistance, identifier: identifier)
+    func createRegion(cr: CLCircularRegion, identifier: String) -> CLRegion {
+        let region = CLCircularRegion(center: cr.center, radius: cr.radius, identifier: identifier)
         region.notifyOnEntry = true
         region.notifyOnExit = false
         return region

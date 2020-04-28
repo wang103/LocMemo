@@ -6,6 +6,7 @@
 //  Copyright © 2020 x. All rights reserved.
 //
 
+import GoogleMobileAds
 import SwiftUI
 
 struct SettingsView: View {
@@ -21,11 +22,22 @@ struct SettingsView: View {
     @State private var showResetActionSheet = false
 
     var body: some View {
+        VStack {
+
         NavigationView {
             getMainView()
             .navigationBarTitle("Settings")
         }
         .alert(isPresented: self.$showError, content: self.getErrorAlert)
+
+        HStack {
+            Spacer()
+            GADBannerViewController()
+                .frame(width: kGADAdSizeBanner.size.width, height: kGADAdSizeBanner.size.height)
+            Spacer()
+        }
+
+        } // end of VStack
     }
 
     func getMainView() -> some View {

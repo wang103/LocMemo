@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -27,6 +27,7 @@
 		4DACFAF8243C114E00740EE8 /* LocMemoStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFAF7243C114E00740EE8 /* LocMemoStatus.swift */; };
 		4DACFAFE243C288C00740EE8 /* LocMemoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFAFD243C288C00740EE8 /* LocMemoData.swift */; };
 		4DACFB01244041C300740EE8 /* ExternalSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFB00244041C300740EE8 /* ExternalSettings.swift */; };
+		4DF5DBDD2458102E00F42718 /* GADBannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF5DBDC2458102E00F42718 /* GADBannerViewController.swift */; };
 		8553142BB5A51B77095ADE3F /* Pods_LocMemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C442302DAF0A697C7E855530 /* Pods_LocMemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,7 @@
 		4DACFAF7243C114E00740EE8 /* LocMemoStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocMemoStatus.swift; sourceTree = "<group>"; };
 		4DACFAFD243C288C00740EE8 /* LocMemoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocMemoData.swift; sourceTree = "<group>"; };
 		4DACFB00244041C300740EE8 /* ExternalSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalSettings.swift; sourceTree = "<group>"; };
+		4DF5DBDC2458102E00F42718 /* GADBannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GADBannerViewController.swift; sourceTree = "<group>"; };
 		4E44FFC35BDB965A527C1C21 /* Pods-LocMemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocMemo.debug.xcconfig"; path = "Target Support Files/Pods-LocMemo/Pods-LocMemo.debug.xcconfig"; sourceTree = "<group>"; };
 		83F3AF3B072253965C7E2752 /* Pods-LocMemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocMemo.release.xcconfig"; path = "Target Support Files/Pods-LocMemo/Pods-LocMemo.release.xcconfig"; sourceTree = "<group>"; };
 		C442302DAF0A697C7E855530 /* Pods_LocMemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocMemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,7 +78,6 @@
 				4E44FFC35BDB965A527C1C21 /* Pods-LocMemo.debug.xcconfig */,
 				83F3AF3B072253965C7E2752 /* Pods-LocMemo.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -125,6 +126,7 @@
 				4DACFAAE24383A1B00740EE8 /* Location */,
 				4DACFAF4243C107200740EE8 /* Data */,
 				4D8AB4DD24568AB8009B1CA6 /* Notification */,
+				4DF5DBDB24580FFA00F42718 /* Ads */,
 				4DACFAFF244041A700740EE8 /* Settings */,
 				4DACFAA8243836BF00740EE8 /* Info.plist */,
 				4DACFAF1243C0E0B00740EE8 /* LocMemo.xcdatamodeld */,
@@ -188,6 +190,14 @@
 				4DACFB00244041C300740EE8 /* ExternalSettings.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		4DF5DBDB24580FFA00F42718 /* Ads */ = {
+			isa = PBXGroup;
+			children = (
+				4DF5DBDC2458102E00F42718 /* GADBannerViewController.swift */,
+			);
+			path = Ads;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,6 +324,7 @@
 				4DACFB01244041C300740EE8 /* ExternalSettings.swift in Sources */,
 				4DACFAB3243852DE00740EE8 /* MemosView.swift in Sources */,
 				4DACFABA243AC96D00740EE8 /* ActivityIndicator.swift in Sources */,
+				4DF5DBDD2458102E00F42718 /* GADBannerViewController.swift in Sources */,
 				4DACFAB52438532C00740EE8 /* WriteView.swift in Sources */,
 				4DACFAF8243C114E00740EE8 /* LocMemoStatus.swift in Sources */,
 				4DACFA9D243836BD00740EE8 /* SceneDelegate.swift in Sources */,

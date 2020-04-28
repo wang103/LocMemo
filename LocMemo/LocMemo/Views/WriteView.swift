@@ -8,6 +8,7 @@
 
 import Contacts
 import CoreLocation
+import GoogleMobileAds
 import SwiftUI
 
 struct WriteView: View {
@@ -35,6 +36,10 @@ struct WriteView: View {
 
     var body: some View {
         LoadingView(isShowing: $showLoading) {
+            VStack {
+
+            Spacer()
+
             NavigationView {
                 self.getMainView()
                 .navigationBarTitle(self.isToCreate ? "Create New Memo" : "Edit Memo")
@@ -50,6 +55,15 @@ struct WriteView: View {
                     self.clearInputs()
                 }
             })
+
+            HStack {
+                Spacer()
+                GADBannerViewController()
+                    .frame(width: kGADAdSizeBanner.size.width, height: kGADAdSizeBanner.size.height)
+                Spacer()
+            }
+
+            } // end of VStack
         }
     }
 

@@ -6,6 +6,7 @@
 //  Copyright © 2020 x. All rights reserved.
 //
 
+import GoogleMobileAds
 import SwiftUI
 
 struct MemosView: View {
@@ -30,6 +31,8 @@ struct MemosView: View {
     @State private var locMemos: [LocMemoData] = []
 
     var body: some View {
+        VStack {
+
         NavigationView {
             List {
                 ForEach(locMemos.enumerated().map({$0}), id: \.element.id) { index, locMemo in
@@ -45,6 +48,15 @@ struct MemosView: View {
         .alert(isPresented: self.$showError, content: self.getErrorAlert)
         .onAppear(perform: { self.locMemos = self.getAllLocMemos() })
         .popover(isPresented: self.$externalSettings.memosViewShowMemoPopover) { self.getMemoPopoverView() }
+
+        HStack {
+            Spacer()
+            GADBannerViewController()
+                .frame(width: kGADAdSizeBanner.size.width, height: kGADAdSizeBanner.size.height)
+            Spacer()
+        }
+
+        } // end of VStack
     }
 
     func getCellContent(locMemo: LocMemoData, lineLimit: Int? = 3) -> some View {

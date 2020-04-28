@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Force LocationManager singleton object to be created.
         let monitoredRegionsCount = LocationManager.shared.getMonitoredRegions().count
         print("Monitoring \(monitoredRegionsCount) regions")
+
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
 
         return true
     }

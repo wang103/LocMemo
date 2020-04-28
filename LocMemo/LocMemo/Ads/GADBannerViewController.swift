@@ -14,7 +14,7 @@ struct GADBannerViewController: UIViewControllerRepresentable {
     #if targetEnvironment(simulator)
     let adUnitID = "ca-app-pub-3940256099942544/2934735716"
     #else
-    let adUnitID = "xxx"
+    let adUnitID = "ca-app-pub-8969303231090177/9476607298"
     #endif
 
     func makeUIViewController(context: Context) -> UIViewController {

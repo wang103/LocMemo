@@ -27,6 +27,7 @@
 		4DACFAF8243C114E00740EE8 /* LocMemoStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFAF7243C114E00740EE8 /* LocMemoStatus.swift */; };
 		4DACFAFE243C288C00740EE8 /* LocMemoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFAFD243C288C00740EE8 /* LocMemoData.swift */; };
 		4DACFB01244041C300740EE8 /* ExternalSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFB00244041C300740EE8 /* ExternalSettings.swift */; };
+		8553142BB5A51B77095ADE3F /* Pods_LocMemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C442302DAF0A697C7E855530 /* Pods_LocMemo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,9 @@
 		4DACFAF7243C114E00740EE8 /* LocMemoStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocMemoStatus.swift; sourceTree = "<group>"; };
 		4DACFAFD243C288C00740EE8 /* LocMemoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocMemoData.swift; sourceTree = "<group>"; };
 		4DACFB00244041C300740EE8 /* ExternalSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalSettings.swift; sourceTree = "<group>"; };
+		4E44FFC35BDB965A527C1C21 /* Pods-LocMemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocMemo.debug.xcconfig"; path = "Target Support Files/Pods-LocMemo/Pods-LocMemo.debug.xcconfig"; sourceTree = "<group>"; };
+		83F3AF3B072253965C7E2752 /* Pods-LocMemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocMemo.release.xcconfig"; path = "Target Support Files/Pods-LocMemo/Pods-LocMemo.release.xcconfig"; sourceTree = "<group>"; };
+		C442302DAF0A697C7E855530 /* Pods_LocMemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocMemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,12 +63,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8553142BB5A51B77095ADE3F /* Pods_LocMemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2380BDA14C06AA679D1DD939 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4E44FFC35BDB965A527C1C21 /* Pods-LocMemo.debug.xcconfig */,
+				83F3AF3B072253965C7E2752 /* Pods-LocMemo.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		4B33B011BE48CFB586E06712 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C442302DAF0A697C7E855530 /* Pods_LocMemo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4D8AB4DD24568AB8009B1CA6 /* Notification */ = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +101,8 @@
 			children = (
 				4DACFA99243836BD00740EE8 /* LocMemo */,
 				4DACFA98243836BD00740EE8 /* Products */,
+				2380BDA14C06AA679D1DD939 /* Pods */,
+				4B33B011BE48CFB586E06712 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -172,9 +197,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4DACFAAB243836BF00740EE8 /* Build configuration list for PBXNativeTarget "LocMemo" */;
 			buildPhases = (
+				B998C157BE0119FE11019508 /* [CP] Check Pods Manifest.lock */,
 				4DACFA93243836BD00740EE8 /* Sources */,
 				4DACFA94243836BD00740EE8 /* Frameworks */,
 				4DACFA95243836BD00740EE8 /* Resources */,
+				06B6904B4F934B83FD9CED60 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -230,6 +257,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		06B6904B4F934B83FD9CED60 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LocMemo/Pods-LocMemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LocMemo/Pods-LocMemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LocMemo/Pods-LocMemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B998C157BE0119FE11019508 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LocMemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4DACFA93243836BD00740EE8 /* Sources */ = {
@@ -386,6 +455,7 @@
 		};
 		4DACFAAC243836BF00740EE8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4E44FFC35BDB965A527C1C21 /* Pods-LocMemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -405,6 +475,7 @@
 		};
 		4DACFAAD243836BF00740EE8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 83F3AF3B072253965C7E2752 /* Pods-LocMemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

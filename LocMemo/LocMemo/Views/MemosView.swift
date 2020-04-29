@@ -26,7 +26,6 @@ struct MemosView: View {
     @State private var successMsg: String? = nil
 
     @State private var showMemoActionSheet = false
-    @State private var lastSelectedMemoIndex: Int = -1
 
     @State private var locMemos: [LocMemoData] = []
 
@@ -72,7 +71,7 @@ struct MemosView: View {
     }
 
     func locMemoSelected(index: Int) {
-        lastSelectedMemoIndex = index
+        ExternalSettings.shared.memosViewLastSelectedMemoIndex = index
         showMemoActionSheet = true
     }
 
@@ -89,6 +88,7 @@ struct MemosView: View {
     // Assume lastSelectedMemoIndex or memosViewSelectedId is set properly.
     func getMemoPopoverView() -> some View {
         var externalIndex = -1
+        let lastSelectedMemoIndex = externalSettings.memosViewLastSelectedMemoIndex
         if lastSelectedMemoIndex < 0 {
             externalIndex = locMemos.firstIndex(
                 where: { $0.id == externalSettings.memosViewSelectedId }
@@ -108,7 +108,7 @@ struct MemosView: View {
     }
 
     func viewMemoCallback() {
-        if lastSelectedMemoIndex < 0 {
+        if externalSettings.memosViewLastSelectedMemoIndex < 0 {
             return
         }
 
@@ -116,11 +116,11 @@ struct MemosView: View {
     }
 
     func editMemoCallback() {
-        if lastSelectedMemoIndex < 0 {
+        if externalSettings.memosViewLastSelectedMemoIndex < 0 {
             return
         }
 
-        let locMemo = locMemos[lastSelectedMemoIndex]
+        let locMemo = locMemos[externalSettings.memosViewLastSelectedMemoIndex]
 
         writeViewIsToCreate = false
         writeViewLocationText = locMemo.locationText
@@ -130,6 +130,7 @@ struct MemosView: View {
     }
 
     func deleteMemoCallback() {
+        let lastSelectedMemoIndex = externalSettings.memosViewLastSelectedMemoIndex
         if lastSelectedMemoIndex < 0 {
             return
         }

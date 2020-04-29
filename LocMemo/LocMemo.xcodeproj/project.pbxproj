@@ -230,7 +230,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1140;
 				LastUpgradeCheck = 1140;
-				ORGANIZATIONNAME = x;
+				ORGANIZATIONNAME = hyperware;
 				TargetAttributes = {
 					4DACFA96243836BD00740EE8 = {
 						CreatedOnToolsVersion = 11.4;

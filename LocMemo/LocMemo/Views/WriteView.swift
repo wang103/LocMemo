@@ -131,8 +131,6 @@ struct WriteView: View {
 
                 showSuccessMsg("Memo created.")
                 clearInputs()
-                NotificationManager.shared.requestNotificationPermission()
-                LocationManager.shared.requestUserPermission()
             } catch let error as NSError {
                 LocationManager.shared.stopMonitoring(region: region)
                 showErrorMsg("Saving memo encounterd error. Please try again. \(error.localizedDescription)")
@@ -214,6 +212,8 @@ struct WriteView: View {
         selectedPlacemark = locationCandidates[id]
 
         showLocationsPopover = false
+
+        LocationManager.shared.requestUserPermission()
     }
 
     func locationOnCommit() {

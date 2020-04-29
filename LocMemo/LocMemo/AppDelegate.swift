@@ -23,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         GADMobileAds.sharedInstance().start(completionHandler: nil)
 
+        NotificationManager.shared.requestNotificationPermission()
+
         return true
     }
 

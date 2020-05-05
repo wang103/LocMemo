@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4D7228C5246144A40052593F /* I18nUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7228C4246144A40052593F /* I18nUtils.swift */; };
+		4D7228C824615CFE0052593F /* AppReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7228C724615CFE0052593F /* AppReviewManager.swift */; };
+		4D7228CA24615DA60052593F /* AppVersionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7228C924615DA60052593F /* AppVersionData.swift */; };
 		4D8AB4DF24568AD7009B1CA6 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8AB4DE24568AD7009B1CA6 /* NotificationManager.swift */; };
 		4DACFA9B243836BD00740EE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFA9A243836BD00740EE8 /* AppDelegate.swift */; };
 		4DACFA9D243836BD00740EE8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFA9C243836BD00740EE8 /* SceneDelegate.swift */; };
@@ -34,6 +36,8 @@
 
 /* Begin PBXFileReference section */
 		4D7228C4246144A40052593F /* I18nUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = I18nUtils.swift; sourceTree = "<group>"; };
+		4D7228C724615CFE0052593F /* AppReviewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReviewManager.swift; sourceTree = "<group>"; };
+		4D7228C924615DA60052593F /* AppVersionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionData.swift; sourceTree = "<group>"; };
 		4D8AB4DE24568AD7009B1CA6 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		4DACFA97243836BD00740EE8 /* LocMemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocMemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DACFA9A243836BD00740EE8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +103,14 @@
 			path = I18n;
 			sourceTree = "<group>";
 		};
+		4D7228C624615CD60052593F /* AppReview */ = {
+			isa = PBXGroup;
+			children = (
+				4D7228C724615CFE0052593F /* AppReviewManager.swift */,
+			);
+			path = AppReview;
+			sourceTree = "<group>";
+		};
 		4D8AB4DD24568AB8009B1CA6 /* Notification */ = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +148,7 @@
 				4DACFAAE24383A1B00740EE8 /* Location */,
 				4DACFAF4243C107200740EE8 /* Data */,
 				4D8AB4DD24568AB8009B1CA6 /* Notification */,
+				4D7228C624615CD60052593F /* AppReview */,
 				4DF5DBDB24580FFA00F42718 /* Ads */,
 				4D7228C32461448F0052593F /* I18n */,
 				4DACFAFF244041A700740EE8 /* Settings */,
@@ -191,6 +204,7 @@
 				4DACFAF5243C108F00740EE8 /* DataManager.swift */,
 				4DACFAF7243C114E00740EE8 /* LocMemoStatus.swift */,
 				4DACFAFD243C288C00740EE8 /* LocMemoData.swift */,
+				4D7228C924615DA60052593F /* AppVersionData.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -328,11 +342,13 @@
 			files = (
 				4DACFAF3243C0E0B00740EE8 /* LocMemo.xcdatamodeld in Sources */,
 				4D8AB4DF24568AD7009B1CA6 /* NotificationManager.swift in Sources */,
+				4D7228CA24615DA60052593F /* AppVersionData.swift in Sources */,
 				4DACFAB72438534900740EE8 /* SettingsView.swift in Sources */,
 				4DACFABE243AED4C00740EE8 /* SelectableCell.swift in Sources */,
 				4DACFAB024383A2900740EE8 /* LocationManager.swift in Sources */,
 				4DACFA9B243836BD00740EE8 /* AppDelegate.swift in Sources */,
 				4DACFB01244041C300740EE8 /* ExternalSettings.swift in Sources */,
+				4D7228C824615CFE0052593F /* AppReviewManager.swift in Sources */,
 				4DACFAB3243852DE00740EE8 /* MemosView.swift in Sources */,
 				4DACFABA243AC96D00740EE8 /* ActivityIndicator.swift in Sources */,
 				4DF5DBDD2458102E00F42718 /* GADBannerViewController.swift in Sources */,

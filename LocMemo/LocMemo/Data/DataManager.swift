@@ -117,4 +117,76 @@ class DataManager {
             return $0.updatedAt.compare($1.updatedAt) == .orderedDescending
         })
     }
+
+    func incMemoNotiCount() -> Int64 {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = appDelegate.persistentContainer.viewContext
+
+        do {
+            let appVersion = try ensureCurAppVersion()
+            var count = appVersion.value(forKeyPath: "memoNotiCount") as! Int64
+            count += 1
+            appVersion.setValue(count, forKey: "memoNotiCount")
+            try managedContext.save()
+            return count
+        } catch let error as NSError {
+            print("incMemoNotiCount error: \(error.localizedDescription)")
+            return -1
+        }
+    }
+
+    func markPromptedReview() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = appDelegate.persistentContainer.viewContext
+
+        do {
+            let appVersion = try ensureCurAppVersion()
+            appVersion.setValue(true, forKey: "promptedReview")
+            try managedContext.save()
+        } catch let error as NSError {
+            print("markPromptedReview error: \(error.localizedDescription)")
+        }
+    }
+
+    func getCurAppVersion() throws -> AppVersionData {
+        let obj = try ensureCurAppVersion()
+        return AppVersionData(
+            appVersion: obj.value(forKeyPath: "appVersion") as! String,
+            memoNotiCount: obj.value(forKeyPath: "memoNotiCount") as! Int64,
+            promptedReview: obj.value(forKeyPath: "promptedReview") as! Bool
+        )
+    }
+
+    fileprivate func ensureCurAppVersion() throws -> NSManagedObject {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = appDelegate.persistentContainer.viewContext
+
+        let appVersion = UIApplication.appVersion
+        let predicate = NSPredicate(format: "appVersion == %@", appVersion)
+
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "AppVersion")
+        fetchRequest.predicate = predicate
+
+        let appVersions = try managedContext.fetch(fetchRequest)
+        if appVersions.count == 0 {
+            return try saveAppVersion(appVersion: appVersion)
+        } else {
+            return appVersions[0]
+        }
+    }
+
+    fileprivate func saveAppVersion(appVersion: String) throws -> NSManagedObject {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = appDelegate.persistentContainer.viewContext
+
+        let entity = NSEntityDescription.entity(forEntityName: "AppVersion", in: managedContext)!
+        let appVersionObj = NSManagedObject(entity: entity, insertInto: managedContext)
+
+        appVersionObj.setValue(appVersion, forKey: "appVersion")
+        appVersionObj.setValue(0, forKey: "memoNotiCount")
+        appVersionObj.setValue(false, forKey: "promptedReview")
+
+        try managedContext.save()
+        return appVersionObj
+    }
 }

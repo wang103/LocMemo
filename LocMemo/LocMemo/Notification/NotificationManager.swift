@@ -40,6 +40,10 @@ class NotificationManager: NSObject {
                 // Notifications can be displayed in Notification Center.
                 // Schedule an alert and sound.
                 self.registerNotification(memo: memo)
+                DispatchQueue.main.async {
+                    let count = DataManager.shared.incMemoNotiCount()
+                    print("memoNotiCount: \(count)")
+                }
             } else {
                 // Can schedule a badge and sound, but not useful. Do nothing.
             }

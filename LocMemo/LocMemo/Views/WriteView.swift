@@ -98,6 +98,7 @@ struct WriteView: View {
                                                      memoText: memoText)
 
                 showSuccessMsg()
+                AppReviewManager.shared.promptForReview()
             } catch let error as NSError {
                 showErrorMsg("Saving memo encounterd error. Please try again. \(error.localizedDescription)")
             }
@@ -131,6 +132,7 @@ struct WriteView: View {
 
                 showSuccessMsg("Memo created.")
                 clearInputs()
+                AppReviewManager.shared.promptForReview()
             } catch let error as NSError {
                 LocationManager.shared.stopMonitoring(region: region)
                 showErrorMsg("Saving memo encounterd error. Please try again. \(error.localizedDescription)")

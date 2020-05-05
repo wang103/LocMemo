@@ -31,7 +31,7 @@ class LocationManager: NSObject {
 
     func getPlacemarks(_ addressString : String,
                        completionHandler: @escaping([CLPlacemark]?, NSError?) -> Void) {
-        let locale = I18nUtils.shared.detectLocale(addressString)
+        let locale = Locale.current
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(addressString, in: nil, preferredLocale: locale) { (placemarks, error) in
             if error == nil {

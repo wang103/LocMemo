@@ -166,23 +166,19 @@ struct WriteView: View {
         return Form {
             Section {
                 Text("When I arrive at location")
-                TextField("", text: locationTextBinding, onCommit: locationOnCommit)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                MultilineTextField(locationTextBinding, placeholder: "", onCommit: locationOnCommit)
+                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color(UIColor.systemGray4)))
                     .popover(isPresented: self.$showLocationsPopover) { self.getLocationsPopoverView() }
             }
             .alert(isPresented: self.$showSuccess, content: self.getSuccessAlert)
 
             Section {
                 Text("Show me this memo")
-                MultilineTextField($memoText, placeholder: "", onCommit: memoOnCommit)
+                MultilineTextField($memoText, placeholder: "", onCommit: nil)
                     .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color(UIColor.systemGray4)))
             }
             .alert(isPresented: self.$showError, content: self.getErrorAlert)
         }
-    }
-
-    func memoOnCommit() {
-        // intentionally empty
     }
 
     func getLocationsPopoverView() -> some View {

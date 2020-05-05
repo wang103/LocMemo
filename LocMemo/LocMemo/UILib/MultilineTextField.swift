@@ -25,7 +25,7 @@ fileprivate struct UITextViewWrapper: UIViewRepresentable {
         uiTextView.isUserInteractionEnabled = true
         uiTextView.isScrollEnabled = false
         uiTextView.backgroundColor = UIColor.clear
-        uiTextView.returnKeyType = .default
+        uiTextView.returnKeyType = onDone == nil ? .default : .go
 
         uiTextView.setContentCompressionResistancePriority(
             .defaultLow, for: .horizontal)
@@ -73,6 +73,17 @@ fileprivate struct UITextViewWrapper: UIViewRepresentable {
             text.wrappedValue = textView.text
             UITextViewWrapper.recalculateHeight(view: textView,
                                                 result: calculatedHeight)
+        }
+
+        func textView(_ textView: UITextView,
+                      shouldChangeTextIn range: NSRange,
+                      replacementText text: String) -> Bool {
+            if let onDone = self.onDone, text == "\n" {
+                textView.resignFirstResponder()
+                onDone()
+                return false
+            }
+            return true
         }
     }
 }

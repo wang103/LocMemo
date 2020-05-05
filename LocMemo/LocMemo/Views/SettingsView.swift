@@ -94,6 +94,22 @@ struct SettingsView: View {
             }
 
             HStack {
+                Button(action: reviewAppButtonCallback) {
+                    Text("Write Review")
+                        .foregroundColor(.blue)
+                        .padding()
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(Color.blue, lineWidth: 1)
+                        )
+                }
+                .padding(.leading, 22)
+                .padding(.top, 40)
+
+                Spacer()
+            }
+
+            HStack {
                 Button(action: resetButtonCallback) {
                     Text("Reset")
                         .foregroundColor(.red)
@@ -129,6 +145,12 @@ struct SettingsView: View {
            let url = URL(string: "\(UIApplication.openSettingsURLString)&path=LOCATION/\(bundleId)") {
             UIApplication.shared.open(url)
         }
+    }
+
+    func reviewAppButtonCallback() {
+        guard let writeReviewURL = URL(string: "https://itunes.apple.com/app/id1510668870?action=write-review")
+            else { fatalError("Expected a valid URL") }
+        UIApplication.shared.open(writeReviewURL, options: [:], completionHandler: nil)
     }
 
     func resetButtonCallback() {

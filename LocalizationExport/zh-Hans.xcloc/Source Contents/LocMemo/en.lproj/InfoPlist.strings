@@ -1,6 +1,0 @@
-/* Bundle name */
-"CFBundleName" = "LocMemo";
-/* Privacy - Location Always and When In Use Usage Description */
-"NSLocationAlwaysAndWhenInUseUsageDescription" = "The app needs to notify you when you entered the specified locations.";
-/* Privacy - Location When In Use Usage Description */
-"NSLocationWhenInUseUsageDescription" = "The app needs to notify you when you entered the specified locations.";

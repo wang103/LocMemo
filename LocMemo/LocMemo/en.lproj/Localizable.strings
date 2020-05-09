@@ -22,6 +22,7 @@
 
 "Location Auth: %@" = "Location Auth: %@";
 "Notification Auth: %@" = "Notification Auth: %@";
+"Language: %@" = "Language: %@";
 "Change" = "Change";
 "Write Review" = "Write Review";
 "Reset" = "Reset";

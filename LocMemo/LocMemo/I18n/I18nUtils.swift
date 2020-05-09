@@ -15,4 +15,8 @@ class I18nUtils {
         guard let lang = NLLanguageRecognizer.dominantLanguage(for: str)?.rawValue else { return nil }
         return Locale(identifier: lang)
     }
+
+    func getDisplayStr(langCode: String) -> String {
+        return Locale.autoupdatingCurrent.localizedString(forLanguageCode: langCode)!
+    }
 }

@@ -22,6 +22,7 @@
 
 "Location Auth: %@" = "位置授权：%@";
 "Notification Auth: %@" = "通知授权：%@";
+"Language: %@" = "语言：%@";
 "Change" = "更改";
 "Write Review" = "撰写评论";
 "Reset" = "重置";

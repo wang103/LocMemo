@@ -98,6 +98,27 @@ struct SettingsView: View {
             }
 
             HStack {
+                Text(String.localizedStringWithFormat(
+                        NSLocalizedString("Language: %@", comment: ""),
+                        I18nUtils.shared.getDisplayStr(langCode: Locale.preferredLanguages.first!)))
+                    .padding(.leading, 22)
+                    .padding(.top, 10)
+
+                Button(action: changeLanguage) {
+                    Text(NSLocalizedString("Change", comment: ""))
+                        .foregroundColor(.blue)
+                        .padding(3)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(Color.blue, lineWidth: 1)
+                        )
+                }
+                .padding(.top, 10)
+
+                Spacer()
+            }
+
+            HStack {
                 Button(action: reviewAppButtonCallback) {
                     Text(NSLocalizedString("Write Review", comment: ""))
                         .foregroundColor(.blue)
@@ -139,7 +160,7 @@ struct SettingsView: View {
 
     func changeNotificationAuthorization() {
         if let bundleId = Bundle.main.bundleIdentifier,
-           let url = URL(string: "\(UIApplication.openSettingsURLString)&path=NOTIFICATION/\(bundleId)") {
+           let url = URL(string: "\(UIApplication.openSettingsURLString)&path=NOTIFICATIONS/\(bundleId)") {
             UIApplication.shared.open(url)
         }
     }
@@ -147,6 +168,13 @@ struct SettingsView: View {
     func changeLocationAuthorization() {
         if let bundleId = Bundle.main.bundleIdentifier,
            let url = URL(string: "\(UIApplication.openSettingsURLString)&path=LOCATION/\(bundleId)") {
+            UIApplication.shared.open(url)
+        }
+    }
+
+    func changeLanguage() {
+        if let bundleId = Bundle.main.bundleIdentifier,
+           let url = URL(string: "\(UIApplication.openSettingsURLString)&path=LANGUAGE/\(bundleId)") {
             UIApplication.shared.open(url)
         }
     }

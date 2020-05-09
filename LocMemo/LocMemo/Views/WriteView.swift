@@ -71,12 +71,12 @@ struct WriteView: View {
 
     func updateMemo() {
         if locationTextChanged && selectedPlacemark == nil {
-            showErrorMsg("Please select a location first.")
+            showErrorMsg(NSLocalizedString("Please select a location first.", comment: ""))
             return
         }
 
         if memoText.isEmpty {
-            showErrorMsg("Please write a memo first.")
+            showErrorMsg(NSLocalizedString("Please write a memo first.", comment: ""))
             return
         }
 
@@ -92,7 +92,7 @@ struct WriteView: View {
         }
 
         if !success {
-            showErrorMsg("Device does not support region monitoring.")
+            showErrorMsg(NSLocalizedString("Device does not support region monitoring.", comment: ""))
         } else {
             do {
                 try DataManager.shared.updateLocMemo(identifier: regionIdentifier,
@@ -102,19 +102,21 @@ struct WriteView: View {
                 showSuccessMsg()
                 AppReviewManager.shared.promptForReview()
             } catch let error as NSError {
-                showErrorMsg("Saving memo encounterd error. Please try again. \(error.localizedDescription)")
+                showErrorMsg(String.localizedStringWithFormat(
+                    NSLocalizedString("Saving memo encounterd error. Please try again. %@", comment: ""),
+                    error.localizedDescription))
             }
         }
     }
 
     func createMemo() {
         if selectedPlacemark == nil {
-            showErrorMsg("Please select a location first.")
+            showErrorMsg(NSLocalizedString("Please select a location first.", comment: ""))
             return
         }
 
         if memoText.isEmpty {
-            showErrorMsg("Please write a memo first.")
+            showErrorMsg(NSLocalizedString("Please write a memo first.", comment: ""))
             return
         }
 
@@ -125,19 +127,21 @@ struct WriteView: View {
         )
         let success = LocationManager.shared.startMonitoring(region: region)
         if !success {
-            showErrorMsg("Device does not support region monitoring.")
+            showErrorMsg(NSLocalizedString("Device does not support region monitoring.", comment: ""))
         } else {
             do {
                 try DataManager.shared.saveLocMemo(identifier: identifier,
                                                    locationText: locationText,
                                                    memoText: memoText)
 
-                showSuccessMsg("Memo created.")
+                showSuccessMsg(NSLocalizedString("Memo created.", comment: ""))
                 clearInputs()
                 AppReviewManager.shared.promptForReview()
             } catch let error as NSError {
                 LocationManager.shared.stopMonitoring(region: region)
-                showErrorMsg("Saving memo encounterd error. Please try again. \(error.localizedDescription)")
+                showErrorMsg(String.localizedStringWithFormat(
+                    NSLocalizedString("Saving memo encounterd error. Please try again. %@", comment: ""),
+                    error.localizedDescription))
             }
         }
     }
@@ -236,7 +240,7 @@ struct WriteView: View {
         showLoading = false
 
         if error != nil || placemarks == nil || placemarks!.count == 0 {
-            showErrorMsg("Invalid location. Please refine your search.")
+            showErrorMsg(NSLocalizedString("Invalid location. Please refine your search.", comment: ""))
             return
         }
 
@@ -272,14 +276,14 @@ struct WriteView: View {
     }
 
     func getErrorAlert() -> Alert {
-        return Alert(title: Text("Error!"),
+        return Alert(title: Text(NSLocalizedString("Error!", comment: "")),
                      message: Text(errMsg),
-                     dismissButton: .default(Text("OK")))
+                     dismissButton: .default(Text(NSLocalizedString("OK", comment: ""))))
     }
 
     func getSuccessAlert() -> Alert {
-        return Alert(title: Text("Success!"),
+        return Alert(title: Text(NSLocalizedString("Success!", comment: "")),
                      message: successMsg == nil ? nil : Text(successMsg!),
-                     dismissButton: .default(Text("OK")))
+                     dismissButton: .default(Text(NSLocalizedString("OK", comment: ""))))
     }
 }

@@ -11,8 +11,8 @@
 "Settings" = "设置";
 
 "Memos (%d)" = "备忘录 (%d个)";
-"location:" = "地址:";
-"memo:" = "内容:";
+"location:" = "地址：";
+"memo:" = "内容：";
 
 "Save" = "保存";
 "Create New Memo" = "创建新备忘录";
@@ -20,13 +20,13 @@
 "When I arrive at location" = "当到达地址";
 "Show me this memo" = "通知以下内容";
 
-"Location Auth: %@" = "位置授权: %@";
-"Notification Auth: %@" = "通知授权: %@";
+"Location Auth: %@" = "位置授权：%@";
+"Notification Auth: %@" = "通知授权：%@";
 "Change" = "更改";
 "Write Review" = "撰写评论";
 "Reset" = "重置";
 
-"auths_text" = "请将位置授权设置为\"%@\", 通知授权设置为\"%@\". %@";
+"auths_text" = "请将位置授权设置为\"%@\"，通知授权设置为\"%@\"。%@";
 
 "Always" = "始终允许";
 "When in use" = "使用App期间";
@@ -38,11 +38,27 @@
 "Denied" = "不允许";
 "Provisional" = "暂时允许";
 
-"Are you sure?" = "确定吗?";
-"This will delete all the memos." = "将要删除所有备忘录";
+"Are you sure?" = "确定吗？";
+"This will delete all the memos." = "将要删除所有备忘录。";
 "Yes" = "确定";
 
 "What to do?" = "请选择操作";
 "View" = "查看";
 "Edit" = "编辑";
 "Delete" = "删除";
+
+"Success!" = "成功！";
+"Error!" = "错误！";
+"OK" = "确认";
+"Loading..." = "加载中。。。";
+
+"Please select a location first." = "请先选择一个地址。";
+"Please write a memo first." = "请先撰写备忘录内容。";
+
+"Memo created." = "备忘录已创建。";
+
+"Deleting memo encountered error. Please try again. %@" = "删除备忘录遇到错误。请重试。%@";
+"Reading saved memos encountered error. %@" = "读取备忘录遇到错误。%@";
+"Device does not support region monitoring." = "设备不支持区域监控。";
+"Saving memo encounterd error. Please try again. %@" = "保存备忘录遇到错误。请重试。%@";
+"Invalid location. Please refine your search." = "无效地址。请优化您的搜索。";

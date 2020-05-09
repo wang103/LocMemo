@@ -144,7 +144,9 @@ struct MemosView: View {
             showSuccessMsg()
             self.locMemos = self.getAllLocMemos()
         } catch let error as NSError {
-            showErrorMsg("Deleting memo encountered error. Please try again. \(error.localizedDescription)")
+            showErrorMsg(String.localizedStringWithFormat(
+                NSLocalizedString("Deleting memo encountered error. Please try again. %@", comment: ""),
+                error.localizedDescription))
         }
     }
 
@@ -152,7 +154,9 @@ struct MemosView: View {
         do {
             return try DataManager.shared.getAllLocMemos()
         } catch let error as NSError {
-            showErrorMsg("Reading saved memos encountered error. \(error.localizedDescription)")
+            showErrorMsg(String.localizedStringWithFormat(
+                NSLocalizedString("Reading saved memos encountered error. %@", comment: ""),
+                error.localizedDescription))
             return []
         }
     }
@@ -168,14 +172,14 @@ struct MemosView: View {
     }
 
     func getErrorAlert() -> Alert {
-        return Alert(title: Text("Error!"),
+        return Alert(title: Text(NSLocalizedString("Error!", comment: "")),
                      message: Text(errMsg),
-                     dismissButton: .default(Text("OK")))
+                     dismissButton: .default(Text(NSLocalizedString("OK", comment: ""))))
     }
 
     func getSuccessAlert() -> Alert {
-        return Alert(title: Text("Success!"),
+        return Alert(title: Text(NSLocalizedString("Success!", comment: "")),
                      message: successMsg == nil ? nil : Text(successMsg!),
-                     dismissButton: .default(Text("OK")))
+                     dismissButton: .default(Text(NSLocalizedString("OK", comment: ""))))
     }
 }

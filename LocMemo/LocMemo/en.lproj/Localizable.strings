@@ -37,3 +37,12 @@
 "Authorized" = "Authorized";
 "Denied" = "Denied";
 "Provisional" = "Provisional";
+
+"Are you sure?" = "Are you sure?";
+"This will delete all the memos." = "This will delete all the memos.";
+"Yes" = "Yes";
+
+"What to do?" = "What to do?";
+"View" = "View";
+"Edit" = "Edit";
+"Delete" = "Delete";

@@ -37,3 +37,12 @@
 "Authorized" = "允许";
 "Denied" = "不允许";
 "Provisional" = "暂时允许";
+
+"Are you sure?" = "确定吗?";
+"This will delete all the memos." = "将要删除所有备忘录";
+"Yes" = "确定";
+
+"What to do?" = "请选择操作";
+"View" = "查看";
+"Edit" = "编辑";
+"Delete" = "删除";

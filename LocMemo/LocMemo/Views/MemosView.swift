@@ -77,11 +77,11 @@ struct MemosView: View {
     }
 
     func getMemoActionSheet() -> ActionSheet {
-        return ActionSheet(title: Text("What to do?"),
+        return ActionSheet(title: Text(NSLocalizedString("What to do?", comment: "")),
                            message: nil,
-                           buttons: [.default(Text("View"), action: viewMemoCallback),
-                                     .default(Text("Edit"), action: editMemoCallback),
-                                     .destructive(Text("Delete"), action: deleteMemoCallback),
+                           buttons: [.default(Text(NSLocalizedString("View", comment: "")), action: viewMemoCallback),
+                                     .default(Text(NSLocalizedString("Edit", comment: "")), action: editMemoCallback),
+                                     .destructive(Text(NSLocalizedString("Delete", comment: "")), action: deleteMemoCallback),
                                      .cancel()]
         )
     }

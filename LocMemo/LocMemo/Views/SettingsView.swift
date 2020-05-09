@@ -162,9 +162,9 @@ struct SettingsView: View {
     }
 
     func getResetActionSheet() -> ActionSheet {
-        return ActionSheet(title: Text("Are you sure?"),
-                           message: Text("This will delete all the memos."),
-                           buttons: [.destructive(Text("Yes"), action: reset),
+        return ActionSheet(title: Text(NSLocalizedString("Are you sure?", comment: "")),
+                           message: Text(NSLocalizedString("This will delete all the memos.", comment: "")),
+                           buttons: [.destructive(Text(NSLocalizedString("Yes", comment: "")), action: reset),
                                      .cancel()]
         )
     }

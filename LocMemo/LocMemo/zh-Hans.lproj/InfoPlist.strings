@@ -7,3 +7,5 @@
 */
 
 "CFBundleDisplayName" = "洛可备忘录";
+NSLocationAlwaysAndWhenInUseUsageDescription = "当您到达指定地址时, App需要通知您.";
+NSLocationWhenInUseUsageDescription = "当您到达指定地址时, App需要通知您.";

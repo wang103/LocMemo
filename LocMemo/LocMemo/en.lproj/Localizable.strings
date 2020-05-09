@@ -25,3 +25,15 @@
 "Change" = "Change";
 "Write Review" = "Write Review";
 "Reset" = "Reset";
+
+"auths_text" = "Please consider setting the location authorization to \"%@\", and the notification authorization to \"%@\". %@";
+
+"Always" = "Always";
+"When in use" = "When in use";
+"Never" = "Never";
+"Ask next time" = "Ask next time";
+"Not authorized" = "Not authorized";
+"Unknown" = "Unknown";
+"Authorized" = "Authorized";
+"Denied" = "Denied";
+"Provisional" = "Provisional";

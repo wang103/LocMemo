@@ -86,10 +86,10 @@ struct SettingsView: View {
             }
 
             HStack {
-                Text("Please consider setting the location authorization to " +
-                     "\"\(LocationManager.shared.getAuthorizationStatusStr(.authorizedAlways))\", and " +
-                     "the notification authorization to \"Authorized\". " +
-                     "\(UIApplication.locationUsageDescription)")
+                Text(String.localizedStringWithFormat(NSLocalizedString("auths_text", comment: ""),
+                        LocationManager.shared.getAuthorizationStatusStr(.authorizedAlways),
+                        NotificationManager.shared.getAuthorizationStatusStr(.authorized),
+                        UIApplication.locationUsageDescription))
                 .padding(.leading, 22)
                 .padding(.top, 10)
                 .font(.footnote)

@@ -84,17 +84,17 @@ class LocationManager: NSObject {
 
     func getAuthorizationStatusStr(_ authStatus: CLAuthorizationStatus) -> String {
         if authStatus == .authorizedAlways {
-            return "Always"
+            return NSLocalizedString("Always", comment: "")
         } else if authStatus == .authorizedWhenInUse {
-            return "When in use"
+            return NSLocalizedString("When in use", comment: "")
         } else if authStatus == .denied {
-            return "Never"
+            return NSLocalizedString("Never", comment: "")
         } else if authStatus == .notDetermined {
-            return "Ask next time"
+            return NSLocalizedString("Ask next time", comment: "")
         } else if authStatus == .restricted {
-            return "Not authorized"
+            return NSLocalizedString("Not authorized", comment: "")
         } else {
-            return "Unknown"
+            return NSLocalizedString("Unknown", comment: "")
         }
     }
 }

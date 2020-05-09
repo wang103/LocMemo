@@ -76,15 +76,15 @@ class NotificationManager: NSObject {
 
     func getAuthorizationStatusStr(_ authStatus: UNAuthorizationStatus) -> String {
         if authStatus == .authorized {
-            return "Authorized"
+            return NSLocalizedString("Authorized", comment: "")
         } else if authStatus == .denied {
-            return "Denied"
+            return NSLocalizedString("Denied", comment: "")
         } else if authStatus == .notDetermined {
-            return "Ask next time"
+            return NSLocalizedString("Ask next time", comment: "")
         } else if authStatus == .provisional {
-            return "Provisional"
+            return NSLocalizedString("Provisional", comment: "")
         } else {
-            return "Unknown"
+            return NSLocalizedString("Unknown", comment: "")
         }
     }
 

@@ -7,3 +7,5 @@
 */
 
 "CFBundleDisplayName" = "LocMemo";
+NSLocationAlwaysAndWhenInUseUsageDescription = "The app needs to notify you when you entered the specified locations.";
+NSLocationWhenInUseUsageDescription = "The app needs to notify you when you entered the specified locations.";

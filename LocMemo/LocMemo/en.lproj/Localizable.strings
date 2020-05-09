@@ -9,3 +9,19 @@
 "Memos" = "Memos";
 "Write" = "Write";
 "Settings" = "Settings";
+
+"Memos (%d)" = "Memos (%d)";
+"location:" = "location:";
+"memo:" = "memo:";
+
+"Save" = "Save";
+"Create New Memo" = "Create New Memo";
+"Edit Memo" = "Edit Memo";
+"When I arrive at location" = "When I arrive at location";
+"Show me this memo" = "Show me this memo";
+
+"Location Auth: %@" = "Location Auth: %@";
+"Notification Auth: %@" = "Notification Auth: %@";
+"Change" = "Change";
+"Write Review" = "Write Review";
+"Reset" = "Reset";

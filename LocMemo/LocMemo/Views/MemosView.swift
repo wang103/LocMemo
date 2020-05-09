@@ -41,7 +41,8 @@ struct MemosView: View {
                     .actionSheet(isPresented: self.$showMemoActionSheet) { self.getMemoActionSheet() }
                 }
             }
-            .navigationBarTitle("Memos (\(locMemos.count))")
+            .navigationBarTitle(String.localizedStringWithFormat(
+                NSLocalizedString("Memos (%d)", comment: ""), locMemos.count))
             .alert(isPresented: self.$showSuccess, content: self.getSuccessAlert)
         }
         .alert(isPresented: self.$showError, content: self.getErrorAlert)
@@ -60,11 +61,11 @@ struct MemosView: View {
 
     func getCellContent(locMemo: LocMemoData, lineLimit: Int? = 3) -> some View {
         return VStack(alignment: .leading, spacing: 5) {
-            Text("location:").bold()
+            Text(NSLocalizedString("location:", comment: "")).bold()
             Text(locMemo.locationText)
                 .lineLimit(lineLimit)
 
-            Text("memo:").bold()
+            Text(NSLocalizedString("memo:", comment: "")).bold()
             Text(locMemo.memoText)
                 .lineLimit(lineLimit)
         }

@@ -44,12 +44,14 @@ struct SettingsView: View {
         return VStack {
 
             HStack {
-                Text("Location Auth: \(externalSettings.locationAuthStatus)")
+                Text(String.localizedStringWithFormat(
+                        NSLocalizedString("Location Auth: %@", comment: ""),
+                        externalSettings.locationAuthStatus))
                     .padding(.leading, 22)
                     .padding(.top, 5)
 
                 Button(action: changeLocationAuthorization) {
-                    Text("Change")
+                    Text(NSLocalizedString("Change", comment: ""))
                         .foregroundColor(.blue)
                         .padding(3)
                         .overlay(
@@ -63,12 +65,14 @@ struct SettingsView: View {
             }
 
             HStack {
-                Text("Notification Auth: \(externalSettings.notificationAuthStatus)")
+                Text(String.localizedStringWithFormat(
+                        NSLocalizedString("Notification Auth: %@", comment: ""),
+                        externalSettings.notificationAuthStatus))
                     .padding(.leading, 22)
                     .padding(.top, 10)
 
                 Button(action: changeNotificationAuthorization) {
-                    Text("Change")
+                    Text(NSLocalizedString("Change", comment: ""))
                         .foregroundColor(.blue)
                         .padding(3)
                         .overlay(
@@ -95,7 +99,7 @@ struct SettingsView: View {
 
             HStack {
                 Button(action: reviewAppButtonCallback) {
-                    Text("Write Review")
+                    Text(NSLocalizedString("Write Review", comment: ""))
                         .foregroundColor(.blue)
                         .padding()
                         .overlay(
@@ -111,7 +115,7 @@ struct SettingsView: View {
 
             HStack {
                 Button(action: resetButtonCallback) {
-                    Text("Reset")
+                    Text(NSLocalizedString("Reset", comment: ""))
                         .foregroundColor(.red)
                         .padding()
                         .overlay(

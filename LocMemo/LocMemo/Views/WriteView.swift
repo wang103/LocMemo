@@ -42,9 +42,11 @@ struct WriteView: View {
 
             NavigationView {
                 self.getMainView()
-                .navigationBarTitle(self.isToCreate ? "Create New Memo" : "Edit Memo")
+                .navigationBarTitle(self.isToCreate ?
+                    NSLocalizedString("Create New Memo", comment: "") :
+                    NSLocalizedString("Edit Memo", comment: ""))
                 .navigationBarItems(trailing:
-                    Button("Save", action: self.saveCallback)
+                    Button(NSLocalizedString("Save", comment: ""), action: self.saveCallback)
                 )
             }
             .onTapGesture {
@@ -167,7 +169,7 @@ struct WriteView: View {
 
         return Form {
             Section {
-                Text("When I arrive at location")
+                Text(NSLocalizedString("When I arrive at location", comment: ""))
                 MultilineTextField(locationTextBinding, placeholder: "", onCommit: locationOnCommit)
                     .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color(UIColor.systemGray4)))
                     .popover(isPresented: self.$showLocationsPopover) { self.getLocationsPopoverView() }
@@ -175,7 +177,7 @@ struct WriteView: View {
             .alert(isPresented: self.$showSuccess, content: self.getSuccessAlert)
 
             Section {
-                Text("Show me this memo")
+                Text(NSLocalizedString("Show me this memo", comment: ""))
                 MultilineTextField($memoText, placeholder: "", onCommit: nil)
                     .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color(UIColor.systemGray4)))
             }

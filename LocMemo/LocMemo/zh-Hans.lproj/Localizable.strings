@@ -9,3 +9,19 @@
 "Memos" = "备忘录";
 "Write" = "编写";
 "Settings" = "设置";
+
+"Memos (%d)" = "备忘录 (%d个)";
+"location:" = "地址:";
+"memo:" = "内容:";
+
+"Save" = "保存";
+"Create New Memo" = "创建新备忘录";
+"Edit Memo" = "编辑备忘录";
+"When I arrive at location" = "当到达地址";
+"Show me this memo" = "提醒以下内容";
+
+"Location Auth: %@" = "位置授权: %@";
+"Notification Auth: %@" = "通知授权: %@";
+"Change" = "更改";
+"Write Review" = "撰写评论";
+"Reset" = "重置";

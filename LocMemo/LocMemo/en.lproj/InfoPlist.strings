@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  LocMemo
+
+  Created by Tianyi Wang on 5/9/20.
+  Copyright © 2020 hyperware. All rights reserved.
+*/
+
+"CFBundleDisplayName" = "LocMemo";

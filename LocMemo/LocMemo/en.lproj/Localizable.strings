@@ -63,3 +63,7 @@
 "Device does not support region monitoring." = "Device does not support region monitoring.";
 "Saving memo encounterd error. Please try again. %@" = "Saving memo encounterd error. Please try again. %@";
 "Invalid location. Please refine your search." = "Invalid location. Please refine your search.";
+
+"Memo" = "Memo";
+"Select Location" = "Select Location";
+"Close" = "Close";

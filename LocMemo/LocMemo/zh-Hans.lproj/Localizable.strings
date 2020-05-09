@@ -63,3 +63,7 @@
 "Device does not support region monitoring." = "设备不支持区域监控。";
 "Saving memo encounterd error. Please try again. %@" = "保存备忘录遇到错误。请重试。%@";
 "Invalid location. Please refine your search." = "无效地址。请优化您的搜索。";
+
+"Memo" = "备忘录细节";
+"Select Location" = "选择准确地址";
+"Close" = "关闭";

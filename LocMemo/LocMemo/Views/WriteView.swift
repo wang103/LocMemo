@@ -198,9 +198,9 @@ struct WriteView: View {
                     }
                 }
             }
-            .navigationBarTitle("Select Location")
+            .navigationBarTitle(NSLocalizedString("Select Location", comment: ""))
             .navigationBarItems(trailing:
-                Button("Close") { self.showLocationsPopover = false }
+                Button(NSLocalizedString("Close", comment: "")) { self.showLocationsPopover = false }
             )
         }
     }

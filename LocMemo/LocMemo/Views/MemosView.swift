@@ -101,9 +101,11 @@ struct MemosView: View {
                 getCellContent(locMemo: locMemos[lastSelectedMemoIndex < 0 ? externalIndex : lastSelectedMemoIndex ],
                                lineLimit: nil)
             }
-            .navigationBarTitle("Memo")
+            .navigationBarTitle(NSLocalizedString("Memo", comment: ""))
             .navigationBarItems(trailing:
-                Button("Close") { ExternalSettings.shared.memosViewShowMemoPopover = false }
+                Button(NSLocalizedString("Close", comment: "")) {
+                    ExternalSettings.shared.memosViewShowMemoPopover = false
+                }
             )
         }
     }

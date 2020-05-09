@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D4BB3B52466A62A0030F880 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D4BB3B72466A62A0030F880 /* Localizable.strings */; };
 		4D7228C5246144A40052593F /* I18nUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7228C4246144A40052593F /* I18nUtils.swift */; };
 		4D7228C824615CFE0052593F /* AppReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7228C724615CFE0052593F /* AppReviewManager.swift */; };
 		4D7228CA24615DA60052593F /* AppVersionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7228C924615DA60052593F /* AppVersionData.swift */; };
@@ -36,6 +37,8 @@
 
 /* Begin PBXFileReference section */
 		4D4BB3B2246695630030F880 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.storyboard"; sourceTree = "<group>"; };
+		4D4BB3B62466A62A0030F880 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4D4BB3B82466A62F0030F880 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		4D7228C4246144A40052593F /* I18nUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = I18nUtils.swift; sourceTree = "<group>"; };
 		4D7228C724615CFE0052593F /* AppReviewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReviewManager.swift; sourceTree = "<group>"; };
 		4D7228C924615DA60052593F /* AppVersionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionData.swift; sourceTree = "<group>"; };
@@ -158,6 +161,7 @@
 				4DACFAA0243836BF00740EE8 /* Assets.xcassets */,
 				4DACFAA5243836BF00740EE8 /* LaunchScreen.storyboard */,
 				4DACFAA2243836BF00740EE8 /* Preview Content */,
+				4D4BB3B72466A62A0030F880 /* Localizable.strings */,
 			);
 			path = LocMemo;
 			sourceTree = "<group>";
@@ -288,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DACFAA7243836BF00740EE8 /* LaunchScreen.storyboard in Resources */,
+				4D4BB3B52466A62A0030F880 /* Localizable.strings in Resources */,
 				4DACFAA4243836BF00740EE8 /* Preview Assets.xcassets in Resources */,
 				4DACFAA1243836BF00740EE8 /* Assets.xcassets in Resources */,
 			);
@@ -369,6 +374,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		4D4BB3B72466A62A0030F880 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4D4BB3B62466A62A0030F880 /* en */,
+				4D4BB3B82466A62F0030F880 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		4DACFAA5243836BF00740EE8 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

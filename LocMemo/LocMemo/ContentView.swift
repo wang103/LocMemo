@@ -27,7 +27,7 @@ struct ContentView: View {
                 .tabItem {
                     VStack {
                         Image("TabMemos")
-                        Text("Memos")
+                        Text(NSLocalizedString("Memos", comment: ""))
                     }
                 }
                 .tag(0)
@@ -39,7 +39,7 @@ struct ContentView: View {
                 .tabItem {
                     VStack {
                         Image("TabNew")
-                        Text("Write")
+                        Text(NSLocalizedString("Write", comment: ""))
                     }
                 }
                 .tag(1)
@@ -48,7 +48,7 @@ struct ContentView: View {
                 .tabItem {
                     VStack {
                         Image("TabSettings")
-                        Text("Settings")
+                        Text(NSLocalizedString("Settings", comment: ""))
                     }
                 }
                 .tag(2)

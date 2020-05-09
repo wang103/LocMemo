@@ -26,7 +26,7 @@ struct SettingsView: View {
 
         NavigationView {
             getMainView()
-            .navigationBarTitle("Settings")
+            .navigationBarTitle(NSLocalizedString("Settings", comment: ""))
         }
         .alert(isPresented: self.$showError, content: self.getErrorAlert)
 

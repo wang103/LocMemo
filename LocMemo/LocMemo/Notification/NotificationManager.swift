@@ -53,7 +53,7 @@ class NotificationManager: NSObject {
     // Register an alert and sound notification.
     fileprivate func registerNotification(memo: LocMemoData) {
         let content = UNMutableNotificationContent()
-        content.title = "You arrived at a memo location"
+        content.title = NSLocalizedString("You arrived at a memo location", comment: "")
         content.subtitle = memo.locationText
         content.body = memo.memoText
         content.sound = .default

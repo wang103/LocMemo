@@ -49,8 +49,11 @@ class LocationManager: NSObject {
             return false
         }
 
+        let circularRegion = region as! CLCircularRegion
+        print("Start monitoring region centered at \(circularRegion.center) with radius \(circularRegion.radius)")
+
         // Register the region.
-        clLocationManager.startMonitoring(for: region)
+        clLocationManager.startMonitoring(for: circularRegion)
         return true
     }
 

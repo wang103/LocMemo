@@ -246,6 +246,7 @@
 				4DACFA94243836BD00740EE8 /* Frameworks */,
 				4DACFA95243836BD00740EE8 /* Resources */,
 				06B6904B4F934B83FD9CED60 /* [CP] Embed Pods Frameworks */,
+				9EC3791D7E4E634B5AEC11E0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -321,6 +322,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LocMemo/Pods-LocMemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9EC3791D7E4E634B5AEC11E0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LocMemo/Pods-LocMemo-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LocMemo/Pods-LocMemo-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LocMemo/Pods-LocMemo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B998C157BE0119FE11019508 /* [CP] Check Pods Manifest.lock */ = {

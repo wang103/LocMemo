@@ -46,6 +46,7 @@
 		4D7228C724615CFE0052593F /* AppReviewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReviewManager.swift; sourceTree = "<group>"; };
 		4D7228C924615DA60052593F /* AppVersionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionData.swift; sourceTree = "<group>"; };
 		4D8AB4DE24568AD7009B1CA6 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		4D8ED02724790CC7004A6CA0 /* BMKSwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BMKSwift-Bridging-Header.h"; sourceTree = "<group>"; };
 		4DACFA97243836BD00740EE8 /* LocMemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocMemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DACFA9A243836BD00740EE8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4DACFA9C243836BD00740EE8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -166,6 +167,7 @@
 				4DACFAA2243836BF00740EE8 /* Preview Content */,
 				4D4BB3B72466A62A0030F880 /* Localizable.strings */,
 				4D4BB3B92466AA9B0030F880 /* InfoPlist.strings */,
+				4D8ED02724790CC7004A6CA0 /* BMKSwift-Bridging-Header.h */,
 			);
 			path = LocMemo;
 			sourceTree = "<group>";
@@ -562,6 +564,7 @@
 				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hyperware.LocMemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "LocMemo/BMKSwift-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -586,6 +589,7 @@
 				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hyperware.LocMemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "LocMemo/BMKSwift-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

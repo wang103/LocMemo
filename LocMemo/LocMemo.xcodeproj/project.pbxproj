@@ -15,6 +15,9 @@
 		4D8AB4DF24568AD7009B1CA6 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8AB4DE24568AD7009B1CA6 /* NotificationManager.swift */; };
 		4D8ED02A247910EC004A6CA0 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D8ED028247910EC004A6CA0 /* libcrypto.a */; };
 		4D8ED02B247910EC004A6CA0 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D8ED029247910EC004A6CA0 /* libssl.a */; };
+		4D8ED02D24792D7A004A6CA0 /* LocationSearcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8ED02C24792D7A004A6CA0 /* LocationSearcher.swift */; };
+		4D8ED02F24792E1C004A6CA0 /* AppleLocationSearcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8ED02E24792E1C004A6CA0 /* AppleLocationSearcher.swift */; };
+		4D8ED031247930C0004A6CA0 /* BaiduLocationSearcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8ED030247930C0004A6CA0 /* BaiduLocationSearcher.swift */; };
 		4DACFA9B243836BD00740EE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFA9A243836BD00740EE8 /* AppDelegate.swift */; };
 		4DACFA9D243836BD00740EE8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFA9C243836BD00740EE8 /* SceneDelegate.swift */; };
 		4DACFA9F243836BD00740EE8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFA9E243836BD00740EE8 /* ContentView.swift */; };
@@ -51,6 +54,9 @@
 		4D8ED02724790CC7004A6CA0 /* BMKSwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BMKSwift-Bridging-Header.h"; sourceTree = "<group>"; };
 		4D8ED028247910EC004A6CA0 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = Pods/BaiduMapKit/BaiduMapKit/thirdlibs/libcrypto.a; sourceTree = "<group>"; };
 		4D8ED029247910EC004A6CA0 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = Pods/BaiduMapKit/BaiduMapKit/thirdlibs/libssl.a; sourceTree = "<group>"; };
+		4D8ED02C24792D7A004A6CA0 /* LocationSearcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearcher.swift; sourceTree = "<group>"; };
+		4D8ED02E24792E1C004A6CA0 /* AppleLocationSearcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLocationSearcher.swift; sourceTree = "<group>"; };
+		4D8ED030247930C0004A6CA0 /* BaiduLocationSearcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaiduLocationSearcher.swift; sourceTree = "<group>"; };
 		4DACFA97243836BD00740EE8 /* LocMemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocMemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DACFA9A243836BD00740EE8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4DACFA9C243836BD00740EE8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -192,6 +198,9 @@
 			isa = PBXGroup;
 			children = (
 				4DACFAAF24383A2900740EE8 /* LocationManager.swift */,
+				4D8ED02C24792D7A004A6CA0 /* LocationSearcher.swift */,
+				4D8ED02E24792E1C004A6CA0 /* AppleLocationSearcher.swift */,
+				4D8ED030247930C0004A6CA0 /* BaiduLocationSearcher.swift */,
 			);
 			path = Location;
 			sourceTree = "<group>";
@@ -385,6 +394,7 @@
 				4D7228CA24615DA60052593F /* AppVersionData.swift in Sources */,
 				4DACFAB72438534900740EE8 /* SettingsView.swift in Sources */,
 				4DACFABE243AED4C00740EE8 /* SelectableCell.swift in Sources */,
+				4D8ED02D24792D7A004A6CA0 /* LocationSearcher.swift in Sources */,
 				4DACFAB024383A2900740EE8 /* LocationManager.swift in Sources */,
 				4DACFA9B243836BD00740EE8 /* AppDelegate.swift in Sources */,
 				4DACFB01244041C300740EE8 /* ExternalSettings.swift in Sources */,
@@ -396,7 +406,9 @@
 				4DACFAF8243C114E00740EE8 /* LocMemoStatus.swift in Sources */,
 				4DACFA9D243836BD00740EE8 /* SceneDelegate.swift in Sources */,
 				4DACFA9F243836BD00740EE8 /* ContentView.swift in Sources */,
+				4D8ED031247930C0004A6CA0 /* BaiduLocationSearcher.swift in Sources */,
 				4DACFABC243ACB2100740EE8 /* LoadingView.swift in Sources */,
+				4D8ED02F24792E1C004A6CA0 /* AppleLocationSearcher.swift in Sources */,
 				4DACFAFE243C288C00740EE8 /* LocMemoData.swift in Sources */,
 				4DACFAF6243C108F00740EE8 /* DataManager.swift in Sources */,
 				4D7228C5246144A40052593F /* I18nUtils.swift in Sources */,

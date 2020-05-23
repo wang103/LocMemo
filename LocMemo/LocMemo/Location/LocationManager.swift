@@ -8,7 +8,7 @@
 
 import CoreLocation
 
-class LocationManager: NSObject {
+class LocationManager: NSObject, LocationSearcher {
     static let shared = LocationManager()
 
     private let clLocationManager: CLLocationManager
@@ -31,16 +31,7 @@ class LocationManager: NSObject {
 
     func getPlacemarks(_ addressString : String,
                        completionHandler: @escaping([CLPlacemark]?, NSError?) -> Void) {
-        let locale = Locale.current
-        let geocoder = CLGeocoder()
-        geocoder.geocodeAddressString(addressString, in: nil, preferredLocale: locale) { (placemarks, error) in
-            if error == nil {
-                completionHandler(placemarks, nil)
-                return
-            }
-
-            completionHandler(nil, error as NSError?)
-        }
+        AppleLocationSearcher.shared.getPlacemarks(addressString, completionHandler: completionHandler)
     }
 
     func startMonitoring(region: CLRegion) -> Bool {

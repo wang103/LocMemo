@@ -11,7 +11,7 @@ import CoreData
 import GoogleMobileAds
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, BMKGeneralDelegate {
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -25,7 +25,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         NotificationManager.shared.requestNotificationPermission()
 
+        let baiduMapManager = BMKMapManager()
+        if baiduMapManager.start("nyS94zc7Dc9NXwFwBBBhOgkBQ6IdlxQU", generalDelegate: self) {
+            print("BMKMapManager start succeeded")
+        } else {
+            print("BMKMapManager start failed")
+        }
+
         return true
+    }
+
+    // MARK: BMKGeneralDelegate
+
+    /**
+     * 返回网络错误
+     * @param iError 错误号
+     */
+    func onGetNetworkState(_ iError: Int32) {
+        print("BMKGeneralDelegate onGetNetworkState. iError=\(iError)")
+    }
+
+    /**
+     * 返回授权验证错误
+     * @param iError 错误号 : 为0时验证通过，具体参考BMKPermissionCheckResultCode
+     */
+    func onGetPermissionState(_ iError: Int32) {
+        print("BMKGeneralDelegate onGetPermissionState. iError=\(iError)")
     }
 
     // MARK: UISceneSession Lifecycle

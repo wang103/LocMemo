@@ -31,7 +31,7 @@ class LocationManager: NSObject, LocationSearcher {
 
     func getPlacemarks(_ addressString : String,
                        completionHandler: @escaping([CLPlacemark]?, NSError?) -> Void) {
-        AppleLocationSearcher.shared.getPlacemarks(addressString, completionHandler: completionHandler)
+        BaiduLocationSearcher.shared.getPlacemarks(addressString, completionHandler: completionHandler)
     }
 
     func startMonitoring(region: CLRegion) -> Bool {

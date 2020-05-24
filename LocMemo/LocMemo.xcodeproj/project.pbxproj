@@ -37,6 +37,7 @@
 		4DACFAF8243C114E00740EE8 /* LocMemoStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFAF7243C114E00740EE8 /* LocMemoStatus.swift */; };
 		4DACFAFE243C288C00740EE8 /* LocMemoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFAFD243C288C00740EE8 /* LocMemoData.swift */; };
 		4DACFB01244041C300740EE8 /* ExternalSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFB00244041C300740EE8 /* ExternalSettings.swift */; };
+		4DE59A36247A6BFA00A3EDA3 /* LMPlacemark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE59A35247A6BFA00A3EDA3 /* LMPlacemark.swift */; };
 		4DF5DBDD2458102E00F42718 /* GADBannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF5DBDC2458102E00F42718 /* GADBannerViewController.swift */; };
 		8553142BB5A51B77095ADE3F /* Pods_LocMemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C442302DAF0A697C7E855530 /* Pods_LocMemo.framework */; };
 /* End PBXBuildFile section */
@@ -78,6 +79,7 @@
 		4DACFAF7243C114E00740EE8 /* LocMemoStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocMemoStatus.swift; sourceTree = "<group>"; };
 		4DACFAFD243C288C00740EE8 /* LocMemoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocMemoData.swift; sourceTree = "<group>"; };
 		4DACFB00244041C300740EE8 /* ExternalSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalSettings.swift; sourceTree = "<group>"; };
+		4DE59A35247A6BFA00A3EDA3 /* LMPlacemark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMPlacemark.swift; sourceTree = "<group>"; };
 		4DF5DBDC2458102E00F42718 /* GADBannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GADBannerViewController.swift; sourceTree = "<group>"; };
 		4E44FFC35BDB965A527C1C21 /* Pods-LocMemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocMemo.debug.xcconfig"; path = "Target Support Files/Pods-LocMemo/Pods-LocMemo.debug.xcconfig"; sourceTree = "<group>"; };
 		83F3AF3B072253965C7E2752 /* Pods-LocMemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocMemo.release.xcconfig"; path = "Target Support Files/Pods-LocMemo/Pods-LocMemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				4D8ED02C24792D7A004A6CA0 /* LocationSearcher.swift */,
 				4D8ED02E24792E1C004A6CA0 /* AppleLocationSearcher.swift */,
 				4D8ED030247930C0004A6CA0 /* BaiduLocationSearcher.swift */,
+				4DE59A35247A6BFA00A3EDA3 /* LMPlacemark.swift */,
 			);
 			path = Location;
 			sourceTree = "<group>";
@@ -403,6 +406,7 @@
 				4DACFABA243AC96D00740EE8 /* ActivityIndicator.swift in Sources */,
 				4DF5DBDD2458102E00F42718 /* GADBannerViewController.swift in Sources */,
 				4DACFAB52438532C00740EE8 /* WriteView.swift in Sources */,
+				4DE59A36247A6BFA00A3EDA3 /* LMPlacemark.swift in Sources */,
 				4DACFAF8243C114E00740EE8 /* LocMemoStatus.swift in Sources */,
 				4DACFA9D243836BD00740EE8 /* SceneDelegate.swift in Sources */,
 				4DACFA9F243836BD00740EE8 /* ContentView.swift in Sources */,

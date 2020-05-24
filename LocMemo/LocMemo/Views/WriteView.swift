@@ -29,10 +29,10 @@ struct WriteView: View {
     @State private var showLoading: Bool = false
 
     @State private var showLocationsPopover: Bool = false
-    @State private var locationCandidates: [CLPlacemark] = []
+    @State private var locationCandidates: [LMPlacemark] = []
 
     @State private var locationTextChanged: Bool = false
-    @State private var selectedPlacemark: CLPlacemark? = nil
+    @State private var selectedPlacemark: LMPlacemark? = nil
 
     var body: some View {
         LoadingView(isShowing: $showLoading) {
@@ -85,7 +85,7 @@ struct WriteView: View {
         var success: Bool = true
         if locationTextChanged {
             let region = LocationManager.shared.createRegion(
-                cr: selectedPlacemark!.region as! CLCircularRegion,
+                cr: selectedPlacemark!.region,
                 identifier: regionIdentifier
             )
             success = LocationManager.shared.startMonitoring(region: region)
@@ -122,7 +122,7 @@ struct WriteView: View {
 
         let identifier = UUID().uuidString
         let region = LocationManager.shared.createRegion(
-            cr: selectedPlacemark!.region as! CLCircularRegion,
+            cr: selectedPlacemark!.region,
             identifier: identifier
         )
         let success = LocationManager.shared.startMonitoring(region: region)
@@ -160,6 +160,7 @@ struct WriteView: View {
         memoText = ""
         regionIdentifier = ""
         locationTextChanged = false
+        selectedPlacemark = nil
     }
 
     func getMainView() -> some View {
@@ -234,7 +235,7 @@ struct WriteView: View {
         )
     }
 
-    func getPlacemarksCompletionHandler(placemarks: [CLPlacemark]?,
+    func getPlacemarksCompletionHandler(placemarks: [LMPlacemark]?,
                                         error: NSError?) {
         selectedPlacemark = nil
         showLoading = false
@@ -266,7 +267,7 @@ struct WriteView: View {
     /**
      * Returns empty string if couldn't format.
      */
-    func getDisplayStr(_ placemark: CLPlacemark) -> String {
+    func getDisplayStr(_ placemark: LMPlacemark) -> String {
         var str: String = ""
         if placemark.postalAddress != nil {
             str = WriteView.ADDRESS_FORMATTER

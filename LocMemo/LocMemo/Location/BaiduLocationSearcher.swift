@@ -11,7 +11,7 @@ import Intents
 class BaiduLocationSearcher: NSObject, LocationSearcher, BMKSuggestionSearchDelegate {
     static let shared = BaiduLocationSearcher()
 
-    var searchToCallback: [BMKSuggestionSearch: ([CLPlacemark]?, NSError?) -> Void]
+    var searchToCallback: [BMKSuggestionSearch: ([LMPlacemark]?, NSError?) -> Void]
     let lock: NSLock
 
     override init() {
@@ -20,7 +20,7 @@ class BaiduLocationSearcher: NSObject, LocationSearcher, BMKSuggestionSearchDele
     }
 
     func getPlacemarks(_ addressString: String,
-                       completionHandler: @escaping ([CLPlacemark]?, NSError?) -> Void) {
+                       completionHandler: @escaping ([LMPlacemark]?, NSError?) -> Void) {
         let search = BMKSuggestionSearch()
         search.delegate = self
 
@@ -67,10 +67,14 @@ class BaiduLocationSearcher: NSObject, LocationSearcher, BMKSuggestionSearchDele
         }
     }
 
-    fileprivate func toPlacemark(_ suggestionInfo: BMKSuggestionInfo) -> CLPlacemark {
-        let location = CLLocation(latitude: suggestionInfo.location.latitude,
-                                  longitude: suggestionInfo.location.longitude)
-        return CLPlacemark(location: location, name: getDisplayStr(suggestionInfo), postalAddress: nil)
+    fileprivate func toPlacemark(_ suggestionInfo: BMKSuggestionInfo) -> LMPlacemark {
+        let region = CLCircularRegion(center: suggestionInfo.location,
+                                      radius: 10,
+                                      identifier: suggestionInfo.uid)
+        return LMPlacemark(region: region,
+                           name: getDisplayStr(suggestionInfo),
+                           isoCountryCode: "CN",
+                           postalAddress: nil)
     }
 
     func getDisplayStr(_ suggestionInfo: BMKSuggestionInfo) -> String {
@@ -78,7 +82,7 @@ class BaiduLocationSearcher: NSObject, LocationSearcher, BMKSuggestionSearchDele
     }
 
     fileprivate func removeCallback(_ searcher: BMKSuggestionSearch!)
-            -> (([CLPlacemark]?, NSError?) -> Void)? {
+            -> (([LMPlacemark]?, NSError?) -> Void)? {
         lock.lock()
         defer {
             lock.unlock()

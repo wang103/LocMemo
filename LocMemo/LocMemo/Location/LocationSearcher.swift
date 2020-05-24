@@ -8,5 +8,5 @@
 
 protocol LocationSearcher {
     func getPlacemarks(_ addressString : String,
-                       completionHandler: @escaping([CLPlacemark]?, NSError?) -> Void)
+                       completionHandler: @escaping([LMPlacemark]?, NSError?) -> Void)
 }

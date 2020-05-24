@@ -30,7 +30,7 @@ class LocationManager: NSObject, LocationSearcher {
     }
 
     func getPlacemarks(_ addressString : String,
-                       completionHandler: @escaping([CLPlacemark]?, NSError?) -> Void) {
+                       completionHandler: @escaping([LMPlacemark]?, NSError?) -> Void) {
         BaiduLocationSearcher.shared.getPlacemarks(addressString, completionHandler: completionHandler)
     }
 

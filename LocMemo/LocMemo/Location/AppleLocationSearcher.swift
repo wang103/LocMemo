@@ -10,16 +10,27 @@ class AppleLocationSearcher: LocationSearcher {
     static let shared = AppleLocationSearcher()
 
     func getPlacemarks(_ addressString: String,
-                       completionHandler: @escaping ([CLPlacemark]?, NSError?) -> Void) {
+                       completionHandler: @escaping ([LMPlacemark]?, NSError?) -> Void) {
         let locale = Locale.current
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(addressString, in: nil, preferredLocale: locale) { (placemarks, error) in
             if error == nil {
-                completionHandler(placemarks, nil)
+
+                var lmPlacemarks: [LMPlacemark]? = nil
+                if placemarks != nil {
+                    lmPlacemarks = placemarks!.map({self.toLMPlacemark($0)})
+                }
+
+                completionHandler(lmPlacemarks, nil)
                 return
             }
 
             completionHandler(nil, error as NSError?)
         }
+    }
+
+    fileprivate func toLMPlacemark(_ placemark: CLPlacemark) -> LMPlacemark {
+        return LMPlacemark(region: placemark.region as! CLCircularRegion, name: placemark.name,
+                           isoCountryCode: placemark.isoCountryCode, postalAddress: placemark.postalAddress)
     }
 }

@@ -67,6 +67,10 @@ class BaiduLocationSearcher: NSObject, LocationSearcher, BMKSuggestionSearchDele
         }
     }
 
+    /**
+     * suggestionInfo is fetched using Baidu Map API, so its coordinate (suggestionInfo.location) is in GCJ02 (China-only coordinate).
+     * Apple map uses GCJ02 within China & WGS84 outside of China, so no need to convert.
+     */
     fileprivate func toPlacemark(_ suggestionInfo: BMKSuggestionInfo) -> CLPlacemark {
         let location = CLLocation(latitude: suggestionInfo.location.latitude,
                                   longitude: suggestionInfo.location.longitude)

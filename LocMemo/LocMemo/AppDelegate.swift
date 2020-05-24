@@ -31,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, BMKGeneralDelegate {
         } else {
             print("BMKMapManager start failed")
         }
+        BMKMapManager.setCoordinateTypeUsedInBaiduMapSDK(.COORDTYPE_COMMON)  // GCJ02
 
         return true
     }

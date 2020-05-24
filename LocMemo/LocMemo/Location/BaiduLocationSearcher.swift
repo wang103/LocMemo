@@ -69,7 +69,7 @@ class BaiduLocationSearcher: NSObject, LocationSearcher, BMKSuggestionSearchDele
 
     fileprivate func toPlacemark(_ suggestionInfo: BMKSuggestionInfo) -> LMPlacemark {
         let region = CLCircularRegion(center: suggestionInfo.location,
-                                      radius: 10,
+                                      radius: 70,
                                       identifier: suggestionInfo.uid)
         return LMPlacemark(region: region,
                            name: getDisplayStr(suggestionInfo),

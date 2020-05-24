@@ -267,10 +267,19 @@ struct WriteView: View {
      * Returns empty string if couldn't format.
      */
     func getDisplayStr(_ placemark: CLPlacemark) -> String {
+        var str: String = ""
         if placemark.postalAddress != nil {
-            return WriteView.ADDRESS_FORMATTER
+            str = WriteView.ADDRESS_FORMATTER
                 .string(from: placemark.postalAddress!)
                 .replacingOccurrences(of: "\n", with: ", ")
+        }
+
+        if !str.isEmpty {
+            return str
+        }
+
+        if placemark.name != nil {
+            return placemark.name!
         }
         return ""
     }

@@ -6,6 +6,8 @@
 //  Copyright © 2020 hyperware. All rights reserved.
 //
 
+import Intents
+
 class BaiduLocationSearcher: NSObject, LocationSearcher, BMKSuggestionSearchDelegate {
     static let shared = BaiduLocationSearcher()
 
@@ -53,7 +55,9 @@ class BaiduLocationSearcher: NSObject, LocationSearcher, BMKSuggestionSearchDele
         }
 
         if (error == BMK_SEARCH_NO_ERROR) {
-            handler!([], nil)
+            print("onGetSuggestionResult - retrieved \(result.suggestionList.count)")
+            let placemarks = result.suggestionList.map({toPlacemark($0)})
+            handler!(placemarks, nil)
         } else {
             print("onGetSuggestionResult error \(error)")
             handler!(nil, NSError(domain: "BaiduLocationSearcher - onGetSuggestionResult",
@@ -61,6 +65,16 @@ class BaiduLocationSearcher: NSObject, LocationSearcher, BMKSuggestionSearchDele
                                  userInfo: nil)
             )
         }
+    }
+
+    fileprivate func toPlacemark(_ suggestionInfo: BMKSuggestionInfo) -> CLPlacemark {
+        let location = CLLocation(latitude: suggestionInfo.location.latitude,
+                                  longitude: suggestionInfo.location.longitude)
+        return CLPlacemark(location: location, name: getDisplayStr(suggestionInfo), postalAddress: nil)
+    }
+
+    func getDisplayStr(_ suggestionInfo: BMKSuggestionInfo) -> String {
+        return "\(suggestionInfo.city ?? "") \(suggestionInfo.district ?? "") \(suggestionInfo.key ?? "")"
     }
 
     fileprivate func removeCallback(_ searcher: BMKSuggestionSearch!)

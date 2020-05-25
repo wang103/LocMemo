@@ -42,7 +42,7 @@ class NotificationManager: NSObject {
                 self.registerNotification(memo: memo)
                 DispatchQueue.main.async {
                     let count = DataManager.shared.incMemoNotiCount()
-                    print("memoNotiCount: \(count)")
+                    print("scheduleNotification - memoNotiCount: \(count)")
                 }
             } else {
                 // Can schedule a badge and sound, but not useful. Do nothing.
@@ -109,6 +109,7 @@ extension NotificationManager: UNUserNotificationCenterDelegate {
         switch response.actionIdentifier {
         case UNNotificationDefaultActionIdentifier:
             // user opened the app
+            print("userNotificationCenter - user opened the app")
             let uuid = response.notification.request.identifier
             ExternalSettings.shared.displayMemo(id: uuid)
             break

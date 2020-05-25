@@ -59,7 +59,7 @@ class DataManager {
         }
         let managedContext = appDelegate.persistentContainer.viewContext
 
-        let obj = getLocMemo(id: identifier).obj
+        let obj = getLocMemo(id: identifier)!.obj
         obj.setValue(locationText, forKey: "locationText")
         obj.setValue(memoText, forKey: "memoText")
         obj.setValue(Date(), forKey: "updatedAt")
@@ -84,10 +84,19 @@ class DataManager {
         })
     }
 
-    func getLocMemo(id: String) -> LocMemoData {
+    func getLocMemo(id: String) -> LocMemoData? {
         let predicate = NSPredicate(format: "identifier == %@", id)
         do {
-            return try getAllLocMemos(predicate: predicate)[0]
+            let memos = try getAllLocMemos(predicate: predicate)
+            if memos.count < 1 {
+                print("getLocMemo - unable to find memo with ID \(id)")
+                print("Existing IDs from LocationManager:")
+                for region in LocationManager.shared.getMonitoredRegions() {
+                    print("ID: \(region.identifier)")
+                }
+                return nil
+            }
+            return memos[0]
         } catch let error as NSError {
             fatalError(error.localizedDescription)
         }

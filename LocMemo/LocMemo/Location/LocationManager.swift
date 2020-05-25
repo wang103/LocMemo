@@ -31,7 +31,7 @@ class LocationManager: NSObject, LocationSearcher {
 
     func getPlacemarks(_ addressString : String,
                        completionHandler: @escaping([LMPlacemark]?, NSError?) -> Void) {
-        BaiduLocationSearcher.shared.getPlacemarks(addressString, completionHandler: completionHandler)
+        AppleLocationSearcher.shared.getPlacemarks(addressString, completionHandler: completionHandler)
     }
 
     func startMonitoring(region: CLRegion) -> Bool {
@@ -101,7 +101,11 @@ extension LocationManager: CLLocationManagerDelegate {
         if let region = region as? CLCircularRegion {
             let identifier = region.identifier
             let memo = DataManager.shared.getLocMemo(id: identifier)
-            NotificationManager.shared.scheduleNotification(memo: memo)
+            if memo != nil {
+                NotificationManager.shared.scheduleNotification(memo: memo!)
+            } else {
+                print("Cannot schedule notification due to memo not found")
+            }
         }
     }
 

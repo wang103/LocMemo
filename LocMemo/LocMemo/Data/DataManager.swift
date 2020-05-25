@@ -94,6 +94,10 @@ class DataManager {
                 for region in LocationManager.shared.getMonitoredRegions() {
                     print("ID: \(region.identifier)")
                 }
+                print("Existing IDs from CoreData:")
+                for memo in try getAllLocMemos() {
+                    print("ID: \(memo.id)")
+                }
                 return nil
             }
             return memos[0]

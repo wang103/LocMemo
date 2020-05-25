@@ -109,9 +109,11 @@ extension NotificationManager: UNUserNotificationCenterDelegate {
         switch response.actionIdentifier {
         case UNNotificationDefaultActionIdentifier:
             // user opened the app
-            print("userNotificationCenter - user opened the app")
             let uuid = response.notification.request.identifier
-            ExternalSettings.shared.displayMemo(id: uuid)
+            DispatchQueue.main.async {
+                // Must be called on main
+                ExternalSettings.shared.displayMemo(id: uuid)
+            }
             break
         case UNNotificationDismissActionIdentifier:
             // user dismissed the notification

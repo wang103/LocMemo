@@ -47,7 +47,7 @@ class LocationManager: NSObject {
                     completionHandler(nil, error)
                 }
             },
-            receiveValue: { completionHandler($0, nil) }
+            receiveValue: { completionHandler($0.results, nil) }
         )
     }
 

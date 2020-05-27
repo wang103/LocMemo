@@ -8,6 +8,13 @@
 
 import Combine
 
+struct GetPlacemarksResult {
+    var sourceName: String
+    var results: [LMPlacemark]?
+}
+
 protocol LocationSearcher {
-    func getPlacemarks(_ addressString : String) -> Future<[LMPlacemark]?, NSError>
+    func getPlacemarks(_ addressString : String) -> Future<GetPlacemarksResult, NSError>
+
+    func getName() -> String
 }

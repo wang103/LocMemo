@@ -12,7 +12,7 @@ import Intents
 class BaiduLocationSearcher: NSObject, LocationSearcher, BMKSuggestionSearchDelegate {
     static let shared = BaiduLocationSearcher()
 
-    var searchToCallback: [BMKSuggestionSearch: Future<[LMPlacemark]?, NSError>.Promise]
+    var searchToCallback: [BMKSuggestionSearch: Future<GetPlacemarksResult, NSError>.Promise]
     let lock: NSLock
 
     override init() {
@@ -20,7 +20,7 @@ class BaiduLocationSearcher: NSObject, LocationSearcher, BMKSuggestionSearchDele
         self.lock = NSLock()
     }
 
-    func getPlacemarks(_ addressString : String) -> Future<[LMPlacemark]?, NSError> {
+    func getPlacemarks(_ addressString : String) -> Future<GetPlacemarksResult, NSError> {
         let search = BMKSuggestionSearch()
         search.delegate = self
 
@@ -28,7 +28,7 @@ class BaiduLocationSearcher: NSObject, LocationSearcher, BMKSuggestionSearchDele
         suggestionOption.cityname = "全国"
         suggestionOption.keyword = addressString
 
-        let future = Future<[LMPlacemark]?, NSError> { promise in
+        let future = Future<GetPlacemarksResult, NSError> { promise in
             self.lock.lock()
             defer {
                 self.lock.unlock()
@@ -60,7 +60,10 @@ class BaiduLocationSearcher: NSObject, LocationSearcher, BMKSuggestionSearchDele
 
         if (error == BMK_SEARCH_NO_ERROR) {
             let placemarks = result.suggestionList.map({toPlacemark($0)})
-            handler!(.success(placemarks))
+            handler!(.success(GetPlacemarksResult(
+                sourceName: getName(),
+                results: placemarks
+            )))
         } else {
             handler!(.failure(NSError(
                 domain: "BaiduLocationSearcher - onGetSuggestionResult",
@@ -68,6 +71,10 @@ class BaiduLocationSearcher: NSObject, LocationSearcher, BMKSuggestionSearchDele
                 userInfo: nil
             )))
         }
+    }
+
+    func getName() -> String {
+        return NSLocalizedString("Baidu", comment: "")
     }
 
     fileprivate func toPlacemark(_ suggestionInfo: BMKSuggestionInfo) -> LMPlacemark {
@@ -85,7 +92,7 @@ class BaiduLocationSearcher: NSObject, LocationSearcher, BMKSuggestionSearchDele
     }
 
     fileprivate func removeCallback(_ searcher: BMKSuggestionSearch!)
-            -> Future<[LMPlacemark]?, NSError>.Promise? {
+            -> Future<GetPlacemarksResult, NSError>.Promise? {
         lock.lock()
         defer {
             lock.unlock()

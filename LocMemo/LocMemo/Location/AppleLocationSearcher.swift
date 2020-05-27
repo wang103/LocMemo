@@ -11,10 +11,10 @@ import Combine
 class AppleLocationSearcher: LocationSearcher {
     static let shared = AppleLocationSearcher()
 
-    func getPlacemarks(_ addressString : String) -> Future<[LMPlacemark]?, NSError> {
+    func getPlacemarks(_ addressString : String) -> Future<GetPlacemarksResult, NSError> {
         let locale = Locale.current
         let geocoder = CLGeocoder()
-        let future = Future<[LMPlacemark]?, NSError> { promise in
+        let future = Future<GetPlacemarksResult, NSError> { promise in
             geocoder.geocodeAddressString(addressString, in: nil, preferredLocale: locale) { (placemarks, error) in
                 if error == nil {
 
@@ -23,7 +23,10 @@ class AppleLocationSearcher: LocationSearcher {
                         lmPlacemarks = placemarks!.map({self.toLMPlacemark($0)})
                     }
 
-                    promise(.success(lmPlacemarks))
+                    promise(.success(GetPlacemarksResult(
+                        sourceName: self.getName(),
+                        results: lmPlacemarks
+                    )))
                     return
                 }
 
@@ -31,6 +34,10 @@ class AppleLocationSearcher: LocationSearcher {
             }
         }
         return future
+    }
+
+    func getName() -> String {
+        return NSLocalizedString("Apple", comment: "")
     }
 
     fileprivate func toLMPlacemark(_ placemark: CLPlacemark) -> LMPlacemark {

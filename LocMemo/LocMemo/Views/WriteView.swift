@@ -31,7 +31,7 @@ struct WriteView: View {
     @State private var showLocationsPopover: Bool = false
     @State private var locationCandidates: [LMPlacemark] = []
 
-    @State private var locationTextChanged: Bool = false
+    @State private var locationChanged: Bool = false
     @State private var selectedPlacemark: LMPlacemark? = nil
 
     var body: some View {
@@ -70,7 +70,7 @@ struct WriteView: View {
     }
 
     func updateMemo() {
-        if locationTextChanged && selectedPlacemark == nil {
+        if locationChanged && selectedPlacemark == nil {
             showErrorMsg(NSLocalizedString("Please select a location first.", comment: ""))
             return
         }
@@ -80,10 +80,10 @@ struct WriteView: View {
             return
         }
 
-        // Only if locationTextChanged, we need to call startMonitoring on the
+        // Only if locationChanged, we need to call startMonitoring on the
         // new region, using the existing region identifier.
         var success: Bool = true
-        if locationTextChanged {
+        if locationChanged {
             let region = LocationManager.shared.createRegion(
                 cr: selectedPlacemark!.region,
                 identifier: regionIdentifier
@@ -159,7 +159,7 @@ struct WriteView: View {
         locationText = ""
         memoText = ""
         regionIdentifier = ""
-        locationTextChanged = false
+        locationChanged = false
         selectedPlacemark = nil
     }
 
@@ -168,7 +168,7 @@ struct WriteView: View {
             get: { self.locationText },
             set: {
                 self.locationText = $0
-                self.locationTextChanged = true
+                self.locationChanged = true
             }
         )
 

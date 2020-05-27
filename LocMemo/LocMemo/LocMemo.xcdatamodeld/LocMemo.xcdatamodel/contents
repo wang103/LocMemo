@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19D76" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19E287" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AppVersion" representedClassName="AppVersion" syncable="YES" codeGenerationType="class">
         <attribute name="appVersion" optional="YES" attributeType="String"/>
         <attribute name="memoNotiCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -13,8 +13,13 @@
         <attribute name="status" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
+    <entity name="Setting" representedClassName="Setting" syncable="YES" codeGenerationType="class">
+        <attribute name="appleLocationSearcher" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="baiduLocationSearcher" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+    </entity>
     <elements>
-        <element name="LocMemo" positionX="-63" positionY="-18" width="128" height="133"/>
         <element name="AppVersion" positionX="-63" positionY="27" width="128" height="88"/>
+        <element name="LocMemo" positionX="-63" positionY="-18" width="128" height="133"/>
+        <element name="Setting" positionX="-63" positionY="27" width="128" height="73"/>
     </elements>
 </model>

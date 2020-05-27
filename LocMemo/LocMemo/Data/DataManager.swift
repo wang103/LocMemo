@@ -170,6 +170,24 @@ class DataManager {
         )
     }
 
+    func getSetting() throws -> SettingData {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = appDelegate.persistentContainer.viewContext
+
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Setting")
+
+        let results = try managedContext.fetch(fetchRequest)
+        if results.count < 1 {
+            return SettingData(appleLocationSearcher: true, baiduLocationSearcher: true)
+        } else {
+            let result = results[0]
+            return SettingData(
+                appleLocationSearcher: result.value(forKeyPath: "appleLocationSearcher") as! Bool,
+                baiduLocationSearcher: result.value(forKeyPath: "baiduLocationSearcher") as! Bool
+            )
+        }
+    }
+
     fileprivate func ensureCurAppVersion() throws -> NSManagedObject {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let managedContext = appDelegate.persistentContainer.viewContext

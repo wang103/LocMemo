@@ -6,27 +6,31 @@
 //  Copyright © 2020 hyperware. All rights reserved.
 //
 
+import Combine
+
 class AppleLocationSearcher: LocationSearcher {
     static let shared = AppleLocationSearcher()
 
-    func getPlacemarks(_ addressString: String,
-                       completionHandler: @escaping ([LMPlacemark]?, NSError?) -> Void) {
+    func getPlacemarks(_ addressString : String) -> Future<[LMPlacemark]?, NSError> {
         let locale = Locale.current
         let geocoder = CLGeocoder()
-        geocoder.geocodeAddressString(addressString, in: nil, preferredLocale: locale) { (placemarks, error) in
-            if error == nil {
+        let future = Future<[LMPlacemark]?, NSError> { promise in
+            geocoder.geocodeAddressString(addressString, in: nil, preferredLocale: locale) { (placemarks, error) in
+                if error == nil {
 
-                var lmPlacemarks: [LMPlacemark]? = nil
-                if placemarks != nil {
-                    lmPlacemarks = placemarks!.map({self.toLMPlacemark($0)})
+                    var lmPlacemarks: [LMPlacemark]? = nil
+                    if placemarks != nil {
+                        lmPlacemarks = placemarks!.map({self.toLMPlacemark($0)})
+                    }
+
+                    promise(.success(lmPlacemarks))
+                    return
                 }
 
-                completionHandler(lmPlacemarks, nil)
-                return
+                promise(.failure(error! as NSError))
             }
-
-            completionHandler(nil, error as NSError?)
         }
+        return future
     }
 
     fileprivate func toLMPlacemark(_ placemark: CLPlacemark) -> LMPlacemark {

@@ -6,12 +6,13 @@
 //  Copyright © 2020 hyperware. All rights reserved.
 //
 
+import Combine
 import Intents
 
 class BaiduLocationSearcher: NSObject, LocationSearcher, BMKSuggestionSearchDelegate {
     static let shared = BaiduLocationSearcher()
 
-    var searchToCallback: [BMKSuggestionSearch: ([LMPlacemark]?, NSError?) -> Void]
+    var searchToCallback: [BMKSuggestionSearch: Future<[LMPlacemark]?, NSError>.Promise]
     let lock: NSLock
 
     override init() {
@@ -19,8 +20,7 @@ class BaiduLocationSearcher: NSObject, LocationSearcher, BMKSuggestionSearchDele
         self.lock = NSLock()
     }
 
-    func getPlacemarks(_ addressString: String,
-                       completionHandler: @escaping ([LMPlacemark]?, NSError?) -> Void) {
+    func getPlacemarks(_ addressString : String) -> Future<[LMPlacemark]?, NSError> {
         let search = BMKSuggestionSearch()
         search.delegate = self
 
@@ -28,21 +28,25 @@ class BaiduLocationSearcher: NSObject, LocationSearcher, BMKSuggestionSearchDele
         suggestionOption.cityname = "全国"
         suggestionOption.keyword = addressString
 
-        lock.lock()
-        defer {
-            lock.unlock()
-        }
+        let future = Future<[LMPlacemark]?, NSError> { promise in
+            self.lock.lock()
+            defer {
+                self.lock.unlock()
+            }
 
-        let success = search.suggestionSearch(suggestionOption)
-        if success {
-            searchToCallback[search] = completionHandler
-            print("BaiduLocationSearcher - getPlacemarks succeeded.")
-        } else {
-            print("BaiduLocationSearcher - getPlacemarks failed.")
-            completionHandler(nil, NSError(domain: "BaiduLocationSearcher - getPlacemarks",
-                                           code: -1,
-                                           userInfo: nil))
+            let success = search.suggestionSearch(suggestionOption)
+
+            if success {
+                self.searchToCallback[search] = promise
+            } else {
+                promise(.failure(NSError(
+                    domain: "BaiduLocationSearcher - getPlacemarks",
+                    code: -1,
+                    userInfo: nil
+                )))
+            }
         }
+        return future
     }
 
     func onGetSuggestionResult(_ searcher: BMKSuggestionSearch!,
@@ -55,15 +59,14 @@ class BaiduLocationSearcher: NSObject, LocationSearcher, BMKSuggestionSearchDele
         }
 
         if (error == BMK_SEARCH_NO_ERROR) {
-            print("onGetSuggestionResult - retrieved \(result.suggestionList.count)")
             let placemarks = result.suggestionList.map({toPlacemark($0)})
-            handler!(placemarks, nil)
+            handler!(.success(placemarks))
         } else {
-            print("onGetSuggestionResult error \(error)")
-            handler!(nil, NSError(domain: "BaiduLocationSearcher - onGetSuggestionResult",
-                                 code: Int(error.rawValue),
-                                 userInfo: nil)
-            )
+            handler!(.failure(NSError(
+                domain: "BaiduLocationSearcher - onGetSuggestionResult",
+                code: Int(error.rawValue),
+                userInfo: nil
+            )))
         }
     }
 
@@ -82,7 +85,7 @@ class BaiduLocationSearcher: NSObject, LocationSearcher, BMKSuggestionSearchDele
     }
 
     fileprivate func removeCallback(_ searcher: BMKSuggestionSearch!)
-            -> (([LMPlacemark]?, NSError?) -> Void)? {
+            -> Future<[LMPlacemark]?, NSError>.Promise? {
         lock.lock()
         defer {
             lock.unlock()

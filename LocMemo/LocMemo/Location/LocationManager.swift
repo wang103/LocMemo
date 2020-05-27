@@ -6,12 +6,15 @@
 //  Copyright © 2020 x. All rights reserved.
 //
 
+import Combine
 import CoreLocation
 
-class LocationManager: NSObject, LocationSearcher {
+class LocationManager: NSObject {
     static let shared = LocationManager()
 
     private let clLocationManager: CLLocationManager
+
+    private var getPlacemarksCancellable: AnyCancellable? = nil
 
     override init() {
         self.clLocationManager = CLLocationManager()
@@ -31,7 +34,21 @@ class LocationManager: NSObject, LocationSearcher {
 
     func getPlacemarks(_ addressString : String,
                        completionHandler: @escaping([LMPlacemark]?, NSError?) -> Void) {
-        AppleLocationSearcher.shared.getPlacemarks(addressString, completionHandler: completionHandler)
+        if getPlacemarksCancellable != nil {
+            getPlacemarksCancellable!.cancel()
+        }
+
+        getPlacemarksCancellable = BaiduLocationSearcher.shared.getPlacemarks(addressString).sink(
+            receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    completionHandler(nil, error)
+                }
+            },
+            receiveValue: { completionHandler($0, nil) }
+        )
     }
 
     func startMonitoring(region: CLRegion) -> Bool {

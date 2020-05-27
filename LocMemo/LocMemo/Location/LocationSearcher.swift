@@ -6,7 +6,8 @@
 //  Copyright © 2020 hyperware. All rights reserved.
 //
 
+import Combine
+
 protocol LocationSearcher {
-    func getPlacemarks(_ addressString : String,
-                       completionHandler: @escaping([LMPlacemark]?, NSError?) -> Void)
+    func getPlacemarks(_ addressString : String) -> Future<[LMPlacemark]?, NSError>
 }

@@ -51,17 +51,16 @@ class LocationManager: NSObject {
         )
     }
 
-    func startMonitoring(region: CLRegion) -> Bool {
+    func startMonitoring(region: CLCircularRegion) -> Bool {
         // Make sure the device supports region monitoring.
         if !CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
             return false
         }
 
-        let circularRegion = region as! CLCircularRegion
-        print("Start monitoring region centered at \(circularRegion.center) with radius \(circularRegion.radius)")
+        print("Start monitoring region centered at \(region.center) with radius \(region.radius)")
 
         // Register the region.
-        clLocationManager.startMonitoring(for: circularRegion)
+        clLocationManager.startMonitoring(for: region)
         return true
     }
 
@@ -86,7 +85,7 @@ class LocationManager: NSObject {
         return clLocationManager.monitoredRegions
     }
 
-    func createRegion(cr: CLCircularRegion, identifier: String) -> CLRegion {
+    func createRegion(cr: CLCircularRegion, identifier: String) -> CLCircularRegion {
         let region = CLCircularRegion(center: cr.center, radius: cr.radius, identifier: identifier)
         region.notifyOnEntry = true
         region.notifyOnExit = false

@@ -185,6 +185,9 @@ struct WriteView: View {
                 MultilineTextField(locationTextBinding, placeholder: "", onCommit: locationOnCommit)
                     .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color(UIColor.systemGray4)))
                     .popover(isPresented: self.$showLocationsPopover) { self.getLocationsPopoverView() }
+
+                MapView()
+                    .edgesIgnoringSafeArea(.all)
             }
             .alert(isPresented: self.$showSuccess, content: self.getSuccessAlert)
 

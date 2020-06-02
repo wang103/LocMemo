@@ -15,14 +15,20 @@ class DataManager {
 
     func saveLocMemo(identifier: String,
                      locationText: String,
-                     memoText: String) throws {
+                     memoText: String,
+                     latitude: Double,
+                     longitude: Double,
+                     radius: Double) throws {
         let now = Date()
         try saveLocMemo(identifier: identifier,
                         locationText: locationText,
                         memoText: memoText,
                         status: .active,
                         createdAt: now,
-                        updatedAt: now)
+                        updatedAt: now,
+                        latitude: latitude,
+                        longitude: longitude,
+                        radius: radius)
     }
 
     // latitude, longitude & radius are added >= version 2.0.

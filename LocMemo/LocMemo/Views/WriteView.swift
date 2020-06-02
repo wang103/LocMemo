@@ -132,7 +132,10 @@ struct WriteView: View {
             do {
                 try DataManager.shared.saveLocMemo(identifier: identifier,
                                                    locationText: locationText,
-                                                   memoText: memoText)
+                                                   memoText: memoText,
+                                                   latitude: region.center.latitude,
+                                                   longitude: region.center.longitude,
+                                                   radius: region.radius)
 
                 showSuccessMsg(NSLocalizedString("Memo created.", comment: ""))
                 clearInputs()

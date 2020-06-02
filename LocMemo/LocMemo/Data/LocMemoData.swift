@@ -17,4 +17,9 @@ struct LocMemoData: Identifiable {
     let status: LocMemoStatus
     let createdAt: Date
     let updatedAt: Date
+
+    // Added >= version 2.0
+    let latitude: Double?
+    let longitude: Double?
+    let radius: Double?
 }

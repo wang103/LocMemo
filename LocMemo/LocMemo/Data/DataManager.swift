@@ -25,12 +25,16 @@ class DataManager {
                         updatedAt: now)
     }
 
+    // latitude, longitude & radius are added >= version 2.0.
     func saveLocMemo(identifier: String,
                      locationText: String,
                      memoText: String,
                      status: LocMemoStatus,
                      createdAt: Date,
-                     updatedAt: Date) throws {
+                     updatedAt: Date,
+                     latitude: Double? = nil,
+                     longitude: Double? = nil,
+                     radius: Double? = nil) throws {
 
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -46,6 +50,9 @@ class DataManager {
         locMemo.setValue(status.rawValue, forKey: "status")
         locMemo.setValue(createdAt, forKey: "createdAt")
         locMemo.setValue(updatedAt, forKey: "updatedAt")
+        locMemo.setValue(latitude, forKey: "latitude")
+        locMemo.setValue(longitude, forKey: "longitude")
+        locMemo.setValue(radius, forKey: "radius")
 
         try managedContext.save()
     }
@@ -124,7 +131,10 @@ class DataManager {
                         memoText: $0.value(forKeyPath: "memoText") as! String,
                         status: LocMemoStatus(rawValue: $0.value(forKeyPath: "status") as! Int16)!,
                         createdAt: $0.value(forKeyPath: "createdAt") as! Date,
-                        updatedAt: $0.value(forKeyPath: "updatedAt") as! Date
+                        updatedAt: $0.value(forKeyPath: "updatedAt") as! Date,
+                        latitude: $0.value(forKeyPath: "latitude") as? Double,
+                        longitude: $0.value(forKeyPath: "longitude") as? Double,
+                        radius: $0.value(forKeyPath: "radius") as? Double
             )
         }).sorted(by: {
             return $0.updatedAt.compare($1.updatedAt) == .orderedDescending

@@ -65,7 +65,10 @@ class DataManager {
 
     func updateLocMemo(identifier: String,
                        locationText: String,
-                       memoText: String) throws {
+                       memoText: String,
+                       latitude: Double,
+                       longitude: Double,
+                       radius: Double) throws {
 
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -76,6 +79,9 @@ class DataManager {
         obj.setValue(locationText, forKey: "locationText")
         obj.setValue(memoText, forKey: "memoText")
         obj.setValue(Date(), forKey: "updatedAt")
+        obj.setValue(latitude, forKey: "latitude")
+        obj.setValue(longitude, forKey: "longitude")
+        obj.setValue(radius, forKey: "radius")
 
         try managedContext.save()
     }

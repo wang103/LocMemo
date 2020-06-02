@@ -97,7 +97,11 @@ struct WriteView: View {
             do {
                 try DataManager.shared.updateLocMemo(identifier: regionIdentifier,
                                                      locationText: locationText,
-                                                     memoText: memoText)
+                                                     memoText: memoText,
+                                                     latitude: selectedPlacemark!.region.center.latitude,
+                                                     longitude: selectedPlacemark!.region.center.longitude,
+                                                     radius: selectedPlacemark!.region.radius
+                                                    )
 
                 showSuccessMsg()
                 AppReviewManager.shared.promptForReview()

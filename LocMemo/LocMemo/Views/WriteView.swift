@@ -179,25 +179,36 @@ struct WriteView: View {
             }
         )
 
-        return Form {
+        return GeometryReader { geometry in Form {
             Section {
                 Text(NSLocalizedString("When I arrive at location", comment: ""))
-                MultilineTextField(locationTextBinding, placeholder: "", onCommit: locationOnCommit)
+                MultilineTextField(locationTextBinding, placeholder: "", onCommit: self.locationOnCommit)
                     .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color(UIColor.systemGray4)))
                     .popover(isPresented: self.$showLocationsPopover) { self.getLocationsPopoverView() }
 
-                MapView()
-                    .edgesIgnoringSafeArea(.all)
+                ZStack {
+                    MapView(center: self.$selectedPlacemark)
+                        .edgesIgnoringSafeArea(.all)
+                        .frame(
+                            width: geometry.size.width * 0.7,
+                            height: geometry.size.width * 0.7
+                        )
+
+                    Circle()
+                        .fill(Color.blue)
+                        .opacity(0.3)
+                        .frame(width: 32, height: 32)
+                }
             }
             .alert(isPresented: self.$showSuccess, content: self.getSuccessAlert)
 
             Section {
                 Text(NSLocalizedString("Show me this memo", comment: ""))
-                MultilineTextField($memoText, placeholder: "", onCommit: nil)
+                MultilineTextField(self.$memoText, placeholder: "", onCommit: nil)
                     .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color(UIColor.systemGray4)))
             }
             .alert(isPresented: self.$showError, content: self.getErrorAlert)
-        }
+        } /* end of Form */ } /* end of GeometryReader */
     }
 
     func getLocationsPopoverView() -> some View {

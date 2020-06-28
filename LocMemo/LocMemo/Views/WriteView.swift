@@ -70,22 +70,32 @@ struct WriteView: View {
         }
     }
 
-    func updateMemo() {
-        if locationChanged && selectedPlacemark == nil {
+    private func validateInputs() -> Bool {
+        if selectedPlacemark == nil {
             showErrorMsg(NSLocalizedString("Please select a location first.", comment: ""))
-            return
+            return false
         }
 
         let radius = Double(radiusText)
         if radius == nil {
             showErrorMsg(NSLocalizedString("Please enter a valid radius first.", comment: ""))
-            return
+            return false
         }
 
         if memoText.isEmpty {
             showErrorMsg(NSLocalizedString("Please write a memo first.", comment: ""))
+            return false
+        }
+
+        return true
+    }
+
+    func updateMemo() {
+        if !validateInputs() {
             return
         }
+
+        let radius = Double(radiusText)
 
         // Only if locationChanged, we need to call startMonitoring on the
         // new region, using the existing region identifier.
@@ -122,21 +132,11 @@ struct WriteView: View {
     }
 
     func createMemo() {
-        if selectedPlacemark == nil {
-            showErrorMsg(NSLocalizedString("Please select a location first.", comment: ""))
+        if !validateInputs() {
             return
         }
 
         let radius = Double(radiusText)
-        if radius == nil {
-            showErrorMsg(NSLocalizedString("Please enter a valid radius first.", comment: ""))
-            return
-        }
-
-        if memoText.isEmpty {
-            showErrorMsg(NSLocalizedString("Please write a memo first.", comment: ""))
-            return
-        }
 
         let identifier = UUID().uuidString
         let region = LocationManager.shared.createRegion(

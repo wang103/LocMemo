@@ -34,6 +34,7 @@ struct WriteView: View {
     @State private var locationCandidates: [LMPlacemark] = []
 
     @State private var locationChanged: Bool = false
+    @State private var radiusChanged: Bool = false
 
     var body: some View {
         LoadingView(isShowing: $showLoading) {
@@ -90,6 +91,10 @@ struct WriteView: View {
         return true
     }
 
+    private func hasLocationChanged() -> Bool {
+        return locationChanged || radiusChanged
+    }
+
     func updateMemo() {
         if !validateInputs() {
             return
@@ -97,10 +102,10 @@ struct WriteView: View {
 
         let radius = Double(radiusText)
 
-        // Only if locationChanged, we need to call startMonitoring on the
+        // Only if hasLocationChanged(), we need to call startMonitoring on the
         // new region, using the existing region identifier.
         var success: Bool = true
-        if locationChanged {
+        if hasLocationChanged() {
             let region = LocationManager.shared.createRegion(
                 cr: selectedPlacemark!.region,
                 identifier: regionIdentifier,
@@ -183,6 +188,7 @@ struct WriteView: View {
         memoText = ""
         regionIdentifier = ""
         locationChanged = false
+        radiusChanged = false
         selectedPlacemark = nil
     }
 
@@ -199,7 +205,7 @@ struct WriteView: View {
             get: { self.radiusText },
             set: {
                 self.radiusText = $0
-                self.locationChanged = true
+                self.radiusChanged = true
             }
         )
 

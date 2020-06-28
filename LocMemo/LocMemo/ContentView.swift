@@ -17,13 +17,15 @@ struct ContentView: View {
     @State private var writeViewLocationText: String = ""
     @State private var writeViewMemoText: String = ""
     @State private var writeViewRegionIdentifier: String = ""
+    @State private var writeViewSelectedPlacemark: LMPlacemark? = nil
 
     var body: some View {
         TabView(selection: $externalSettings.contentViewSelectedView) {
             MemosView(writeViewIsToCreate: $writeViewIsToCreate,
                       writeViewLocationText: $writeViewLocationText,
                       writeViewMemoText: $writeViewMemoText,
-                      writeViewRegionIdentifier: $writeViewRegionIdentifier)
+                      writeViewRegionIdentifier: $writeViewRegionIdentifier,
+                      writeViewSelectedPlacemark: $writeViewSelectedPlacemark)
                 .tabItem {
                     VStack {
                         Image("TabMemos")
@@ -35,7 +37,8 @@ struct ContentView: View {
             WriteView(isToCreate: $writeViewIsToCreate,
                       locationText: $writeViewLocationText,
                       memoText: $writeViewMemoText,
-                      regionIdentifier: $writeViewRegionIdentifier)
+                      regionIdentifier: $writeViewRegionIdentifier,
+                      selectedPlacemark: $writeViewSelectedPlacemark)
                 .tabItem {
                     VStack {
                         Image("TabNew")

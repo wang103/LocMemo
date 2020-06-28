@@ -19,6 +19,7 @@ struct WriteView: View {
     @Binding var locationText: String
     @Binding var memoText: String
     @Binding var regionIdentifier: String
+    @Binding var selectedPlacemark: LMPlacemark?
 
     @State private var showError: Bool = false
     @State private var errMsg: String = ""
@@ -32,7 +33,6 @@ struct WriteView: View {
     @State private var locationCandidates: [LMPlacemark] = []
 
     @State private var locationChanged: Bool = false
-    @State private var selectedPlacemark: LMPlacemark? = nil
 
     var body: some View {
         LoadingView(isShowing: $showLoading) {

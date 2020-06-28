@@ -18,6 +18,7 @@ struct MemosView: View {
     @Binding var writeViewLocationText: String
     @Binding var writeViewMemoText: String
     @Binding var writeViewRegionIdentifier: String
+    @Binding var writeViewSelectedPlacemark: LMPlacemark?
 
     @State private var showError: Bool = false
     @State private var errMsg: String = ""
@@ -129,6 +130,15 @@ struct MemosView: View {
         writeViewLocationText = locMemo.locationText
         writeViewMemoText = locMemo.memoText
         writeViewRegionIdentifier = locMemo.id
+        if locMemo.latitude != nil && locMemo.longitude != nil && locMemo.radius != nil {
+            let center = CLLocationCoordinate2D(latitude: locMemo.latitude!, longitude: locMemo.longitude!)
+            writeViewSelectedPlacemark = LMPlacemark(
+                region: CLCircularRegion(center: center, radius: locMemo.radius!, identifier: locMemo.id),
+                name: nil,
+                isoCountryCode: nil,
+                postalAddress: nil
+            )
+        }
         ExternalSettings.shared.contentViewSelectedView = 1
     }
 

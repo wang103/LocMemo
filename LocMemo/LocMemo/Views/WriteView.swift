@@ -53,6 +53,11 @@ struct WriteView: View {
             }
             .onTapGesture {
                 UIApplication.shared.endEditing()
+                if self.locationChanged {
+                    self.locationOnCommit()
+                } else if self.radiusChanged {
+                    self.radiusOnCommit()
+                }
             }
             .onDisappear(perform: {
                 if !self.isToCreate {
@@ -279,6 +284,8 @@ struct WriteView: View {
     }
 
     func locationOnCommit() {
+        locationChanged = false
+
         if locationText.isEmpty {
             return
         }
@@ -294,6 +301,8 @@ struct WriteView: View {
     }
 
     func radiusOnCommit() {
+        radiusChanged = false
+
         let radius = Double(radiusText)
         if radius == nil || selectedPlacemark == nil {
             return

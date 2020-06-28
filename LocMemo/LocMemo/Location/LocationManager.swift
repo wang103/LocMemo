@@ -87,9 +87,9 @@ class LocationManager: NSObject {
 
     func createRegion(cr: CLCircularRegion,
                       identifier: String,
-                      radius: CLLocationDistance? = nil) -> CLCircularRegion {
+                      radius: CLLocationDistance) -> CLCircularRegion {
 
-        let region = CLCircularRegion(center: cr.center, radius: radius ?? cr.radius, identifier: identifier)
+        let region = CLCircularRegion(center: cr.center, radius: radius, identifier: identifier)
         region.notifyOnEntry = true
         region.notifyOnExit = false
         return region

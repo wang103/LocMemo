@@ -93,7 +93,8 @@ struct WriteView: View {
         if locationChanged {
             let region = LocationManager.shared.createRegion(
                 cr: selectedPlacemark!.region,
-                identifier: regionIdentifier
+                identifier: regionIdentifier,
+                radius: radius!
             )
             success = LocationManager.shared.startMonitoring(region: region)
         }
@@ -140,7 +141,8 @@ struct WriteView: View {
         let identifier = UUID().uuidString
         let region = LocationManager.shared.createRegion(
             cr: selectedPlacemark!.region,
-            identifier: identifier
+            identifier: identifier,
+            radius: radius!
         )
         let success = LocationManager.shared.startMonitoring(region: region)
         if !success {

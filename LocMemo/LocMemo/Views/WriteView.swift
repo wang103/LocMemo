@@ -225,15 +225,16 @@ struct WriteView: View {
                         )
                 }
             }
-            .alert(isPresented: self.$showSuccess, content: self.getSuccessAlert)
 
             Section {
                 Text(NSLocalizedString("Show me this memo", comment: ""))
                 MultilineTextField(self.$memoText, placeholder: "", onCommit: nil)
                     .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color(UIColor.systemGray4)))
             }
+        } /* end of Form */
+            .alert(isPresented: self.$showSuccess, content: self.getSuccessAlert)
+        } /* end of GeometryReader */
             .alert(isPresented: self.$showError, content: self.getErrorAlert)
-        } /* end of Form */ } /* end of GeometryReader */
     }
 
     func getLocationsPopoverView() -> some View {

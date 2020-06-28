@@ -12,6 +12,8 @@ import Intents
 class BaiduLocationSearcher: NSObject, LocationSearcher, BMKSuggestionSearchDelegate {
     static let shared = BaiduLocationSearcher()
 
+    private let DEFAULT_RADIUS_METER = 70.0
+
     var searchToCallback: [BMKSuggestionSearch: Future<GetPlacemarksResult, NSError>.Promise]
     let lock: NSLock
 
@@ -79,7 +81,7 @@ class BaiduLocationSearcher: NSObject, LocationSearcher, BMKSuggestionSearchDele
 
     fileprivate func toPlacemark(_ suggestionInfo: BMKSuggestionInfo) -> LMPlacemark {
         let region = CLCircularRegion(center: suggestionInfo.location,
-                                      radius: 70,
+                                      radius: DEFAULT_RADIUS_METER,
                                       identifier: suggestionInfo.uid)
         return LMPlacemark(region: region,
                            name: getDisplayStr(suggestionInfo),

@@ -15,6 +15,7 @@ struct ContentView: View {
     // For write view
     @State private var writeViewIsToCreate: Bool = true
     @State private var writeViewLocationText: String = ""
+    @State private var writeViewRadiusText: String = ""
     @State private var writeViewMemoText: String = ""
     @State private var writeViewRegionIdentifier: String = ""
     @State private var writeViewSelectedPlacemark: LMPlacemark? = nil
@@ -23,6 +24,7 @@ struct ContentView: View {
         TabView(selection: $externalSettings.contentViewSelectedView) {
             MemosView(writeViewIsToCreate: $writeViewIsToCreate,
                       writeViewLocationText: $writeViewLocationText,
+                      writeViewRadiusText: $writeViewRadiusText,
                       writeViewMemoText: $writeViewMemoText,
                       writeViewRegionIdentifier: $writeViewRegionIdentifier,
                       writeViewSelectedPlacemark: $writeViewSelectedPlacemark)
@@ -36,6 +38,7 @@ struct ContentView: View {
 
             WriteView(isToCreate: $writeViewIsToCreate,
                       locationText: $writeViewLocationText,
+                      radiusText: $writeViewRadiusText,
                       memoText: $writeViewMemoText,
                       regionIdentifier: $writeViewRegionIdentifier,
                       selectedPlacemark: $writeViewSelectedPlacemark)

@@ -17,6 +17,7 @@ struct WriteView: View {
     // For this view
     @Binding var isToCreate: Bool
     @Binding var locationText: String
+    @Binding var radiusText: String
     @Binding var memoText: String
     @Binding var regionIdentifier: String
     @Binding var selectedPlacemark: LMPlacemark?
@@ -75,6 +76,12 @@ struct WriteView: View {
             return
         }
 
+        let radius = Double(radiusText)
+        if radius == nil {
+            showErrorMsg(NSLocalizedString("Please enter a valid radius first.", comment: ""))
+            return
+        }
+
         if memoText.isEmpty {
             showErrorMsg(NSLocalizedString("Please write a memo first.", comment: ""))
             return
@@ -100,7 +107,7 @@ struct WriteView: View {
                                                      memoText: memoText,
                                                      latitude: selectedPlacemark!.region.center.latitude,
                                                      longitude: selectedPlacemark!.region.center.longitude,
-                                                     radius: selectedPlacemark!.region.radius
+                                                     radius: radius!
                                                     )
 
                 showSuccessMsg()
@@ -116,6 +123,12 @@ struct WriteView: View {
     func createMemo() {
         if selectedPlacemark == nil {
             showErrorMsg(NSLocalizedString("Please select a location first.", comment: ""))
+            return
+        }
+
+        let radius = Double(radiusText)
+        if radius == nil {
+            showErrorMsg(NSLocalizedString("Please enter a valid radius first.", comment: ""))
             return
         }
 
@@ -139,7 +152,7 @@ struct WriteView: View {
                                                    memoText: memoText,
                                                    latitude: region.center.latitude,
                                                    longitude: region.center.longitude,
-                                                   radius: region.radius)
+                                                   radius: radius!)
 
                 showSuccessMsg(NSLocalizedString("Memo created.", comment: ""))
                 clearInputs()
@@ -164,6 +177,7 @@ struct WriteView: View {
     func clearInputs() {
         isToCreate = true
         locationText = ""
+        radiusText = ""
         memoText = ""
         regionIdentifier = ""
         locationChanged = false
@@ -179,12 +193,26 @@ struct WriteView: View {
             }
         )
 
+        let radiusTextBinding = Binding(
+            get: { self.radiusText },
+            set: {
+                self.radiusText = $0
+                self.locationChanged = true
+            }
+        )
+
         return GeometryReader { geometry in Form {
             Section {
                 Text(NSLocalizedString("When I arrive at location", comment: ""))
                 MultilineTextField(locationTextBinding, placeholder: "", onCommit: self.locationOnCommit)
                     .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color(UIColor.systemGray4)))
                     .popover(isPresented: self.$showLocationsPopover) { self.getLocationsPopoverView() }
+
+                HStack {
+                    Text(NSLocalizedString("Radius (in meters)", comment: ""))
+                    MultilineTextField(radiusTextBinding, placeholder: "", onCommit: self.radiusOnCommit)
+                        .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color(UIColor.systemGray4)))
+                }
 
                 ZStack {
                     MapView(center: self.$selectedPlacemark)
@@ -223,14 +251,18 @@ struct WriteView: View {
     }
 
     func locationSelected(id: Int) {
-        let placemarkDisplayStr = getDisplayStr(locationCandidates[id])
+        let placemark = locationCandidates[id]
+
+        let placemarkDisplayStr = getDisplayStr(placemark)
         if !placemarkDisplayStr.isEmpty {
             locationText = placemarkDisplayStr
         } else {
             // Could not format the CLPlacemark retrieved, just leave as is.
         }
 
-        selectedPlacemark = locationCandidates[id]
+        radiusText = "\(placemark.region.radius)"
+
+        selectedPlacemark = placemark
 
         showLocationsPopover = false
 
@@ -244,11 +276,33 @@ struct WriteView: View {
 
         selectedPlacemark = nil
         showLoading = true
+        radiusText = ""
 
         LocationManager.shared.getPlacemarks(
             locationText,
             completionHandler: getPlacemarksCompletionHandler
         )
+    }
+
+    func radiusOnCommit() {
+        let radius = Double(radiusText)
+        if radius == nil || selectedPlacemark == nil {
+            return
+        }
+        if Int(selectedPlacemark!.region.radius) == Int(radius!) {
+            return
+        }
+
+        let updatedRegion = CLCircularRegion(
+            center: selectedPlacemark!.region.center,
+            radius: radius!,
+            identifier: selectedPlacemark!.region.identifier)
+        let updatedPlacemark = LMPlacemark(
+            region: updatedRegion,
+            name: selectedPlacemark!.name,
+            isoCountryCode: selectedPlacemark!.isoCountryCode,
+            postalAddress: selectedPlacemark!.postalAddress)
+        selectedPlacemark = updatedPlacemark
     }
 
     func getPlacemarksCompletionHandler(placemarks: [LMPlacemark]?,

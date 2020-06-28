@@ -16,6 +16,7 @@ struct MemosView: View {
     // For write view
     @Binding var writeViewIsToCreate: Bool
     @Binding var writeViewLocationText: String
+    @Binding var writeViewRadiusText: String
     @Binding var writeViewMemoText: String
     @Binding var writeViewRegionIdentifier: String
     @Binding var writeViewSelectedPlacemark: LMPlacemark?
@@ -128,6 +129,9 @@ struct MemosView: View {
 
         writeViewIsToCreate = false
         writeViewLocationText = locMemo.locationText
+        if locMemo.radius != nil {
+            writeViewRadiusText = "\(locMemo.radius!)"
+        }
         writeViewMemoText = locMemo.memoText
         writeViewRegionIdentifier = locMemo.id
         if locMemo.latitude != nil && locMemo.longitude != nil && locMemo.radius != nil {

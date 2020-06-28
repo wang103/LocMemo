@@ -18,6 +18,7 @@
 "Create New Memo" = "Create New Memo";
 "Edit Memo" = "Edit Memo";
 "When I arrive at location" = "When I arrive at location";
+"Radius (in meters)" = "Radius (in meters)";
 "Show me this memo" = "Show me this memo";
 
 "Location Auth: %@" = "Location Auth: %@";
@@ -54,6 +55,7 @@
 "Loading..." = "Loading...";
 
 "Please select a location first." = "Please select a location first.";
+"Please enter a valid radius first." = "Please enter a valid radius first.";
 "Please write a memo first." = "Please write a memo first.";
 
 "Memo created." = "Memo created.";

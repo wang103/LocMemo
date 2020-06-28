@@ -26,11 +26,12 @@ struct MapView: UIViewRepresentable {
     }
 
     fileprivate func refresh(_ view: MKMapView) {
-        print("MapView - refresh. center=\(String(describing: center))")
+        view.removeOverlays(view.overlays)
         view.removeAnnotations(view.annotations)
         if center == nil {
             return
         }
+        print("MapView - refresh. region=\(center!.region)")
 
         let region = MKCoordinateRegion(center: center!.region.center,
                                         latitudinalMeters: center!.region.radius * 4,

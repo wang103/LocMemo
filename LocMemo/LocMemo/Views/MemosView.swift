@@ -129,9 +129,6 @@ struct MemosView: View {
 
         writeViewIsToCreate = false
         writeViewLocationText = locMemo.locationText
-        if locMemo.radius != nil {
-            writeViewRadiusText = "\(locMemo.radius!)"
-        }
         writeViewMemoText = locMemo.memoText
         writeViewRegionIdentifier = locMemo.id
         if locMemo.latitude != nil && locMemo.longitude != nil && locMemo.radius != nil {
@@ -142,6 +139,11 @@ struct MemosView: View {
                 isoCountryCode: nil,
                 postalAddress: nil
             )
+            writeViewRadiusText = "\(locMemo.radius!)"
+        } else if let region = LocationManager.shared.getMonitoredRegion(locMemo.id) {
+            writeViewSelectedPlacemark = LMPlacemark(
+                region: region, name: nil, isoCountryCode: nil, postalAddress: nil)
+            writeViewRadiusText = "\(region.radius)"
         }
         ExternalSettings.shared.contentViewSelectedView = 1
     }

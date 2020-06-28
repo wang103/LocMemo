@@ -38,7 +38,7 @@ class LocationManager: NSObject {
             getPlacemarksCancellable!.cancel()
         }
 
-        getPlacemarksCancellable = BaiduLocationSearcher.shared.getPlacemarks(addressString).sink(
+        getPlacemarksCancellable = AppleLocationSearcher.shared.getPlacemarks(addressString).sink(
             receiveCompletion: { completion in
                 switch completion {
                 case .finished:

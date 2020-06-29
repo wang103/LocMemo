@@ -21,6 +21,9 @@ struct SettingsView: View {
 
     @State private var showResetActionSheet = false
 
+    @State private var useAppleMap = true
+    @State private var useBaiduMap = true
+
     var body: some View {
         VStack {
 
@@ -119,6 +122,29 @@ struct SettingsView: View {
             }
 
             HStack {
+                Text(NSLocalizedString("Location Search Engines:", comment: ""))
+                    .padding(.leading, 22)
+                    .padding(.top, 10)
+                Spacer()
+            }
+
+            HStack {
+                Toggle(isOn: $useAppleMap) {
+                    Text(NSLocalizedString("Apple Map", comment: ""))
+                }
+                .padding(.leading, 22)
+                Spacer()
+            }
+
+            HStack {
+                Toggle(isOn: $useBaiduMap) {
+                    Text(NSLocalizedString("Baidu Map", comment: ""))
+                }
+                .padding(.leading, 22)
+                Spacer()
+            }
+
+            HStack {
                 Button(action: reviewAppButtonCallback) {
                     Text(NSLocalizedString("Write Review", comment: ""))
                         .foregroundColor(.blue)
@@ -129,7 +155,7 @@ struct SettingsView: View {
                         )
                 }
                 .padding(.leading, 22)
-                .padding(.top, 40)
+                .padding(.top, 30)
 
                 Spacer()
             }
@@ -145,7 +171,7 @@ struct SettingsView: View {
                         )
                 }
                 .padding(.leading, 22)
-                .padding(.top, 40)
+                .padding(.top, 30)
                 .actionSheet(isPresented: $showResetActionSheet) {
                     self.getResetActionSheet()
                 }

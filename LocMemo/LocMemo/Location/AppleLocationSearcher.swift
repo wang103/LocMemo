@@ -37,7 +37,7 @@ class AppleLocationSearcher: LocationSearcher {
     }
 
     func getName() -> String {
-        return NSLocalizedString("Apple", comment: "")
+        return NSLocalizedString("Apple Map", comment: "")
     }
 
     fileprivate func toLMPlacemark(_ placemark: CLPlacemark) -> LMPlacemark {

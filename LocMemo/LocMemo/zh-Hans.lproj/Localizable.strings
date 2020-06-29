@@ -25,6 +25,7 @@
 "Notification Auth: %@" = "通知授权：%@";
 "Language: %@" = "语言：%@";
 "Change" = "更改";
+"Location Search Engines:" = "地址搜索引擎：";
 "Write Review" = "撰写评论";
 "Reset" = "重置";
 
@@ -72,5 +73,5 @@
 
 "You arrived at a memo location" = "已到达备忘录地址";
 
-"Apple" = "苹果";
-"Baidu" = "百度";
+"Apple Map" = "苹果地图";
+"Baidu Map" = "百度地图";

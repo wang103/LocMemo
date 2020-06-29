@@ -76,7 +76,7 @@ class BaiduLocationSearcher: NSObject, LocationSearcher, BMKSuggestionSearchDele
     }
 
     func getName() -> String {
-        return NSLocalizedString("Baidu", comment: "")
+        return NSLocalizedString("Baidu Map", comment: "")
     }
 
     fileprivate func toPlacemark(_ suggestionInfo: BMKSuggestionInfo) -> LMPlacemark {

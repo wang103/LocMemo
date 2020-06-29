@@ -25,6 +25,7 @@
 "Notification Auth: %@" = "Notification Auth: %@";
 "Language: %@" = "Language: %@";
 "Change" = "Change";
+"Location Search Engines:" = "Location Search Engines:";
 "Write Review" = "Write Review";
 "Reset" = "Reset";
 
@@ -72,5 +73,5 @@
 
 "You arrived at a memo location" = "You arrived at a memo location";
 
-"Apple" = "Apple";
-"Baidu" = "Baidu";
+"Apple Map" = "Apple Map";
+"Baidu Map" = "Baidu Map";

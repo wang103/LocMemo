@@ -67,6 +67,8 @@ struct WriteView: View {
                     self.clearInputs()
                 }
             })
+            .padding(.bottom, self.keyboardHeight)
+            .onReceive(Publishers.keyboardHeight) { self.keyboardHeight = $0 }
 
             HStack {
                 Spacer()
@@ -76,8 +78,6 @@ struct WriteView: View {
             }
 
             } // end of VStack
-            .padding(.bottom, self.keyboardHeight)
-            .onReceive(Publishers.keyboardHeight) { self.keyboardHeight = $0 }
         }
     }
 

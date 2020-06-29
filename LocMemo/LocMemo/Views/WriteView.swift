@@ -47,6 +47,8 @@ struct WriteView: View {
 
             NavigationView {
                 self.getMainView()
+                .padding(.bottom, self.keyboardHeight)
+                .onReceive(Publishers.keyboardHeight) { self.keyboardHeight = $0 }
                 .navigationBarTitle(self.isToCreate ?
                     NSLocalizedString("Create New Memo", comment: "") :
                     NSLocalizedString("Edit Memo", comment: ""))
@@ -67,8 +69,6 @@ struct WriteView: View {
                     self.clearInputs()
                 }
             })
-            .padding(.bottom, self.keyboardHeight)
-            .onReceive(Publishers.keyboardHeight) { self.keyboardHeight = $0 }
 
             HStack {
                 Spacer()

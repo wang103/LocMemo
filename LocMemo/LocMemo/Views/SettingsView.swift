@@ -173,6 +173,7 @@ struct SettingsView: View {
 
             Spacer()
         } /* end of VStack */ } /* end of Form */
+        .buttonStyle(BorderlessButtonStyle())
     }
 
     func changeNotificationAuthorization() {
@@ -197,12 +198,14 @@ struct SettingsView: View {
     }
 
     func reviewAppButtonCallback() {
+        print("SettingsView - reviewAppButtonCallback")
         guard let writeReviewURL = URL(string: "https://itunes.apple.com/app/id1510668870?action=write-review")
             else { fatalError("Expected a valid URL") }
         UIApplication.shared.open(writeReviewURL, options: [:], completionHandler: nil)
     }
 
     func resetButtonCallback() {
+        print("SettingsView - resetButtonCallback")
         showResetActionSheet = true
     }
 

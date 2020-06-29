@@ -63,6 +63,8 @@
 
 "Deleting memo encountered error. Please try again. %@" = "Deleting memo encountered error. Please try again. %@";
 "Reading saved memos encountered error. %@" = "Reading saved memos encountered error. %@";
+"Saving setting data encountered error. %@" = "Saving setting data encountered error. %@";
+"Reading setting data encountered error. %@" = "Reading setting data encountered error. %@";
 "Device does not support region monitoring." = "Device does not support region monitoring.";
 "Saving memo encounterd error. Please try again. %@" = "Saving memo encounterd error. Please try again. %@";
 "Invalid location. Please refine your search." = "Invalid location. Please refine your search.";

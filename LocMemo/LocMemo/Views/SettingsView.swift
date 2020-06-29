@@ -6,6 +6,7 @@
 //  Copyright © 2020 x. All rights reserved.
 //
 
+import CoreData
 import GoogleMobileAds
 import SwiftUI
 
@@ -21,8 +22,8 @@ struct SettingsView: View {
 
     @State private var showResetActionSheet = false
 
-    @State private var useAppleMap = true
-    @State private var useBaiduMap = true
+    @State private var settingData = SettingData(
+        obj: NSManagedObject(), appleLocationSearcher: true, baiduLocationSearcher: true)
 
     var body: some View {
         VStack {
@@ -32,6 +33,7 @@ struct SettingsView: View {
             .navigationBarTitle(NSLocalizedString("Settings", comment: ""))
         }
         .alert(isPresented: self.$showError, content: self.getErrorAlert)
+        .onAppear(perform: { self.settingData = self.getSettingData() })
 
         HStack {
             Spacer()
@@ -44,6 +46,24 @@ struct SettingsView: View {
     }
 
     func getMainView() -> some View {
+        let useAppleMapBinding = Binding(
+            get: { self.settingData.appleLocationSearcher },
+            set: {
+                if self.updateUseAppleMap($0) {
+                    self.settingData.appleLocationSearcher = $0
+                }
+            }
+        )
+
+        let useBaiduMapBinding = Binding(
+            get: { self.settingData.baiduLocationSearcher },
+            set: {
+                if self.updateUseBaiduMap($0) {
+                    self.settingData.baiduLocationSearcher = $0
+                }
+            }
+        )
+
         return Form { VStack {
 
             HStack {
@@ -124,14 +144,14 @@ struct SettingsView: View {
             }
 
             HStack {
-                Toggle(isOn: $useAppleMap) {
+                Toggle(isOn: useAppleMapBinding) {
                     Text(NSLocalizedString("Apple Map", comment: ""))
                 }
                 Spacer()
             }
 
             HStack {
-                Toggle(isOn: $useBaiduMap) {
+                Toggle(isOn: useBaiduMapBinding) {
                     Text(NSLocalizedString("Baidu Map", comment: ""))
                 }
                 Spacer()
@@ -227,6 +247,41 @@ struct SettingsView: View {
             showErrorMsg(String.localizedStringWithFormat(
                 NSLocalizedString("Deleting memo encountered error. Please try again. %@", comment: ""),
                 error.localizedDescription))
+        }
+    }
+
+    func updateUseAppleMap(_ useAppleMap: Bool) -> Bool {
+        do {
+            try DataManager.shared.updateUseAppleMap(useAppleMap)
+            return true
+        } catch let error as NSError {
+            showErrorMsg(String.localizedStringWithFormat(
+                NSLocalizedString("Saving setting data encountered error. %@", comment: ""),
+                error.localizedDescription))
+            return false
+        }
+    }
+
+    func updateUseBaiduMap(_ useBaiduMap: Bool) -> Bool {
+        do {
+            try DataManager.shared.updateUseBaiduMap(useBaiduMap)
+            return true
+        } catch let error as NSError {
+            showErrorMsg(String.localizedStringWithFormat(
+                NSLocalizedString("Saving setting data encountered error. %@", comment: ""),
+                error.localizedDescription))
+            return false
+        }
+    }
+
+    func getSettingData() -> SettingData {
+        do {
+            return try DataManager.shared.getSetting()
+        } catch let error as NSError {
+            showErrorMsg(String.localizedStringWithFormat(
+                NSLocalizedString("Reading setting data encountered error. %@", comment: ""),
+                error.localizedDescription))
+            return SettingData(obj: NSManagedObject(), appleLocationSearcher: true, baiduLocationSearcher: true)
         }
     }
 

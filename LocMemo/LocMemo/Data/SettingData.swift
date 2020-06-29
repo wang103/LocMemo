@@ -6,7 +6,10 @@
 //  Copyright © 2020 hyperware. All rights reserved.
 //
 
+import CoreData
+
 struct SettingData {
-    let appleLocationSearcher: Bool
-    let baiduLocationSearcher: Bool
+    let obj: NSManagedObject
+    var appleLocationSearcher: Bool
+    var baiduLocationSearcher: Bool
 }

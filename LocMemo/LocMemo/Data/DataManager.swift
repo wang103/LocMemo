@@ -183,6 +183,65 @@ class DataManager {
         }
     }
 
+    func getSetting() throws -> SettingData {
+        let obj = try ensureSetting()
+        return SettingData(
+            obj: obj,
+            appleLocationSearcher: obj.value(forKeyPath: "appleLocationSearcher") as! Bool,
+            baiduLocationSearcher: obj.value(forKeyPath: "baiduLocationSearcher") as! Bool
+        )
+    }
+
+    func ensureSetting() throws -> NSManagedObject {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = appDelegate.persistentContainer.viewContext
+
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Setting")
+
+        let results = try managedContext.fetch(fetchRequest)
+        if results.count == 0 {
+            return try saveSetting(useAppleMap: true, useBaiduMap: true)
+        } else {
+            return results[0]
+        }
+    }
+
+    func saveSetting(useAppleMap: Bool, useBaiduMap: Bool) throws -> NSManagedObject {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = appDelegate.persistentContainer.viewContext
+
+        let entity = NSEntityDescription.entity(forEntityName: "Setting", in: managedContext)!
+        let settingDataObj = NSManagedObject(entity: entity, insertInto: managedContext)
+
+        settingDataObj.setValue(useAppleMap, forKey: "appleLocationSearcher")
+        settingDataObj.setValue(useBaiduMap, forKey: "baiduLocationSearcher")
+
+        try managedContext.save()
+        return settingDataObj
+    }
+
+    func updateUseAppleMap(_ useAppleMap: Bool) throws {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+
+        let obj = try getSetting().obj
+        obj.setValue(useAppleMap, forKey: "appleLocationSearcher")
+        try managedContext.save()
+    }
+
+    func updateUseBaiduMap(_ useBaiduMap: Bool) throws {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+
+        let obj = try getSetting().obj
+        obj.setValue(useBaiduMap, forKey: "baiduLocationSearcher")
+        try managedContext.save()
+    }
+
     func getCurAppVersion() throws -> AppVersionData {
         let obj = try ensureCurAppVersion()
         return AppVersionData(
@@ -190,24 +249,6 @@ class DataManager {
             memoNotiCount: obj.value(forKeyPath: "memoNotiCount") as! Int64,
             promptedReview: obj.value(forKeyPath: "promptedReview") as! Bool
         )
-    }
-
-    func getSetting() throws -> SettingData {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let managedContext = appDelegate.persistentContainer.viewContext
-
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Setting")
-
-        let results = try managedContext.fetch(fetchRequest)
-        if results.count < 1 {
-            return SettingData(appleLocationSearcher: true, baiduLocationSearcher: true)
-        } else {
-            let result = results[0]
-            return SettingData(
-                appleLocationSearcher: result.value(forKeyPath: "appleLocationSearcher") as! Bool,
-                baiduLocationSearcher: result.value(forKeyPath: "baiduLocationSearcher") as! Bool
-            )
-        }
     }
 
     fileprivate func ensureCurAppVersion() throws -> NSManagedObject {

@@ -63,6 +63,8 @@
 
 "Deleting memo encountered error. Please try again. %@" = "删除备忘录遇到错误。请重试。%@";
 "Reading saved memos encountered error. %@" = "读取备忘录遇到错误。%@";
+"Saving setting data encountered error. %@" = "保存设置数据遇到错误。%@";
+"Reading setting data encountered error. %@" = "读取设置数据遇到错误。%@";
 "Device does not support region monitoring." = "设备不支持区域监控。";
 "Saving memo encounterd error. Please try again. %@" = "保存备忘录遇到错误。请重试。%@";
 "Invalid location. Please refine your search." = "无效地址。请优化您的搜索。";

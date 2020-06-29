@@ -10,7 +10,8 @@ import Combine
 
 struct GetPlacemarksResult {
     var sourceName: String
-    var results: [LMPlacemark]?
+    var results: [LMPlacemark]
+    var comment: String
 }
 
 protocol LocationSearcher {

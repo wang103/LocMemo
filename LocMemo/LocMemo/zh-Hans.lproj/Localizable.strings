@@ -77,3 +77,7 @@
 
 "Apple Map" = "苹果地图";
 "Baidu Map" = "百度地图";
+"Not enabled" = "未启用";
+"%d results" = "%d个结果";
+"Unknown error" = "未知错误";
+"Error code %d" = "错误代码 %d";

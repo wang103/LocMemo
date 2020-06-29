@@ -41,10 +41,10 @@ class BaiduLocationSearcher: NSObject, LocationSearcher, BMKSuggestionSearchDele
             if success {
                 self.searchToCallback[search] = promise
             } else {
-                promise(.failure(NSError(
-                    domain: "BaiduLocationSearcher - getPlacemarks",
-                    code: -1,
-                    userInfo: nil
+                promise(.success(GetPlacemarksResult(
+                    sourceName: self.getName(),
+                    results: [],
+                    comment: NSLocalizedString("Unknown error", comment: "")
                 )))
             }
         }
@@ -64,13 +64,16 @@ class BaiduLocationSearcher: NSObject, LocationSearcher, BMKSuggestionSearchDele
             let placemarks = result.suggestionList.map({toPlacemark($0)})
             handler!(.success(GetPlacemarksResult(
                 sourceName: getName(),
-                results: placemarks
+                results: placemarks,
+                comment: String.localizedStringWithFormat(
+                    NSLocalizedString("%d results", comment: ""), placemarks.count)
             )))
         } else {
-            handler!(.failure(NSError(
-                domain: "BaiduLocationSearcher - onGetSuggestionResult",
-                code: Int(error.rawValue),
-                userInfo: nil
+            handler!(.success(GetPlacemarksResult(
+                sourceName: getName(),
+                results: [],
+                comment: String.localizedStringWithFormat(
+                    NSLocalizedString("Error code %d", comment: ""), error.rawValue)
             )))
         }
     }

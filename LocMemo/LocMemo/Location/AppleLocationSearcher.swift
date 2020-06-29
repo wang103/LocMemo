@@ -18,19 +18,25 @@ class AppleLocationSearcher: LocationSearcher {
             geocoder.geocodeAddressString(addressString, in: nil, preferredLocale: locale) { (placemarks, error) in
                 if error == nil {
 
-                    var lmPlacemarks: [LMPlacemark]? = nil
+                    var lmPlacemarks: [LMPlacemark] = []
                     if placemarks != nil {
                         lmPlacemarks = placemarks!.map({self.toLMPlacemark($0)})
                     }
 
                     promise(.success(GetPlacemarksResult(
                         sourceName: self.getName(),
-                        results: lmPlacemarks
+                        results: lmPlacemarks,
+                        comment: String.localizedStringWithFormat(
+                            NSLocalizedString("%d results", comment: ""), lmPlacemarks.count)
                     )))
                     return
                 }
 
-                promise(.failure(error! as NSError))
+                promise(.success(GetPlacemarksResult(
+                    sourceName: self.getName(),
+                    results: [],
+                    comment: error!.localizedDescription
+                )))
             }
         }
         return future

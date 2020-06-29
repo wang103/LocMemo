@@ -10,14 +10,15 @@ import SwiftUI
 
 struct SelectableCell<Content>: View where Content: View {
 
+    let searchEngineId: Int
     let id: Int
-    let selectedCallback: (Int) -> Void
+    let selectedCallback: (Int, Int) -> Void
     var content: () -> Content
 
     var body: some View {
         content()
             .onTapGesture {
-                self.selectedCallback(self.id)
+                self.selectedCallback(self.searchEngineId, self.id)
             }
     }
 }

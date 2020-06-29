@@ -7,6 +7,7 @@
 //
 
 import Combine
+import CoreData
 import CoreLocation
 
 class LocationManager: NSObject {
@@ -33,22 +34,48 @@ class LocationManager: NSObject {
     }
 
     func getPlacemarks(_ addressString : String,
-                       completionHandler: @escaping([LMPlacemark]?, NSError?) -> Void) {
+                       completionHandler: @escaping([GetPlacemarksResult], NSError?) -> Void) {
         if getPlacemarksCancellable != nil {
             getPlacemarksCancellable!.cancel()
         }
 
-        getPlacemarksCancellable = AppleLocationSearcher.shared.getPlacemarks(addressString).sink(
+        let setting = getSettingData()
+        let future1 = setting.appleLocationSearcher ?
+            AppleLocationSearcher.shared.getPlacemarks(addressString) :
+            getNotEnabledResult(AppleLocationSearcher.shared.getName())
+        let future2 = setting.baiduLocationSearcher ?
+            BaiduLocationSearcher.shared.getPlacemarks(addressString) :
+            getNotEnabledResult(BaiduLocationSearcher.shared.getName())
+        getPlacemarksCancellable = Publishers.Zip(future1, future2).sink(
             receiveCompletion: { completion in
                 switch completion {
                 case .finished:
                     break
                 case .failure(let error):
-                    completionHandler(nil, error)
+                    completionHandler([], error)
                 }
             },
-            receiveValue: { completionHandler($0.results, nil) }
+            receiveValue: { (value1, value2) in
+                completionHandler([value1, value2], nil)
+            }
         )
+    }
+
+    private func getNotEnabledResult(_ sourceName: String) -> Future<GetPlacemarksResult, NSError> {
+        let result = GetPlacemarksResult(
+            sourceName: sourceName, results: [], comment: NSLocalizedString("Not enabled", comment: ""))
+        return Future<GetPlacemarksResult, NSError> { promise in
+            promise(.success(result))
+        }
+    }
+
+    private func getSettingData() -> SettingData {
+        do {
+            return try DataManager.shared.getSetting()
+        } catch let error as NSError {
+            print("LocationManager - getSettingData \(error)")
+            return SettingData(obj: NSManagedObject(), appleLocationSearcher: true, baiduLocationSearcher: true)
+        }
     }
 
     func startMonitoring(region: CLCircularRegion) -> Bool {

@@ -37,7 +37,7 @@ struct MemosView: View {
         NavigationView {
             List {
                 ForEach(locMemos.enumerated().map({$0}), id: \.element.id) { index, locMemo in
-                    SelectableCell(id: index, selectedCallback: self.locMemoSelected) {
+                    SelectableCell(searchEngineId: -1, id: index, selectedCallback: self.locMemoSelected) {
                         self.getCellContent(locMemo: locMemo)
                     }
                     .actionSheet(isPresented: self.$showMemoActionSheet) { self.getMemoActionSheet() }
@@ -73,7 +73,7 @@ struct MemosView: View {
         }
     }
 
-    func locMemoSelected(index: Int) {
+    func locMemoSelected(_: Int, index: Int) {
         ExternalSettings.shared.memosViewLastSelectedMemoIndex = index
         showMemoActionSheet = true
     }

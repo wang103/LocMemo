@@ -31,7 +31,7 @@ struct WriteView: View {
     @State private var showLoading: Bool = false
 
     @State private var showLocationsPopover: Bool = false
-    @State private var locationCandidates: [LMPlacemark] = []
+    @State private var locationCandidates: [GetPlacemarksResult] = []
 
     @State private var locationChanged: Bool = false
     @State private var radiusChanged: Bool = false
@@ -248,15 +248,33 @@ struct WriteView: View {
             .alert(isPresented: self.$showError, content: self.getErrorAlert)
     }
 
+    private func getSelectableCell(searchEngineId: Int, id: Int) -> some View {
+        return SelectableCell(
+            searchEngineId: searchEngineId,
+            id: id,
+            selectedCallback: self.locationSelected
+        ) {
+            Text(self.getDisplayStr(self.locationCandidates[searchEngineId].results[id]))
+        }
+    }
+
+    private func getSection(searchEngineId: Int) -> some View {
+        return Section(header: Text(self.locationCandidates[searchEngineId].sourceName).bold().underline(),
+                       footer: Text(self.locationCandidates[searchEngineId].comment)) {
+            ForEach(0..<self.locationCandidates[searchEngineId].results.count) { id in
+                self.getSelectableCell(searchEngineId: searchEngineId, id: id)
+            }
+        }
+    }
+
     func getLocationsPopoverView() -> some View {
         return NavigationView {
             List {
-                ForEach(0..<locationCandidates.count) { index in
-                    SelectableCell(id: index, selectedCallback: self.locationSelected) {
-                        Text(self.getDisplayStr(self.locationCandidates[index]))
-                    }
+                ForEach(0..<locationCandidates.count) { searchEngineId in
+                    self.getSection(searchEngineId: searchEngineId)
                 }
             }
+            .listStyle(GroupedListStyle())
             .navigationBarTitle(NSLocalizedString("Select Location", comment: ""))
             .navigationBarItems(trailing:
                 Button(NSLocalizedString("Close", comment: "")) { self.showLocationsPopover = false }
@@ -264,8 +282,8 @@ struct WriteView: View {
         }
     }
 
-    func locationSelected(id: Int) {
-        let placemark = locationCandidates[id]
+    func locationSelected(searchEngineId: Int, id: Int) {
+        let placemark = locationCandidates[searchEngineId].results[id]
 
         let placemarkDisplayStr = getDisplayStr(placemark)
         if !placemarkDisplayStr.isEmpty {
@@ -323,23 +341,21 @@ struct WriteView: View {
         selectedPlacemark = updatedPlacemark
     }
 
-    func getPlacemarksCompletionHandler(placemarks: [LMPlacemark]?,
+    func getPlacemarksCompletionHandler(placemarks: [GetPlacemarksResult],
                                         error: NSError?) {
         selectedPlacemark = nil
         showLoading = false
 
-        if error != nil || placemarks == nil || placemarks!.count == 0 {
+        if error != nil || placemarks.count == 0 {
+            if error != nil {
+                print("getPlacemarksCompletionHandler error: \(error!.localizedDescription)")
+            }
             showErrorMsg(NSLocalizedString("Invalid location. Please refine your search.", comment: ""))
             return
         }
 
-        if placemarks!.count == 1 {
-            locationCandidates = placemarks!
-            locationSelected(id: 0)
-        } else {
-            locationCandidates = placemarks!
-            showLocationsPopover = true
-        }
+        locationCandidates = placemarks
+        showLocationsPopover = true
     }
 
     func showErrorMsg(_ msg: String) {

@@ -6,6 +6,7 @@
 //  Copyright © 2020 x. All rights reserved.
 //
 
+import Combine
 import Contacts
 import CoreLocation
 import GoogleMobileAds
@@ -35,6 +36,8 @@ struct WriteView: View {
 
     @State private var locationChanged: Bool = false
     @State private var radiusChanged: Bool = false
+
+    @State private var keyboardHeight: CGFloat = 0
 
     var body: some View {
         LoadingView(isShowing: $showLoading) {
@@ -73,6 +76,8 @@ struct WriteView: View {
             }
 
             } // end of VStack
+            .padding(.bottom, self.keyboardHeight)
+            .onReceive(Publishers.keyboardHeight) { self.keyboardHeight = $0 }
         }
     }
 
@@ -399,5 +404,26 @@ struct WriteView: View {
         return Alert(title: Text(NSLocalizedString("Success!", comment: "")),
                      message: successMsg == nil ? nil : Text(successMsg!),
                      dismissButton: .default(Text(NSLocalizedString("OK", comment: ""))))
+    }
+}
+
+// MARK: - Notification
+
+extension Notification {
+    var keyboardHeight: CGFloat {
+        return (userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect)?.height ?? 0
+    }
+}
+
+// MARK: - Publishers
+
+extension Publishers {
+    static var keyboardHeight: AnyPublisher<CGFloat, Never> {
+        let willShow = NotificationCenter.default.publisher(for: UIApplication.keyboardWillShowNotification)
+            .map { $0.keyboardHeight }
+        let willHide = NotificationCenter.default.publisher(for: UIApplication.keyboardWillHideNotification)
+            .map { _ in CGFloat(0) }
+        return MergeMany(willShow, willHide)
+            .eraseToAnyPublisher()
     }
 }

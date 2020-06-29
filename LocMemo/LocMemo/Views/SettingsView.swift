@@ -44,13 +44,12 @@ struct SettingsView: View {
     }
 
     func getMainView() -> some View {
-        return VStack {
+        return Form { VStack {
 
             HStack {
                 Text(String.localizedStringWithFormat(
                         NSLocalizedString("Location Auth: %@", comment: ""),
                         externalSettings.locationAuthStatus))
-                    .padding(.leading, 22)
                     .padding(.top, 5)
 
                 Button(action: changeLocationAuthorization) {
@@ -71,7 +70,6 @@ struct SettingsView: View {
                 Text(String.localizedStringWithFormat(
                         NSLocalizedString("Notification Auth: %@", comment: ""),
                         externalSettings.notificationAuthStatus))
-                    .padding(.leading, 22)
                     .padding(.top, 10)
 
                 Button(action: changeNotificationAuthorization) {
@@ -93,7 +91,6 @@ struct SettingsView: View {
                         LocationManager.shared.getAuthorizationStatusStr(.authorizedAlways),
                         NotificationManager.shared.getAuthorizationStatusStr(.authorized),
                         UIApplication.locationUsageDescription))
-                .padding(.leading, 22)
                 .padding(.top, 10)
                 .font(.footnote)
 
@@ -104,7 +101,6 @@ struct SettingsView: View {
                 Text(String.localizedStringWithFormat(
                         NSLocalizedString("Language: %@", comment: ""),
                         I18nUtils.shared.getDisplayStr(langCode: Locale.preferredLanguages.first!)))
-                    .padding(.leading, 22)
                     .padding(.top, 10)
 
                 Button(action: changeLanguage) {
@@ -123,7 +119,6 @@ struct SettingsView: View {
 
             HStack {
                 Text(NSLocalizedString("Location Search Engines:", comment: ""))
-                    .padding(.leading, 22)
                     .padding(.top, 10)
                 Spacer()
             }
@@ -132,7 +127,6 @@ struct SettingsView: View {
                 Toggle(isOn: $useAppleMap) {
                     Text(NSLocalizedString("Apple Map", comment: ""))
                 }
-                .padding(.leading, 22)
                 Spacer()
             }
 
@@ -140,7 +134,6 @@ struct SettingsView: View {
                 Toggle(isOn: $useBaiduMap) {
                     Text(NSLocalizedString("Baidu Map", comment: ""))
                 }
-                .padding(.leading, 22)
                 Spacer()
             }
 
@@ -154,8 +147,7 @@ struct SettingsView: View {
                                 .stroke(Color.blue, lineWidth: 1)
                         )
                 }
-                .padding(.leading, 22)
-                .padding(.top, 30)
+                .padding(.top, 25)
 
                 Spacer()
             }
@@ -170,8 +162,7 @@ struct SettingsView: View {
                                 .stroke(Color.red, lineWidth: 1)
                         )
                 }
-                .padding(.leading, 22)
-                .padding(.top, 30)
+                .padding(.top, 25)
                 .actionSheet(isPresented: $showResetActionSheet) {
                     self.getResetActionSheet()
                 }
@@ -181,7 +172,7 @@ struct SettingsView: View {
             .alert(isPresented: self.$showSuccess, content: self.getSuccessAlert)
 
             Spacer()
-        }
+        } /* end of VStack */ } /* end of Form */
     }
 
     func changeNotificationAuthorization() {

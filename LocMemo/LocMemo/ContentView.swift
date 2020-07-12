@@ -65,10 +65,6 @@ struct ContentView: View {
 // MARK: - UIApplication
 
 extension UIApplication {
-    func endEditing() {
-        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-    }
-
     static var locationUsageDescription: String {
         return Bundle.main.object(
             forInfoDictionaryKey: "NSLocationAlwaysAndWhenInUseUsageDescription") as! String

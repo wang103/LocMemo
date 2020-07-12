@@ -37,6 +37,7 @@
 		4DACFAF8243C114E00740EE8 /* LocMemoStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFAF7243C114E00740EE8 /* LocMemoStatus.swift */; };
 		4DACFAFE243C288C00740EE8 /* LocMemoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFAFD243C288C00740EE8 /* LocMemoData.swift */; };
 		4DACFB01244041C300740EE8 /* ExternalSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACFB00244041C300740EE8 /* ExternalSettings.swift */; };
+		4DD98EF424BAF4D200C6FA65 /* CustomUITapGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD98EF324BAF4D200C6FA65 /* CustomUITapGestureRecognizer.swift */; };
 		4DE59A36247A6BFA00A3EDA3 /* LMPlacemark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE59A35247A6BFA00A3EDA3 /* LMPlacemark.swift */; };
 		4DE59A38247E0E6900A3EDA3 /* SettingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE59A37247E0E6900A3EDA3 /* SettingData.swift */; };
 		4DE59A3A248630B800A3EDA3 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE59A39248630B800A3EDA3 /* MapView.swift */; };
@@ -81,6 +82,7 @@
 		4DACFAF7243C114E00740EE8 /* LocMemoStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocMemoStatus.swift; sourceTree = "<group>"; };
 		4DACFAFD243C288C00740EE8 /* LocMemoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocMemoData.swift; sourceTree = "<group>"; };
 		4DACFB00244041C300740EE8 /* ExternalSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalSettings.swift; sourceTree = "<group>"; };
+		4DD98EF324BAF4D200C6FA65 /* CustomUITapGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUITapGestureRecognizer.swift; sourceTree = "<group>"; };
 		4DE59A35247A6BFA00A3EDA3 /* LMPlacemark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMPlacemark.swift; sourceTree = "<group>"; };
 		4DE59A37247E0E6900A3EDA3 /* SettingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingData.swift; sourceTree = "<group>"; };
 		4DE59A39248630B800A3EDA3 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 				4DACFABF243B149400740EE8 /* MultilineTextField.swift */,
 				4DACFABD243AED4C00740EE8 /* SelectableCell.swift */,
 				4DE59A39248630B800A3EDA3 /* MapView.swift */,
+				4DD98EF324BAF4D200C6FA65 /* CustomUITapGestureRecognizer.swift */,
 			);
 			path = UILib;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 			files = (
 				4DACFAF3243C0E0B00740EE8 /* LocMemo.xcdatamodeld in Sources */,
 				4D8AB4DF24568AD7009B1CA6 /* NotificationManager.swift in Sources */,
+				4DD98EF424BAF4D200C6FA65 /* CustomUITapGestureRecognizer.swift in Sources */,
 				4DE59A38247E0E6900A3EDA3 /* SettingData.swift in Sources */,
 				4D7228CA24615DA60052593F /* AppVersionData.swift in Sources */,
 				4DACFAB72438534900740EE8 /* SettingsView.swift in Sources */,

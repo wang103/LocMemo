@@ -57,7 +57,6 @@ struct WriteView: View {
                 )
             }
             .onTapGesture {
-                UIApplication.shared.endEditing()
                 if self.locationChanged {
                     self.locationOnCommit()
                 } else if self.radiusChanged {

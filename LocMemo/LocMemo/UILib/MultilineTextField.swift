@@ -13,6 +13,7 @@ fileprivate struct UITextViewWrapper: UIViewRepresentable {
     @Binding var text: String
     @Binding var calculatedHeight: CGFloat
     var onDone: (() -> Void)?
+    var keyboardType: UIKeyboardType
 
     func makeUIView(context: UIViewRepresentableContext<UITextViewWrapper>)
             -> UITextView {
@@ -26,6 +27,7 @@ fileprivate struct UITextViewWrapper: UIViewRepresentable {
         uiTextView.isScrollEnabled = false
         uiTextView.backgroundColor = UIColor.clear
         uiTextView.returnKeyType = onDone == nil ? .default : .go
+        uiTextView.keyboardType = keyboardType
 
         uiTextView.setContentCompressionResistancePriority(
             .defaultLow, for: .horizontal)
@@ -92,6 +94,7 @@ struct MultilineTextField: View {
 
     private var placeholder: String
     private var onCommit: (() -> Void)?
+    private var keyboardType: UIKeyboardType
 
     @Binding private var text: String
     private var internalText: Binding<String> {
@@ -106,17 +109,20 @@ struct MultilineTextField: View {
 
     init (_ text: Binding<String>,
           placeholder: String = "",
-          onCommit: (() -> Void)? = nil) {
+          onCommit: (() -> Void)? = nil,
+          keyboardType: UIKeyboardType = .default) {
         self._text = text
         self.placeholder = placeholder
         self.onCommit = onCommit
+        self.keyboardType = keyboardType
         self._showingPlaceholder = State<Bool>(initialValue: self.text.isEmpty)
     }
 
     var body: some View {
         UITextViewWrapper(text: self.internalText,
                           calculatedHeight: $dynamicHeight,
-                          onDone: onCommit)
+                          onDone: onCommit,
+                          keyboardType: keyboardType)
             .frame(minHeight: dynamicHeight, maxHeight: dynamicHeight)
             .background(placeholderView, alignment: .topLeading)
     }

@@ -227,8 +227,13 @@ struct WriteView: View {
 
                 HStack {
                     Text(NSLocalizedString("Radius (in meters)", comment: ""))
-                    MultilineTextField(radiusTextBinding, placeholder: "", onCommit: self.radiusOnCommit)
-                        .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color(UIColor.systemGray4)))
+                    MultilineTextField(
+                        radiusTextBinding,
+                        placeholder: "",
+                        onCommit: self.radiusOnCommit,
+                        keyboardType: .decimalPad
+                    )
+                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color(UIColor.systemGray4)))
                 }
 
                 ZStack {
